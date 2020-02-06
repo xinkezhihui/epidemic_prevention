@@ -1,0 +1,22 @@
+
+spring:
+  resources:
+    static-locations:["/templates/","/static/"]
+  datasource:
+    username: root
+    password: kejia+*root
+    url: jdbc:mysql://58.87.82.31:10019/water_conservancy?nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+debug: false
