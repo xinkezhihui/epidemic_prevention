@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: kejia+*root
-    url: jdbc:mysql://58.87.82.31:10019/water_conservancy?nullCatalogMeansCurrent=true
+    url: jdbc:mysql://58.87.82.31:10019/xk_yqxxglpt?nullCatalogMeansCurrent=true
     driver-class-name: com.mysql.cj.jdbc.Driver
   devtools:
     restart:
