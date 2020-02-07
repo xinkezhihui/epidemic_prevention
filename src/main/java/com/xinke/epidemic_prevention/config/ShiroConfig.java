@@ -64,13 +64,14 @@ public class ShiroConfig {
         Map<String,String> filterMap2 =new LinkedHashMap<String, String>();
         filterMap.put("/user/tz", "anon");
         filterMap.put("/user/login", "anon");
-        filterMap.put("/user/tz2", "authc");
+        filterMap.put("/*", "authc");
+        filterMap.put("/*/*", "authc");
 
 
 
         //授权过滤器
         //filterMap.put("/add", "perms[user:add]");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/user/toLogin");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/user/tz");
         System.out.println("无权限跳转");
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面

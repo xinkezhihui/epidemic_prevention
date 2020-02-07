@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>泰山区智慧防疫平台</title>
+		<link rel="stylesheet" href="../static/common/css/index.css">
+	</head>
+	<body>
+		<img src="../static/common/img/hospital.png" class="bg"/>
+		<div class="tit">
+			<img src="../static/common/img/title.png" class="a4">
+		</div>
+	    <div class="center">
+			<form action="/user/login" method="post">
+				<div class="center-01">
+					<div style="text-align: center;color: red;" th:text="${msg}"></div>
+					<div class="username">
+						<img src="../static/common/img/zh.png" class="a2" onfocus="onfocus">
+						<span class="required"></span>
+						<input type="text" placeholder="账号" AUTOCOMPLETE="off" name="number" class="btn-01" id="number"/>
+					</div>
+					<div class="password">
+						<img src="../static/common/img/mm.png" class="a1">
+						<span class="required"></span>
+						<input type="password" placeholder="密码" name="password" class="btn-02" id="pwd"/>
+					</div>
+
+					<input type="submit"  value="登录" class="btn-03"/>
+
+				</div>
+			</form>
+	    </div>
+	    <div style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 18px; font-size: 16px; color: white; font-weight: 500; height: 30px; line-height: 30px;">Copyright &copy; &nbsp;2020&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<img src="../static/common/img/153.png" style="width: 20px; margin: -5px; ">&nbsp;&nbsp;山东芯科智慧科技有限公司 &nbsp; &nbsp;Inc. All Rights Reserved</div>
+		
+	</body>
+</html>
