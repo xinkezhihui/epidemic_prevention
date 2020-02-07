@@ -54,12 +54,23 @@
 				</li>
 				<!--meta-->
 				<li>
-					<a th:href="@{/community/show}" class="J_menuItem" >
+					<a href="#" shiro:hasPermission="admin">
+						<i class="fa fa fa-bar-chart-o"></i>
+						<span class="nav-label">社区</span>
+						<span class="fa arrow"></span>
+					</a>
+					<a href="#" shiro:hasPermission="super">
 						<i class="fa fa fa-bar-chart-o"></i>
 						<span class="nav-label">社区</span>
 						<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level">
+						<li>
+							<a class="J_menuItem" th:href="@{/community/addmijie}">添加密接人员</a>
+							<a class="J_menuItem" th:href="@{/community/mijieList}">密接人员管理</a>
+							<a class="J_menuItem" >查看已确诊人员</a>
+							<a class="J_menuItem">查看密接人员</a>
+						</li>
 					</ul>
 				</li>
 				<li>
