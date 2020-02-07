@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController{
     @GetMapping("tz")
     public String tz(){return "login";}
+    @GetMapping("tz2")
+    public String tz2(){return "index";}
 
     @PostMapping("login")
     public String Login( String number,String password, Model model){

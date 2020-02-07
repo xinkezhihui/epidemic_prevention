@@ -62,7 +62,10 @@ public class ShiroConfig {
         Map<String,String> filterMap =new LinkedHashMap<String, String>();
 
         Map<String,String> filterMap2 =new LinkedHashMap<String, String>();
-       // filterMap.put("/user/tz", "anon");
+        filterMap.put("/user/tz", "anon");
+        filterMap.put("/user/login", "anon");
+        filterMap.put("/user/tz2", "authc");
+
 
 
         //授权过滤器
