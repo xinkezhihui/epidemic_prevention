@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>河流水系信息</title>
+    <link href="favicon.ico" rel="shortcut icon"> <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <!--汉化文件，放在 bootstrap-table.js 后面-->
+    <script src="/js/bootstrap-table-zh-CN.js"></script>
+    <script src="/js/plugins/layer/laydate/laydate.js"></script>
+    <!-- NProgress -->
+    <link href="../../static/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../static/build/css/custom.min.css" rel="stylesheet">
+    <!-- Custom Theme Scripts -->
+    <script src="../../static/build/js/custom.min.js"></script>
+	
+	<!-- 省市区三级联动 -->
+	 <script type="text/javascript" src="addr_update.js"></script>
+    <script src="static/build/js/custom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/nice-select.css">
+    <style>
+        .btn-success {
+            background: #1c84c6;
+
+        }
+    </style>
+    <script src="/static/assets/js/jquery.nice-select.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select:not(.ignore)').niceSelect();
+            FastClick.attach(document.body);
+        });
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3 style="float: left;margin-bottom: 5px;">密接人员信息</h3>
+                    <!--<div class="col-sm-1" style="margin-top: -2px">-->
+                        <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
+                    <!--</div>-->
+                    <a th:href="@{/river/riverAdd}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加密接人员信息</button></a>
+<!--
+                    <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
+-->
+                </div>
+                <div class="ibox-content" style="padding-top: 1px">
+                    <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
+                        <div class="col-sm-1">
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a href="/indexWater/show">刷新</a></button>
+                        </div>
+                        <div class="col-md-11" style="margin-bottom: -13px">
+                            <div class="input-group">
+                                <div class="col-sm-3">
+                                    <input class="input-sm-1 form-control" id="riverSystem1" placeholder="请输入身份证号码" type="text">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="input-sm-2 form-control" id="riverName1" placeholder="请输入姓名" type="text">
+                                </div>
+                              
+                               <div class="col-sm-3">
+                                    <input class="input-sm-2 form-control" id="riverName1" placeholder="请选择日期" type="text">
+                                </div>
+                                <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
+                                <div>
+                                    <!-- 修改数据模态框（Modal） -->
+                                    <form action="/Jc/update" class="form-horizontal"id="test" method="get">
+                                        <div aria-hidden="true" aria-labelledby="updateModalLabel" class="modal fade bs-example-modal-lg" id="updateModal" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">
+                                                            &times;
+                                                        </button>
+                                                        <h4 class="modal-title" id="updateModalLabel">
+                                                            修改密接人员信息
+                                                        </h4>
+                                                    </div>
+                                                    <!--{# 模态框body #}-->
+                                                    <div class="modal-body" style="height: 100%;">
+                                                        <input type="hidden" id="id" name="id">
+                                                      <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">本人证件号码 <span class="required">*</span> </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                    </div>
+              </div>
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="areaName">现住区域<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        <select class="select" name="province" id="s_province">
+   <option></option>
+  </select>
+  <select class="select" name="city" id="s_city">
+   <option></option>
+  </select>
+  <select class="select" name="town" id="s_county">
+   <option></option>
+  </select>
+   <script type="text/javascript">
+     // 改装后的初始化省市区的方法
+     initAddress();
+     // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
+     function set_addr(province,city,county) {
+         var $province=document.getElementById('s_province');
+             // 设置值并模拟人为select下拉框的改变事件
+             $province.onchange($province.value=province);
+         if(city){
+            var $city=document.getElementById('s_city');
+                $city.onchange($city.value=city);
+         }
+         if(county){
+             var $town=document.getElementById('s_county');
+                 $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
+         }
+     }
+     // set_addr('四川省');
+     // set_addr('四川省','成都市');
+      set_addr('山东省','泰安市','泰山区');
+ </script>
+                    </div>
+                </div>
+				
+				
+				
+                <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="useDirection">所属办事处<span class="required"></span>
+                    </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater"><span class="required">*</span> </label>
+<div class="col-md-6 col-sm-6">
+                          <select class="select" name="banshichu" id="s_banshichu">
+   <option></option>
+  </select>select * from p_Organ
+                  </div>
+                </div>
+				 <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="useDirection">人群分类<span class="required"></span>
+                    </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater"><span class="required">*</span> </label>
+<div class="col-md-6 col-sm-6">
+                          <select class="select" name="banshichu" id="s_banshichu">
+   <option></option>
+  </select>
+                  select * from p_ClassN where ClassID=1</div>
+                </div>
+             
+			  
+			   <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">姓名 <span class="required">*</span> </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                    </div>
+              </div>
+			    <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">联系电话 <span class="required">*</span> </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required" type="number"  >
+                    </div>
+              </div>
+			  
+			    <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">现住详细地址 <span class="required">*</span> </label>
+                    <div class="col-md-6 col-sm-6">
+                        <textarea name="availableWater" class="form-control" id="availableWater" placeholder="" required="required" width="300"></textarea>
+                    </div>
+              </div>
+			  
+                <div class="item">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往武汉 <span class="">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                    </div>
+                </div>
+				 <div class="item">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往其他省份 <span class="">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                    </div>
+                </div>
+				 <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">其他省份注明 </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                    </div>
+              </div>
+                 <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">所密接人证件号码 <span class="required">*</span> </label>
+                    <div class="col-md-6 col-sm-6">
+                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                    </div>
+              </div>
+			   <div class="item">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align">是否密接发病 <span class="">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                    </div>
+                </div>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4 col-sm-offset-3">
+                                                            </div>
+                                                            <!--{#            模态框底部#}-->
+                                                            <div class="modal-footer" style="text-align: center">
+                                                                <button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+                                                                <button class="btn btn-primary" onclick="updateRiver()" type="button">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div  class="project-list">
+                            <table class="table table-hover text-nowrap" id="mytab"></table>
+                        </div>
+                        <div class="col-sm-12">
+                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/river/form" style="color: white" target="_self"> 信息录入</a></button></span>
+                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export" type="button"> 下载</button> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#js-export').click(function(){
+        var riverSystem = $('#riverSystem1').val();
+        var riverName = $('#riverName1').val();
+        var year = $('#year1').val();
+        var status = $('#select option:selected').val();
+        window.location.href="/river/download?riverSystem="+riverSystem+"&riverName="+riverName+"&year="+year+"&status="+status;
+    });
+    $('#mytab').bootstrapTable({
+        url: '/river/showRiverInfo',
+        method: "GET",
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        json: 'callback',
+        queryParams: "",//传递参数
+        toolbar: "#toolbar",//工具按钮用哪个容器
+        sidePagination: "true",//分页方式，客户端分页服务端分页
+        striped: true, // 是否显示行间隔色
+        //search : "true",
+        uniqueId: "riverId",
+        //每页显示几条数据
+        pageSize: "10",
+        pagination: true, // 是否分页
+        sortable: true, // 是否启用排序
+        columns: [{
+            checkbox: false,
+            visible: false                 //是否显示复选框
+        },
+            {
+                field: 'SerialNumber',
+                title: '序号',
+                width: 50,
+                align: 'center',
+                formatter: function (value, row, index) {
+                    return index + 1;
+                }
+            },
+            {field: 'riverSystem', title: '所属地区', align: 'center', width: 90},
+            {field: 'riverName', title: '身份证号码', align: 'center', width: 90},
+            {field: 'start', title: '姓名', align: 'center', width: 100},
+            {field: 'end', title: '联系电话', align: 'center', width: 100},
+            {field: 'length', title: '地址', align: 'center', width: 50},
+           
+            {field: 'year', title: '日期', align: 'center', width: 50},
+            {
+                field: 'status', title: '状态', align: 'center', width: 100,
+                formatter : function (value, row, index) {
+                    if (row['status'] == 0) {
+                        return '不可公开';
+                    }
+                    if (row['status'] == 1) {
+                        return '可公开';
+                    }
+                    return value;
+                }
+            },
+            {
+                title: '操作',
+                field: 'id',
+                align: 'center',
+                valign: 'middle',
+                width:120,
+                formatter: option
+            }
+        ]
+    });
+    function check() {//组合查询
+        var riverSystem = $('#riverSystem1').val();
+        var riverName = $('#riverName1').val();
+        var year = $('#year1').val();
+        var status = $('#select option:selected').val();
+        var opt = {
+            url: "/river/check", //重新请求的链接
+            method:'GET',
+            query: {riverSystem:riverSystem,riverName:riverName,year:year,status:status}//传到后台的参数
+        };
+        $("#mytab").bootstrapTable('refresh',opt);
+    };
+    function option(value, row, index) {
+        var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updRiver(\''+row.id +'\',\''+row.riverSystem+'\',\''+row.riverName+'\',\''+row.start+'\',\''+row.end+'\',\''+row.length+'\',\''+row.riverArea+'\',\''+row.bottomWidth+'\',\''+row.paiLao+'\',\''+row.productionBridge+'\',\''+row.controlGate+'\',\''+row.culvert+'\',\''+row.status+'\',\''+row.year+'\')">修改' +
+           + '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="tijiao(\''+row.id+'\')">提交</button>'+
+		    '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.id+'\')">删除</button>'
+        return htm;
+    };
+    function del(id) {
+        var mymessage = confirm("确认删除吗？");
+        if (mymessage == true) {
+            $.ajax({
+                type: 'GET',
+                data:{id:id},
+                url: '/river/delete',//请求年级数据的地址
+                dataType: "json",        //返回数据形式为json
+                success: function (result) {
+                    confirm("删除成功");
+                    var opt = {
+                        url: "/river/showRiverInfo", //重新请求的链接
+                        method:'GET'
+                    };
+                    $("#mytab").bootstrapTable('refresh',opt);
+                },
+                error: function (errorMsg) {
+                    confirm("删除失败");
+                }
+            });
+			
+	 function tijiao(id) {
+        var mymessage = confirm("确认提交吗？");
+        if (mymessage == true) {
+            $.ajax({
+                type: 'GET',
+                data:{id:id},
+                url: '/river/tijiao',//请求提交地址！！！一定别忘记写这个日提交动作文件
+                dataType: "json",        //返回数据形式为json
+                success: function (result) {
+                    confirm("提交成功");
+                    var opt = {
+                        url: "/river/showRiverInfo", //重新请求的链接
+                        method:'GET'
+                    };
+                    $("#mytab").bootstrapTable('refresh',opt);
+                },
+                error: function (errorMsg) {
+                    confirm("提交失败");
+                }
+            });
+        }
+    }
+    // 编辑密接人员信息
+    function updRiver(id,riverSystem,riverName,start,end,length,riverArea,bottomWidth,paiLao,productionBridge,controlGate,culvert,status,year) {
+        if (id != ("undefined")) $("#id").val(id);
+        else
+            $("#id").val("");
+        if (riverSystem!= ("undefined")) $("#riverSystem").val(riverSystem);
+        else
+            $("#riverSystem").val("");
+        if (riverName != ("undefined")) $("#riverName").val(riverName);
+        else
+            $("#riverName").val("");
+        if (start != ("undefined")) $("#start").val(start);
+        else
+            $("#start").val("");
+        if (end!= ("undefined")) $("#end").val(end);
+        else
+            $("#end").val("");
+        if (length!= ("undefined")) $("#length").val(length);
+        else
+            $("#length").val("");
+        if (riverArea!= ("undefined")) $("#riverArea").val(riverArea);
+        else
+            $("#riverArea").val("");
+        if (bottomWidth!= ("undefined")) $("#bottomWidth").val(bottomWidth);
+        else
+            $("#bottomWidth").val("");
+        if (paiLao!= ("undefined")) $("#paiLao").val(paiLao);
+        else
+            $("#paiLao").val("");
+        if (productionBridge != ("undefined")) $("#productionBridge").val(productionBridge);
+        else
+            $("#productionBridge").val("");
+        if (controlGate!= ("undefined")) $("#controlGate").val(controlGate);
+        else
+            $("#controlGate").val("");
+        if (culvert!= ("undefined")) $("#culvert").val(culvert);
+        else
+            $("#culvert").val("");
+        if (status!= ("undefined")) {
+            if (status == 0) {
+                $("#status1").prop("checked",true);
+                $("#status2").prop("checked",false);
+            }
+            if (status == 1) {
+                $("#status1").prop("checked",false);
+                $("#status2").prop("checked",true);
+            }
+        }
+        else
+            $("#status").val("");
+        if (year!= ("undefined")) $("#year").val(year);
+        else
+            $("#year").val("");
+
+         //弹出修改模态框，非新增模态框
+        $('#updateModal').modal('show')
+    }
+    //提交模态框修改信息
+    function updateRiver() {
+        var id = $('#id').val();
+        var riverSystem = $('#riverSystem').val();
+        var riverName = $('#riverName').val();
+        var start = $('#start').val();
+        var end = $('#end').val();
+        var length = $('#length').val();
+        var riverArea = $('#riverArea').val();
+        var bottomWidth = $('#bottomWidth').val();
+        var paiLao = $('#paiLao').val();
+        var productionBridge = $('#productionBridge').val();
+        var controlGate = $('#controlGate').val();
+        var culvert = $('#culvert').val();
+        var status = $("input[name='status']:checked").val();
+        var year = $('#year').val();
+        if (riverSystem.length==0||riverName.length==0||start.length==0||end.length==0||length.length==0||riverArea.length==0||status==null||year.length==0){
+            if (status == null) {
+                confirm("状态必须选中")
+            }
+            else {
+            alert("必填项不能为空 ");}
+        }
+        else
+        {
+            $.ajax({
+                type: 'post',
+                data: {id:id,riverSystem:riverSystem,riverName:riverName,start:start,end:end,length:length,riverArea:riverArea,bottomWidth:bottomWidth,paiLao:paiLao,productionBridge:productionBridge,controlGate:controlGate,culvert:culvert,status:status,year:year},
+                url: '/river/riverUpdate',//请求年级数据的地址
+                dataType: "json",        //返回数据形式为json
+                success: function (result) {
+                    confirm("修改信息成功");
+                    $('#updateModal').modal('hide');//模态框消失
+                    var opt = {
+                        url: "/river/showRiverInfo", //重新请求的链接
+                        method:'GET'
+                    };
+                    $("#mytab").bootstrapTable('refresh',opt);
+                },
+                error: function (errorMsg) {
+                    //请求失败时执行该函数
+                    confirm("修改信息失败");
+                    $('#updateModal').modal('hide');//模态框消失
+                }
+            });
+        }
+    }
+</script>
+<script src="/js/content.min.js?v=1.0.0"></script>
+<script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>
+</body>
+</html>
