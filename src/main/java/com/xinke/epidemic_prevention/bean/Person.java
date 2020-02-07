@@ -14,9 +14,6 @@ import java.util.Date;
 @Table(name = "yq_bldjb")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //自增id
-    private Integer id;
     //身份证号码
     @Column(nullable = false,length = 18,unique = true)
     private String sfzmhm;
@@ -39,21 +36,21 @@ public class Person {
     //人群分类
     private String  rqfl;
     //是否解除观察
-    private int sfjc;
+    private Integer sfjc;
     //检测日期
     private Date jcrq;
     //国籍
     private String guoji;
     //是否华人
-    private int sfhr;
+    private Integer sfhr;
     //发病日期
     private Date yq_fbrq;
     //是否疑似病例
-    private int yq_sfys;
+    private Integer yq_sfys;
     //疑似诊断日期
     private Date yq_yszdrq;
     //是否留院观察
-    private int yq_sflg;
+    private Integer yq_sflg;
     //留院观察日期
     private Date yq_lgrq;
     //出院时间
@@ -89,35 +86,35 @@ public class Person {
     //现住县区
     private String xzxq;
     //是否确诊
-    private int yq_sfqz;
+    private Integer yq_sfqz;
     // 是否密切接触者发病       `
-    private int yq_sfmjfb;
+    private Integer yq_sfmjfb;
     //是否医务人员
-    private int yq_sfywry;
+    private Integer yq_sfywry;
     //2周内是否曾往武汉
-    private int yq_sfcwwh;
+    private Integer yq_sfcwwh;
     //是否曾至其他省份
-    private int yq_sfczqtsf;
+    private Integer yq_sfczqtsf;
     //如曾至其他身份注明
     private  String yq_zhumingsf;
     //是否首例确诊
-    private int yq_sfsl;
+    private Integer yq_sfsl;
     //是否重症
-    private int yq_sfzz;
+    private Integer yq_sfzz;
     //是否危重症
-    private  int yq_sfwzz;
+    private  Integer yq_sfwzz;
     //是否排除病例
-    private  int yq_sfpc;
+    private  Integer yq_sfpc;
     //是否出院
-    private int yq_sfcy;
+    private Integer yq_sfcy;
     //是否死亡
-    private int yq_sfsw;
+    private Integer yq_sfsw;
     //是否核酸检测
-    private int yq_sfhsjc;
+    private Integer yq_sfhsjc;
     //核酸检测级别
     private String yq_hsjcjb;
     //是否基因测序
-    private  int yq_sfjycx;
+    private  Integer yq_sfjycx;
     //汇总人姓名
     private String hzrxm;
     //汇总人联系方式
@@ -129,12 +126,31 @@ public class Person {
     //核对统计时间
     private String sjtjsj;
     //密接提交状态
-    private int mjtj;
+    private Integer mjtj;
     //确诊提交状态
-    private int qztj;
+    private Integer qztj;
+    //确认密接时间
+    private String qrmjsj;
 
-    public Person(int id, String sfzmhm, String xingming, String binganhao, String lxdh, String xxdz, String ssbsc, String sssq, String mjren, String rqfl, int sfjc, Date jcrq, String guoji, int sfhr, Date yq_fbrq, int yq_sfys, Date yq_yszdrq, int yq_sflg, Date yq_lgrq, String yq_chuysj, String bgdw, Date bgrq, String szqx, String bgsf, String bgdjs, String bgyljg, Date bgsj, String bgrxm, String bgrlxfs, String jiguansf, String jiguandjs, String jiguanxq, String xzsf, String xzdjs, String xzxq, int yq_sfqz, int yq_sfmjfb, int yq_sfywry, int yq_sfcwwh, int yq_sfczqtsf, String yq_zhumingsf, int yq_sfsl, int yq_sfzz, int yq_sfwzz, int yq_sfpc, int yq_sfcy, int yq_sfsw, int yq_sfhsjc, String yq_hsjcjb, int yq_sfjycx, String hzrxm, String hzrlx, String hdrxm, String hdrlx, String sjtjsj, int mjtj, int qztj) {
-        this.id = id;
+    public Person(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb,String qrmjsj,Integer qztj,Integer mjtj){
+        this.sfzmhm = sfzmhm;
+        this.xingming = xingming;
+        this.lxdh = lxdh;
+        this.xxdz = xxdz;
+        this.ssbsc = ssbsc;
+        this.mjren = mjren;
+        this.rqfl = rqfl;
+        this.xzsf = xzsf;
+        this.xzdjs = xzdjs;
+        this.xzxq = xzxq;
+        this.yq_sfmjfb = yq_sfmjfb;
+        this.yq_sfcwwh = yq_sfcwwh;
+        this.yq_sfczqtsf = yq_sfczqtsf;
+        this.qrmjsj = qrmjsj;
+        this.qztj =qztj;
+        this.mjtj =mjtj;
+    }
+    public Person(String sfzmhm, String xingming, String binganhao, String lxdh, String xxdz, String ssbsc, String sssq, String mjren, String rqfl, Integer sfjc, Date jcrq, String guoji, Integer sfhr, Date yq_fbrq, Integer yq_sfys, Date yq_yszdrq, Integer yq_sflg, Date yq_lgrq, String yq_chuysj, String bgdw, Date bgrq, String szqx, String bgsf, String bgdjs, String bgyljg, Date bgsj, String bgrxm, String bgrlxfs, String jiguansf, String jiguandjs, String jiguanxq, String xzsf, String xzdjs, String xzxq, Integer yq_sfqz, Integer yq_sfmjfb, Integer yq_sfywry, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, Integer yq_sfsl, Integer yq_sfzz, Integer yq_sfwzz, Integer yq_sfpc, Integer yq_sfcy, Integer yq_sfsw, Integer yq_sfhsjc, String yq_hsjcjb, Integer yq_sfjycx, String hzrxm, String hzrlx, String hdrxm, String hdrlx, String sjtjsj, Integer mjtj, Integer qztj, String qrmjsj) {
         this.sfzmhm = sfzmhm;
         this.xingming = xingming;
         this.binganhao = binganhao;
@@ -191,73 +207,10 @@ public class Person {
         this.sjtjsj = sjtjsj;
         this.mjtj = mjtj;
         this.qztj = qztj;
+        this.qrmjsj = qrmjsj;
     }
 
-    public Person(String sfzmhm, String xingming, String binganhao, String lxdh, String xxdz, String ssbsc, String sssq, String mjren, String rqfl, int sfjc, Date jcrq, String guoji, int sfhr, Date yq_fbrq, int yq_sfys, Date yq_yszdrq, int yq_sflg, Date yq_lgrq, String yq_chuysj, String bgdw, Date bgrq, String szqx, String bgsf, String bgdjs, String bgyljg, Date bgsj, String bgrxm, String bgrlxfs, String jiguansf, String jiguandjs, String jiguanxq, String xzsf, String xzdjs, String xzxq, int yq_sfqz, int yq_sfmjfb, int yq_sfywry, int yq_sfcwwh, int yq_sfczqtsf, String yq_zhumingsf, int yq_sfsl, int yq_sfzz, int yq_sfwzz, int yq_sfpc, int yq_sfcy, int yq_sfsw, int yq_sfhsjc, String yq_hsjcjb, int yq_sfjycx, String hzrxm, String hzrlx, String hdrxm, String hdrlx, String sjtjsj, int mjtj, int qztj) {
-        this.sfzmhm = sfzmhm;
-        this.xingming = xingming;
-        this.binganhao = binganhao;
-        this.lxdh = lxdh;
-        this.xxdz = xxdz;
-        this.ssbsc = ssbsc;
-        this.sssq = sssq;
-        this.mjren = mjren;
-        this.rqfl = rqfl;
-        this.sfjc = sfjc;
-        this.jcrq = jcrq;
-        this.guoji = guoji;
-        this.sfhr = sfhr;
-        this.yq_fbrq = yq_fbrq;
-        this.yq_sfys = yq_sfys;
-        this.yq_yszdrq = yq_yszdrq;
-        this.yq_sflg = yq_sflg;
-        this.yq_lgrq = yq_lgrq;
-        this.yq_chuysj = yq_chuysj;
-        this.bgdw = bgdw;
-        this.bgrq = bgrq;
-        this.szqx = szqx;
-        this.bgsf = bgsf;
-        this.bgdjs = bgdjs;
-        this.bgyljg = bgyljg;
-        this.bgsj = bgsj;
-        this.bgrxm = bgrxm;
-        this.bgrlxfs = bgrlxfs;
-        this.jiguansf = jiguansf;
-        this.jiguandjs = jiguandjs;
-        this.jiguanxq = jiguanxq;
-        this.xzsf = xzsf;
-        this.xzdjs = xzdjs;
-        this.xzxq = xzxq;
-        this.yq_sfqz = yq_sfqz;
-        this.yq_sfmjfb = yq_sfmjfb;
-        this.yq_sfywry = yq_sfywry;
-        this.yq_sfcwwh = yq_sfcwwh;
-        this.yq_sfczqtsf = yq_sfczqtsf;
-        this.yq_zhumingsf = yq_zhumingsf;
-        this.yq_sfsl = yq_sfsl;
-        this.yq_sfzz = yq_sfzz;
-        this.yq_sfwzz = yq_sfwzz;
-        this.yq_sfpc = yq_sfpc;
-        this.yq_sfcy = yq_sfcy;
-        this.yq_sfsw = yq_sfsw;
-        this.yq_sfhsjc = yq_sfhsjc;
-        this.yq_hsjcjb = yq_hsjcjb;
-        this.yq_sfjycx = yq_sfjycx;
-        this.hzrxm = hzrxm;
-        this.hzrlx = hzrlx;
-        this.hdrxm = hdrxm;
-        this.hdrlx = hdrlx;
-        this.sjtjsj = sjtjsj;
-        this.mjtj = mjtj;
-        this.qztj = qztj;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public Person() {
     }
 
     public String getSfzmhm() {
@@ -332,11 +285,11 @@ public class Person {
         this.rqfl = rqfl;
     }
 
-    public int getSfjc() {
+    public Integer getSfjc() {
         return sfjc;
     }
 
-    public void setSfjc(int sfjc) {
+    public void setSfjc(Integer sfjc) {
         this.sfjc = sfjc;
     }
 
@@ -356,11 +309,11 @@ public class Person {
         this.guoji = guoji;
     }
 
-    public int getSfhr() {
+    public Integer getSfhr() {
         return sfhr;
     }
 
-    public void setSfhr(int sfhr) {
+    public void setSfhr(Integer sfhr) {
         this.sfhr = sfhr;
     }
 
@@ -372,11 +325,11 @@ public class Person {
         this.yq_fbrq = yq_fbrq;
     }
 
-    public int getYq_sfys() {
+    public Integer getYq_sfys() {
         return yq_sfys;
     }
 
-    public void setYq_sfys(int yq_sfys) {
+    public void setYq_sfys(Integer yq_sfys) {
         this.yq_sfys = yq_sfys;
     }
 
@@ -388,11 +341,11 @@ public class Person {
         this.yq_yszdrq = yq_yszdrq;
     }
 
-    public int getYq_sflg() {
+    public Integer getYq_sflg() {
         return yq_sflg;
     }
 
-    public void setYq_sflg(int yq_sflg) {
+    public void setYq_sflg(Integer yq_sflg) {
         this.yq_sflg = yq_sflg;
     }
 
@@ -532,43 +485,43 @@ public class Person {
         this.xzxq = xzxq;
     }
 
-    public int getYq_sfqz() {
+    public Integer getYq_sfqz() {
         return yq_sfqz;
     }
 
-    public void setYq_sfqz(int yq_sfqz) {
+    public void setYq_sfqz(Integer yq_sfqz) {
         this.yq_sfqz = yq_sfqz;
     }
 
-    public int getYq_sfmjfb() {
+    public Integer getYq_sfmjfb() {
         return yq_sfmjfb;
     }
 
-    public void setYq_sfmjfb(int yq_sfmjfb) {
+    public void setYq_sfmjfb(Integer yq_sfmjfb) {
         this.yq_sfmjfb = yq_sfmjfb;
     }
 
-    public int getYq_sfywry() {
+    public Integer getYq_sfywry() {
         return yq_sfywry;
     }
 
-    public void setYq_sfywry(int yq_sfywry) {
+    public void setYq_sfywry(Integer yq_sfywry) {
         this.yq_sfywry = yq_sfywry;
     }
 
-    public int getYq_sfcwwh() {
+    public Integer getYq_sfcwwh() {
         return yq_sfcwwh;
     }
 
-    public void setYq_sfcwwh(int yq_sfcwwh) {
+    public void setYq_sfcwwh(Integer yq_sfcwwh) {
         this.yq_sfcwwh = yq_sfcwwh;
     }
 
-    public int getYq_sfczqtsf() {
+    public Integer getYq_sfczqtsf() {
         return yq_sfczqtsf;
     }
 
-    public void setYq_sfczqtsf(int yq_sfczqtsf) {
+    public void setYq_sfczqtsf(Integer yq_sfczqtsf) {
         this.yq_sfczqtsf = yq_sfczqtsf;
     }
 
@@ -580,59 +533,59 @@ public class Person {
         this.yq_zhumingsf = yq_zhumingsf;
     }
 
-    public int getYq_sfsl() {
+    public Integer getYq_sfsl() {
         return yq_sfsl;
     }
 
-    public void setYq_sfsl(int yq_sfsl) {
+    public void setYq_sfsl(Integer yq_sfsl) {
         this.yq_sfsl = yq_sfsl;
     }
 
-    public int getYq_sfzz() {
+    public Integer getYq_sfzz() {
         return yq_sfzz;
     }
 
-    public void setYq_sfzz(int yq_sfzz) {
+    public void setYq_sfzz(Integer yq_sfzz) {
         this.yq_sfzz = yq_sfzz;
     }
 
-    public int getYq_sfwzz() {
+    public Integer getYq_sfwzz() {
         return yq_sfwzz;
     }
 
-    public void setYq_sfwzz(int yq_sfwzz) {
+    public void setYq_sfwzz(Integer yq_sfwzz) {
         this.yq_sfwzz = yq_sfwzz;
     }
 
-    public int getYq_sfpc() {
+    public Integer getYq_sfpc() {
         return yq_sfpc;
     }
 
-    public void setYq_sfpc(int yq_sfpc) {
+    public void setYq_sfpc(Integer yq_sfpc) {
         this.yq_sfpc = yq_sfpc;
     }
 
-    public int getYq_sfcy() {
+    public Integer getYq_sfcy() {
         return yq_sfcy;
     }
 
-    public void setYq_sfcy(int yq_sfcy) {
+    public void setYq_sfcy(Integer yq_sfcy) {
         this.yq_sfcy = yq_sfcy;
     }
 
-    public int getYq_sfsw() {
+    public Integer getYq_sfsw() {
         return yq_sfsw;
     }
 
-    public void setYq_sfsw(int yq_sfsw) {
+    public void setYq_sfsw(Integer yq_sfsw) {
         this.yq_sfsw = yq_sfsw;
     }
 
-    public int getYq_sfhsjc() {
+    public Integer getYq_sfhsjc() {
         return yq_sfhsjc;
     }
 
-    public void setYq_sfhsjc(int yq_sfhsjc) {
+    public void setYq_sfhsjc(Integer yq_sfhsjc) {
         this.yq_sfhsjc = yq_sfhsjc;
     }
 
@@ -644,11 +597,11 @@ public class Person {
         this.yq_hsjcjb = yq_hsjcjb;
     }
 
-    public int getYq_sfjycx() {
+    public Integer getYq_sfjycx() {
         return yq_sfjycx;
     }
 
-    public void setYq_sfjycx(int yq_sfjycx) {
+    public void setYq_sfjycx(Integer yq_sfjycx) {
         this.yq_sfjycx = yq_sfjycx;
     }
 
@@ -692,19 +645,27 @@ public class Person {
         this.sjtjsj = sjtjsj;
     }
 
-    public int getMjtj() {
+    public Integer getMjtj() {
         return mjtj;
     }
 
-    public void setMjtj(int mjtj) {
+    public void setMjtj(Integer mjtj) {
         this.mjtj = mjtj;
     }
 
-    public int getQztj() {
+    public Integer getQztj() {
         return qztj;
     }
 
-    public void setQztj(int qztj) {
+    public void setQztj(Integer qztj) {
         this.qztj = qztj;
+    }
+
+    public String getQrmjsj() {
+        return qrmjsj;
+    }
+
+    public void setQrmjsj(String qrmjsj) {
+        this.qrmjsj = qrmjsj;
     }
 }

@@ -22,7 +22,7 @@
     <script src="/js/demo/form-validate-demo.min.js"></script>
     <script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>
 	<!-- 省市区三级联动 -->
-	 <script type="text/javascript" src="addr_update.js"></script>
+    <script type="text/javascript" src="../../static/assets/js/addr_update.js"></script>
 	
     <!-- Font Awesome -->
     <link href="../../static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -39,26 +39,32 @@
         </div>
         <div class="ibox-content">
             <form class="form-horizontal form-label-left" enctype="multipart/form-data"
-                  method="post" onkeypress="return event.keyCode != 13;" th:action="@{/indexWater/add}">
-				   <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">本人证件号码 <span class="required">*</span> </label>
+                  method="post" onkeypress="return event.keyCode != 13;">
+				   <!--<div class="item form-group">-->
+                    <!--<label class="col-form-label col-md-3 col-sm-3 label-align" >本人证件号码 <span class="required">*</span> </label>-->
+                    <!--<div class="col-md-6 col-sm-6">-->
+                        <!--<input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required"  >-->
+                    <!--</div>-->
+                   <!--</div>-->
+                <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >本人证件号码<span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                        <input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required"  >
                     </div>
-              </div>
+                </div>
                 <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="areaName">现住区域<span class="required">*</span>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >现住区域<span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
                         <select class="select" name="province" id="s_province">
-   <option></option>
-  </select>
-  <select class="select" name="city" id="s_city">
-   <option></option>
-  </select>
-  <select class="select" name="town" id="s_county">
-   <option></option>
-  </select>
+                           <option></option>
+                          </select>
+                          <select class="select" name="city" id="s_city">
+                           <option></option>
+                          </select>
+                          <select class="select" name="town" id="s_county">
+                           <option></option>
+                          </select>
    <script type="text/javascript">
      // 改装后的初始化省市区的方法
      initAddress();
@@ -82,91 +88,84 @@
  </script>
                     </div>
                 </div>
-				
-				
-				
                 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="useDirection">所属办事处<span class="required"></span>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
                     </label>
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater"><span class="required">*</span> </label>
-<div class="col-md-6 col-sm-6">
-                          <select class="select" name="banshichu" id="s_banshichu">
-   <option></option>
-  </select>select * from p_Organ
+                    <div class="col-md-6 col-sm-6">
+                        <select class="select" name="ssbsc" id="ssbsc" >
+                       <option>请选择</option>
+                      </select>
                   </div>
                 </div>
 				 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="useDirection">人群分类<span class="required"></span>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >人群分类<span class="required">*</span>
                     </label>
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater"><span class="required">*</span> </label>
-<div class="col-md-6 col-sm-6">
-                          <select class="select" name="banshichu" id="s_banshichu">
-   <option></option>
-  </select>
-                  select * from p_ClassN where ClassID=1</div>
+                <div class="col-md-6 col-sm-6">
+                    <select class="select" name="rqfl" id="rqfl">
+                        <option>请选择</option>
+                    </select>
                 </div>
-             
-			  
+                </div>
+
 			   <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">姓名 <span class="required">*</span> </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >姓名 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                        <input id="xingming" class="form-control" name="xingming" placeholder="" required="required"  >
                     </div>
               </div>
 			    <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">联系电话 <span class="required">*</span> </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >联系电话 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required" type="number"  >
+                        <input id="lxdh" class="form-control" name="lxdh" placeholder="" required="required" type="number"  >
                     </div>
               </div>
 			  
 			    <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">现住详细地址 <span class="required">*</span> </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >现住详细地址 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <textarea name="availableWater" class="form-control" id="availableWater" placeholder="" required="required" width="300"></textarea>
+                        <textarea name="xxdz" class="form-control" id="xxdz" placeholder="" required="required" width="300"></textarea>
                     </div>
               </div>
-			  
                 <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往武汉 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfcwwh" value="1">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfcwwh" value="0">否</label>
                     </div>
                 </div>
 				 <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往其他省份 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfczqtsf" value="1">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfczqtsf" value="0">否</label>
                     </div>
                 </div>
 				 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">其他省份注明 </label>
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >其他省份注明 </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                        <input id="yq_zhumingsf" class="form-control" name="yq_zhumingsf" placeholder="" required="required"  >
                     </div>
-              </div>
-                 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="availableWater">所密接人证件号码 <span class="required">*</span> </label>
+                </div>
+                <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >所密接人证件号码 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="availableWater" class="form-control" name="availableWater" placeholder="" required="required"  >
+                        <input id="mjren" class="form-control" name="mjren" placeholder="" required="required"  >
                     </div>
-              </div>
+               </div>
 			   <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">是否密接发病 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfmjfb" value="1">是</label>
+                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfmjfb" value="0">否</label>
                     </div>
                 </div>
                 <div class="form-group" style="text-align: center; margin-top: 10px" >
                     <div class="col-md-6 col-md-offset-2">
-                        <button id="send" type="button" onclick="addAvailableWater()" class="btn btn-success">提交</button>
-                        <a href="/indexWater/show"><button type="button" class="btn btn-primary">取消</button></a>
+                        <button id="send" type="button" onclick="addMijie()" class="btn btn-success">提交</button>
+                        <button type="button" class="btn btn-primary" onClick="javascript:history.back();">取消</button>
                     </div>
                 </div>
             </form>
@@ -175,33 +174,79 @@
 </div>
 </div>
 <script>
-    function addAvailableWater() {
-        var areaName = $('#areaName').val();
-        var useDirection = $('#useDirection').val();
-        var availableWater = $('#availableWater').val();
-        var baseYear = $('#baseYear').val();
-        var year = $('#year').val();
-        var status = $("input[name='status']:checked").val();
-        if (areaName.length==0||availableWater.length==0||status==null||year.length==0){
-            if (status == null) {
-                confirm("状态必须选中");
+    window.onload = SearchVehicleTag();//加载页面时自动执行方法
+    function SearchVehicleTag() {
+        $.ajax({
+            url: "/community/selectRqfl",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            traditional: true,
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var jsonObj = data[i];
+                    $("#rqfl").append("<option>" + jsonObj.ClassNName + "</option>");
+                }
+            },
+            error: function (msg) {
+                alert("数据加载出错，请重试！");
             }
-            else {
-                alert("必填项不能为空 ");}
+        });
+    }
+    window.onload = SearchVehicleTag2();//加载页面时自动执行方法
+    function SearchVehicleTag2() {
+        $.ajax({
+            url: "/community/selectSsbsc",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            traditional: true,
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var jsonObj = data[i];
+                    $("#ssbsc").append("<option >" + jsonObj.OrganName + "</option>");
+                }
+            },
+            error: function (msg) {
+                alert("数据加载出错，请重试！");
+            }
+        });
+    }
+    function addMijie(){
+        var sfzmhm = $('#sfzmhm').val();
+        var xzsf = $('#s_province').val();
+        var xzdjs = $('#s_city').val();
+        var xzxq = $('#s_county').val();
+        var ssbsc = $('#ssbsc').val();
+        var rqfl = $('#rqfl').val();
+        var xingming = $('#xingming').val();
+        var lxdh = $('#lxdh').val();
+        var xxdz = $('#xxdz').val();
+        var yq_sfcwwh = $("input[name='yq_sfcwwh']:checked").val();
+        var yq_sfczqtsf = $("input[name='yq_sfczqtsf']:checked").val();
+        var yq_zhumingsf = $('#yq_zhumingsf').val();
+        var mjren = $('#mjren').val();
+        var yq_sfmjfb= $("input[name='yq_sfmjfb']:checked").val();
+        if(sfzmhm.length==0||xzsf.length==0||xzdjs.length==0||xzxq.length==0||ssbsc.length==0||
+            rqfl.length==0||xingming.length==0||lxdh.length==0||yq_sfcwwh==null||yq_sfczqtsf==null||mjren.length==0||yq_sfmjfb==null){
+            if ( yq_sfcwwh==null||yq_sfczqtsf==null||yq_sfmjfb==null){
+                confirm("选项必须选中");
+            }
+            else{
+                confirm("必填项不能为空");
+            }
         }
-        else if(year<1990||year>9999){
-            alert("年份只能填写1990-9999之间的年份！");
-        }
-        else
-        {
+        else {
             $.ajax({
                 type: 'post',
-                data: {areaName:areaName,useDirection:useDirection,availableWater:availableWater,year:year,baseYear:baseYear,status:status},
-                url: '/availableWater/add',//请求年级数据的地址
+                data: {sfzmhm:sfzmhm,xzsf:xzsf,xzdjs:xzdjs,xzxq:xzxq,ssbsc:ssbsc,rqfl:rqfl,xingming:xingming,lxdh:lxdh,xxdz:xxdz,yq_sfcwwh:yq_sfcwwh,yq_sfczqtsf:yq_sfczqtsf,yq_zhumingsf:yq_zhumingsf,mjren:mjren,yq_sfmjfb:yq_sfmjfb},
+                // data: {rqfl:rqfl},
+                // url: '/community/ceshi',
+                url: '/community/add',//请求年级数据的地址
                 dataType: "json",        //返回数据形式为json
                 success: function (result) {
                     confirm("添加信息成功");
-                    window.location.href = '/availableWater/show'
+                    window.location.href = '/community/mijieList'
                 },
                 error: function (errorMsg) {
                     confirm("添加信息失败");
