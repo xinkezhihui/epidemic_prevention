@@ -22,9 +22,6 @@
     <link href="../../static/build/css/custom.min.css" rel="stylesheet">
     <!-- Custom Theme Scripts -->
     <script src="../../static/build/js/custom.min.js"></script>
-
-    <!-- 省市区三级联动 -->
-    <script type="text/javascript" src="addr_update.js"></script>
     <script src="static/build/js/custom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/assets/css/nice-select.css">
     <style>
@@ -33,13 +30,6 @@
 
         }
     </style>
-    <script src="/static/assets/js/jquery.nice-select.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('select:not(.ignore)').niceSelect();
-            FastClick.attach(document.body);
-        });
-    </script>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInUp">
@@ -47,11 +37,10 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h3 style="float: left;margin-bottom: 5px;">密接人员管理</h3>
+                    <h3 style="float: left;margin-bottom: 5px;">密接人员信息</h3>
                     <!--<div class="col-sm-1" style="margin-top: -2px">-->
                     <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
                     <!--</div>-->
-                    <a th:href="@{/community/addmijie}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加密接人员信息</button></a>
                     <!--
                                         <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
                     -->
@@ -59,7 +48,7 @@
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
                         <div class="col-sm-1">
-                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/community/mijieList}">刷新</a></button>
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/community/mijieShow}">刷新</a></button>
                         </div>
                         <div class="col-md-11" style="margin-bottom: -13px">
                             <div class="input-group">
@@ -70,8 +59,8 @@
                                     <input class="input-sm-2 form-control" id="xingming0" placeholder="请输入姓名" type="text">
                                 </div>
                                 <div class="col-sm-3">
-                                        <input class="form-control layer-date" id="qrmjsj" name="qrmjsj" placeholder="请选择日期" style="width: 97px"   stype="text">
-                                        <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#qrmjsj'});"  style="width: 30px"></label>
+                                    <input class="form-control layer-date" id="qrmjsj" name="qrmjsj" placeholder="请选择日期" style="width: 97px"   stype="text">
+                                    <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#qrmjsj'});"  style="width: 30px"></label>
                                 </div>
                                 <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
                                 <div>
@@ -177,7 +166,7 @@
                                                             <div class="modal-footer" style="text-align: center">
                                                                 <button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
                                                             </div>
-                                                    </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,8 +197,20 @@
         var status = $('#select option:selected').val();
         window.location.href="/river/download?riverSystem="+riverSystem+"&riverName="+riverName+"&year="+year+"&status="+status;
     });
+    //组合查询
+    function check() {
+        var sfzmhm = $('#sfzmhm0').val();
+        var xingming = $('#xingming0').val();
+        var qrmjsj = $('#qrmjsj').val();
+        var opt = {
+            url: "/community/checkShow", //重新请求的链接
+            method:'GET',
+            query: {sfzmhm:sfzmhm,xingming:xingming,qrmjsj:qrmjsj}//传到后台的参数
+        };
+        $("#mytab").bootstrapTable('refresh',opt);
+    };
     $('#mytab').bootstrapTable({
-        url: '/community/mjryInfoList',
+        url: '/community/mjInfoShow',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -255,67 +256,14 @@
             },
             {
                 field: 'xxsf', title: '详情', align: 'center', width:80,formatter: option2
-            },
-            {
-                title: '操作',
-                field: 'xzxq',
-                align: 'center',
-                valign: 'middle',
-                width:120,
-                formatter: option
-            },
-            {
-                title: '提交',
-                align: 'center',
-                valign: 'middle',
-                width:90,
-                formatter:  function (value, row, index) {
-                    var htm = '<button class="btn btn-sm btn-danger"  onclick="submit(\''+row.sfzmhm+'\')">提交</button>'
-                    return htm;
-                }
             }
         ]
     });
-    //组合查询
-    function check() {
-        var sfzmhm = $('#sfzmhm0').val();
-        var xingming = $('#xingming0').val();
-        var qrmjsj = $('#qrmjsj').val();
-        var opt = {
-            url: "/community/check", //重新请求的链接
-            method:'GET',
-            query: {sfzmhm:sfzmhm,xingming:xingming,qrmjsj:qrmjsj}//传到后台的参数
-        };
-        $("#mytab").bootstrapTable('refresh',opt);
-    };
-    function option(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updRiver(\''+row.id +'\',\''+row.riverSystem+'\',\''+row.riverName+'\',\''+row.start+'\',\''+row.end+'\',\''+row.length+'\',\''+row.riverArea+'\',\''+row.bottomWidth+'\',\''+row.paiLao+'\',\''+row.productionBridge+'\',\''+row.controlGate+'\',\''+row.culvert+'\',\''+row.status+'\',\''+row.year+'\')">修改' +
-            '</button>'
-        return htm;
-    };
     function option2(value, row, index) {
         var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.mjren+'\',\''+row.yq_sfmjfb+'\')">详情' +
             '</button>'
         return htm;
     };
-    function submit(sfzmhm) {
-        var mymessage = confirm("确认提交吗？");
-        if (mymessage == true) {
-            $.ajax({
-                type: 'GET',
-                data: {sfzmhm:sfzmhm},
-                url: '/community/mijieSubmit',//请求年级数据的地址
-                dataType: "json",        //返回数据形式为json
-                success: function (result) {
-                    confirm("提交成功");
-                    $("#mytab").bootstrapTable('refresh');
-                },
-                error: function (errorMsg) {
-                    confirm("服务器正忙，请稍后重试!");
-                }
-            });
-        }
-    }
     // 模态框获取信息
     function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb) {
         var xzqy = xzsf+xzdjs+xzxq;
@@ -323,15 +271,6 @@
         if (sfzmhm != ("undefined")) $("#sfzmhm").val(sfzmhm);
         else
             $("#sfzmhm").val("");
-        // if (xzsf!= ("undefined")) $("#s_province").val(xzsf);
-        // else
-        //     $("#s_province").val("");
-        // if (xzdjs != ("undefined")) $("#s_city").val(xzdjs);
-        // else
-        //     $("#s_city").val("");
-        // if (xzxq != ("undefined")) $("#s_county").val(xzxq);
-        // else
-        //     $("#s_county").val("");
         if (ssbsc!= ("undefined")) $("#ssbsc").val(ssbsc);
         else
             $("#ssbsc").val("");
@@ -391,53 +330,6 @@
             $("#yq_sfmjfb").val("");
         //弹出修改模态框，非新增模态框
         $('#xqModal').modal('show')
-    }
-    //提交模态框修改信息
-    function updateRiver() {
-        var id = $('#id').val();
-        var riverSystem = $('#riverSystem').val();
-        var riverName = $('#riverName').val();
-        var start = $('#start').val();
-        var end = $('#end').val();
-        var length = $('#length').val();
-        var riverArea = $('#riverArea').val();
-        var bottomWidth = $('#bottomWidth').val();
-        var paiLao = $('#paiLao').val();
-        var productionBridge = $('#productionBridge').val();
-        var controlGate = $('#controlGate').val();
-        var culvert = $('#culvert').val();
-        var status = $("input[name='status']:checked").val();
-        var year = $('#year').val();
-        if (riverSystem.length==0||riverName.length==0||start.length==0||end.length==0||length.length==0||riverArea.length==0||status==null||year.length==0){
-            if (status == null) {
-                confirm("状态必须选中")
-            }
-            else {
-                alert("必填项不能为空 ");}
-        }
-        else
-        {
-            $.ajax({
-                type: 'post',
-                data: {id:id,riverSystem:riverSystem,riverName:riverName,start:start,end:end,length:length,riverArea:riverArea,bottomWidth:bottomWidth,paiLao:paiLao,productionBridge:productionBridge,controlGate:controlGate,culvert:culvert,status:status,year:year},
-                url: '/river/riverUpdate',//请求年级数据的地址
-                dataType: "json",        //返回数据形式为json
-                success: function (result) {
-                    confirm("修改信息成功");
-                    $('#updateModal').modal('hide');//模态框消失
-                    var opt = {
-                        url: "/river/showRiverInfo", //重新请求的链接
-                        method:'GET'
-                    };
-                    $("#mytab").bootstrapTable('refresh',opt);
-                },
-                error: function (errorMsg) {
-                    //请求失败时执行该函数
-                    confirm("修改信息失败");
-                    $('#updateModal').modal('hide');//模态框消失
-                }
-            });
-        }
     }
 </script>
 <script src="/js/content.min.js?v=1.0.0"></script>

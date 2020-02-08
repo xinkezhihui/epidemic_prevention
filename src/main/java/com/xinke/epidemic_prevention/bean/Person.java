@@ -1,5 +1,7 @@
 package com.xinke.epidemic_prevention.bean;
 
+import org.apache.logging.log4j.message.StringFormattedMessage;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -38,27 +40,27 @@ public class Person {
     //是否解除观察
     private Integer sfjc;
     //检测日期
-    private Date jcrq;
+    private String jcrq;
     //国籍
     private String guoji;
     //是否华人
     private Integer sfhr;
     //发病日期
-    private Date yq_fbrq;
+    private String yq_fbrq;
     //是否疑似病例
     private Integer yq_sfys;
     //疑似诊断日期
-    private Date yq_yszdrq;
+    private String yq_yszdrq;
     //是否留院观察
     private Integer yq_sflg;
     //留院观察日期
-    private Date yq_lgrq;
+    private String yq_lgrq;
     //出院时间
     private String yq_chuysj;
     //报告单位
     private String bgdw;
     //报告日期
-    private Date bgrq;
+    private String bgrq;
     //做出诊断区县
     private String szqx;
     //报告省份
@@ -68,7 +70,7 @@ public class Person {
     //报告医疗机构
     private String bgyljg;
     //报告时间
-    private Date bgsj;
+    private String bgsj;
     //报告人姓名
     private  String bgrxm;
     //报告人联系方式
@@ -131,8 +133,83 @@ public class Person {
     private Integer qztj;
     //确认密接时间
     private String qrmjsj;
+    //是否密接人员
+    private  Integer sfmjry;
+    //确诊时间
+    private String  yq_qzsj;
+    //密接添加人uaerid
+    private String mj_userID;
+    //确诊添加人userid
+    private String qz_userID;
 
-    public Person(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb,String qrmjsj,Integer qztj,Integer mjtj){
+    @Override
+    public String toString() {
+        return "Person{" +
+                "sfzmhm='" + sfzmhm + '\'' +
+                ", xingming='" + xingming + '\'' +
+                ", binganhao='" + binganhao + '\'' +
+                ", lxdh='" + lxdh + '\'' +
+                ", xxdz='" + xxdz + '\'' +
+                ", ssbsc='" + ssbsc + '\'' +
+                ", sssq='" + sssq + '\'' +
+                ", mjren='" + mjren + '\'' +
+                ", rqfl='" + rqfl + '\'' +
+                ", sfjc=" + sfjc +
+                ", jcrq='" + jcrq + '\'' +
+                ", guoji='" + guoji + '\'' +
+                ", sfhr=" + sfhr +
+                ", yq_fbrq='" + yq_fbrq + '\'' +
+                ", yq_sfys=" + yq_sfys +
+                ", yq_yszdrq='" + yq_yszdrq + '\'' +
+                ", yq_sflg=" + yq_sflg +
+                ", yq_lgrq='" + yq_lgrq + '\'' +
+                ", yq_chuysj='" + yq_chuysj + '\'' +
+                ", bgdw='" + bgdw + '\'' +
+                ", bgrq='" + bgrq + '\'' +
+                ", szqx='" + szqx + '\'' +
+                ", bgsf='" + bgsf + '\'' +
+                ", bgdjs='" + bgdjs + '\'' +
+                ", bgyljg='" + bgyljg + '\'' +
+                ", bgsj='" + bgsj + '\'' +
+                ", bgrxm='" + bgrxm + '\'' +
+                ", bgrlxfs='" + bgrlxfs + '\'' +
+                ", jiguansf='" + jiguansf + '\'' +
+                ", jiguandjs='" + jiguandjs + '\'' +
+                ", jiguanxq='" + jiguanxq + '\'' +
+                ", xzsf='" + xzsf + '\'' +
+                ", xzdjs='" + xzdjs + '\'' +
+                ", xzxq='" + xzxq + '\'' +
+                ", yq_sfqz=" + yq_sfqz +
+                ", yq_sfmjfb=" + yq_sfmjfb +
+                ", yq_sfywry=" + yq_sfywry +
+                ", yq_sfcwwh=" + yq_sfcwwh +
+                ", yq_sfczqtsf=" + yq_sfczqtsf +
+                ", yq_zhumingsf='" + yq_zhumingsf + '\'' +
+                ", yq_sfsl=" + yq_sfsl +
+                ", yq_sfzz=" + yq_sfzz +
+                ", yq_sfwzz=" + yq_sfwzz +
+                ", yq_sfpc=" + yq_sfpc +
+                ", yq_sfcy=" + yq_sfcy +
+                ", yq_sfsw=" + yq_sfsw +
+                ", yq_sfhsjc=" + yq_sfhsjc +
+                ", yq_hsjcjb='" + yq_hsjcjb + '\'' +
+                ", yq_sfjycx=" + yq_sfjycx +
+                ", hzrxm='" + hzrxm + '\'' +
+                ", hzrlx='" + hzrlx + '\'' +
+                ", hdrxm='" + hdrxm + '\'' +
+                ", hdrlx='" + hdrlx + '\'' +
+                ", sjtjsj='" + sjtjsj + '\'' +
+                ", mjtj=" + mjtj +
+                ", qztj=" + qztj +
+                ", qrmjsj='" + qrmjsj + '\'' +
+                ", sfmjry=" + sfmjry +
+                ", yq_qzsj='" + yq_qzsj + '\'' +
+                ", mj_userID='" + mj_userID + '\'' +
+                ", qz_userID='" + qz_userID + '\'' +
+                '}';
+    }
+
+    public Person(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb, String qrmjsj, Integer qztj, Integer mjtj, Integer sfmjry, String mj_userID){
         this.sfzmhm = sfzmhm;
         this.xingming = xingming;
         this.lxdh = lxdh;
@@ -149,65 +226,8 @@ public class Person {
         this.qrmjsj = qrmjsj;
         this.qztj =qztj;
         this.mjtj =mjtj;
-    }
-    public Person(String sfzmhm, String xingming, String binganhao, String lxdh, String xxdz, String ssbsc, String sssq, String mjren, String rqfl, Integer sfjc, Date jcrq, String guoji, Integer sfhr, Date yq_fbrq, Integer yq_sfys, Date yq_yszdrq, Integer yq_sflg, Date yq_lgrq, String yq_chuysj, String bgdw, Date bgrq, String szqx, String bgsf, String bgdjs, String bgyljg, Date bgsj, String bgrxm, String bgrlxfs, String jiguansf, String jiguandjs, String jiguanxq, String xzsf, String xzdjs, String xzxq, Integer yq_sfqz, Integer yq_sfmjfb, Integer yq_sfywry, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, Integer yq_sfsl, Integer yq_sfzz, Integer yq_sfwzz, Integer yq_sfpc, Integer yq_sfcy, Integer yq_sfsw, Integer yq_sfhsjc, String yq_hsjcjb, Integer yq_sfjycx, String hzrxm, String hzrlx, String hdrxm, String hdrlx, String sjtjsj, Integer mjtj, Integer qztj, String qrmjsj) {
-        this.sfzmhm = sfzmhm;
-        this.xingming = xingming;
-        this.binganhao = binganhao;
-        this.lxdh = lxdh;
-        this.xxdz = xxdz;
-        this.ssbsc = ssbsc;
-        this.sssq = sssq;
-        this.mjren = mjren;
-        this.rqfl = rqfl;
-        this.sfjc = sfjc;
-        this.jcrq = jcrq;
-        this.guoji = guoji;
-        this.sfhr = sfhr;
-        this.yq_fbrq = yq_fbrq;
-        this.yq_sfys = yq_sfys;
-        this.yq_yszdrq = yq_yszdrq;
-        this.yq_sflg = yq_sflg;
-        this.yq_lgrq = yq_lgrq;
-        this.yq_chuysj = yq_chuysj;
-        this.bgdw = bgdw;
-        this.bgrq = bgrq;
-        this.szqx = szqx;
-        this.bgsf = bgsf;
-        this.bgdjs = bgdjs;
-        this.bgyljg = bgyljg;
-        this.bgsj = bgsj;
-        this.bgrxm = bgrxm;
-        this.bgrlxfs = bgrlxfs;
-        this.jiguansf = jiguansf;
-        this.jiguandjs = jiguandjs;
-        this.jiguanxq = jiguanxq;
-        this.xzsf = xzsf;
-        this.xzdjs = xzdjs;
-        this.xzxq = xzxq;
-        this.yq_sfqz = yq_sfqz;
-        this.yq_sfmjfb = yq_sfmjfb;
-        this.yq_sfywry = yq_sfywry;
-        this.yq_sfcwwh = yq_sfcwwh;
-        this.yq_sfczqtsf = yq_sfczqtsf;
-        this.yq_zhumingsf = yq_zhumingsf;
-        this.yq_sfsl = yq_sfsl;
-        this.yq_sfzz = yq_sfzz;
-        this.yq_sfwzz = yq_sfwzz;
-        this.yq_sfpc = yq_sfpc;
-        this.yq_sfcy = yq_sfcy;
-        this.yq_sfsw = yq_sfsw;
-        this.yq_sfhsjc = yq_sfhsjc;
-        this.yq_hsjcjb = yq_hsjcjb;
-        this.yq_sfjycx = yq_sfjycx;
-        this.hzrxm = hzrxm;
-        this.hzrlx = hzrlx;
-        this.hdrxm = hdrxm;
-        this.hdrlx = hdrlx;
-        this.sjtjsj = sjtjsj;
-        this.mjtj = mjtj;
-        this.qztj = qztj;
-        this.qrmjsj = qrmjsj;
+        this.sfmjry = sfmjry;
+        this.mj_userID = mj_userID;
     }
 
     public Person() {
@@ -293,11 +313,11 @@ public class Person {
         this.sfjc = sfjc;
     }
 
-    public Date getJcrq() {
+    public String getJcrq() {
         return jcrq;
     }
 
-    public void setJcrq(Date jcrq) {
+    public void setJcrq(String jcrq) {
         this.jcrq = jcrq;
     }
 
@@ -317,11 +337,11 @@ public class Person {
         this.sfhr = sfhr;
     }
 
-    public Date getYq_fbrq() {
+    public String getYq_fbrq() {
         return yq_fbrq;
     }
 
-    public void setYq_fbrq(Date yq_fbrq) {
+    public void setYq_fbrq(String yq_fbrq) {
         this.yq_fbrq = yq_fbrq;
     }
 
@@ -333,11 +353,11 @@ public class Person {
         this.yq_sfys = yq_sfys;
     }
 
-    public Date getYq_yszdrq() {
+    public String getYq_yszdrq() {
         return yq_yszdrq;
     }
 
-    public void setYq_yszdrq(Date yq_yszdrq) {
+    public void setYq_yszdrq(String yq_yszdrq) {
         this.yq_yszdrq = yq_yszdrq;
     }
 
@@ -349,11 +369,11 @@ public class Person {
         this.yq_sflg = yq_sflg;
     }
 
-    public Date getYq_lgrq() {
+    public String getYq_lgrq() {
         return yq_lgrq;
     }
 
-    public void setYq_lgrq(Date yq_lgrq) {
+    public void setYq_lgrq(String yq_lgrq) {
         this.yq_lgrq = yq_lgrq;
     }
 
@@ -373,11 +393,11 @@ public class Person {
         this.bgdw = bgdw;
     }
 
-    public Date getBgrq() {
+    public String getBgrq() {
         return bgrq;
     }
 
-    public void setBgrq(Date bgrq) {
+    public void setBgrq(String bgrq) {
         this.bgrq = bgrq;
     }
 
@@ -413,11 +433,11 @@ public class Person {
         this.bgyljg = bgyljg;
     }
 
-    public Date getBgsj() {
+    public String getBgsj() {
         return bgsj;
     }
 
-    public void setBgsj(Date bgsj) {
+    public void setBgsj(String bgsj) {
         this.bgsj = bgsj;
     }
 
@@ -667,5 +687,37 @@ public class Person {
 
     public void setQrmjsj(String qrmjsj) {
         this.qrmjsj = qrmjsj;
+    }
+
+    public Integer getSfmjry() {
+        return sfmjry;
+    }
+
+    public void setSfmjry(Integer sfmjry) {
+        this.sfmjry = sfmjry;
+    }
+
+    public String getYq_qzsj() {
+        return yq_qzsj;
+    }
+
+    public void setYq_qzsj(String yq_qzsj) {
+        this.yq_qzsj = yq_qzsj;
+    }
+
+    public String getMj_userID() {
+        return mj_userID;
+    }
+
+    public void setMj_userID(String mj_userID) {
+        this.mj_userID = mj_userID;
+    }
+
+    public String getQz_userID() {
+        return qz_userID;
+    }
+
+    public void setQz_userID(String qz_userID) {
+        this.qz_userID = qz_userID;
     }
 }

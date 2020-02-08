@@ -23,19 +23,51 @@ import java.util.List;
 @Controller
 @RequestMapping("community")
 public class CommunityController {
-
     @Autowired
     private CommunityService communityService;
-
-    @GetMapping("show")
-    public String showIndex(){
-        return "community/index2";
+    //密接管理界面组合查询
+    @ResponseBody
+    @GetMapping("check")
+    public String mjCheck(String sfzmhm,String xingming,String qrmjsj){
+        List<Person> mjPersons = communityService.selectCheck(sfzmhm,xingming,qrmjsj);
+        Gson gson = new Gson();
+        String result = "";
+        if (mjPersons!=null&&mjPersons.size()!=0){
+            result = gson.toJson(mjPersons);
+        }
+        return result;
     }
-
+    //密接查看界面组合查询
+    @ResponseBody
+    @GetMapping("checkShow")
+    public String mjCheckShow(String sfzmhm,String xingming,String qrmjsj){
+        List<Person> mjPersons = communityService.selectCheckShow(sfzmhm,xingming,qrmjsj);
+        Gson gson = new Gson();
+        String result = "";
+        if (mjPersons!=null&&mjPersons.size()!=0){
+            result = gson.toJson(mjPersons);
+        }
+        return result;
+    }
+    //跳转至查看密接人员界面
+    @GetMapping("mijieShow")
+    public  String mijieShow(){ return "community/mijieShow"; }
+    //查看密接人员数据接口
+    @ResponseBody
+    @GetMapping("mjInfoShow")
+    public String mjInfo(){
+        List<Person> mjPersons = communityService.findAllMjtjSubmitInfo();
+        Gson gson = new Gson();
+        String result = "";
+        if (mjPersons!=null&&mjPersons.size()!=0){
+            result = gson.toJson(mjPersons);
+        }
+        return result;
+    }
     //跳转至密接人员管理界面
     @GetMapping("mijieList")
-    public String showMiJie(){ return  "community/mijieList";}
-    //密接人员数据接口
+    public String mijieList(){ return  "community/mijieList";}
+    //管理密接人员数据接口
     @ResponseBody
     @GetMapping("mjryInfoList")
     public  String mjryInfoList(){
@@ -47,7 +79,17 @@ public class CommunityController {
         }
         return result;
     }
-
+    //提交密接人员提交状态
+    @ResponseBody
+    @GetMapping("mijieSubmit")
+    public  String miJieSubmit(String sfzmhm){
+        System.out.println(sfzmhm);
+        boolean bl = communityService.miJieSubmit(sfzmhm);
+        if(bl){
+            return "200";
+        }
+        return "400";
+    }
     //跳转至添加密接人员界面
     @GetMapping("addmijie")
     public String showAddMiJie(){ return  "community/mijieAdd";}
@@ -55,7 +97,6 @@ public class CommunityController {
     @ResponseBody
     @PostMapping("add")
     public String addMijie(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb){
-        System.out.println("===========");
         boolean bl =  communityService.addMijie(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb);
         if (bl) {
             return "200";
@@ -63,15 +104,6 @@ public class CommunityController {
             //返回失败信息
             return "400";
         }
-    }
-    //测试
-    @ResponseBody
-    @GetMapping("ceshi")
-    public String add(String rqfl){
-        System.out.println("===========");
-        System.out.println(rqfl);
-            return "200";
-
     }
     //查询人群分类
     @ResponseBody
