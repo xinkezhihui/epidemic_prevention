@@ -30,4 +30,5 @@ public interface userRepository extends JpaRepository<User,Integer> {
     public List<User> findAll();
 
 
+
 }
