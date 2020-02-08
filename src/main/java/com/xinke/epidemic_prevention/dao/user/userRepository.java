@@ -28,4 +28,5 @@ public interface userRepository extends JpaRepository<User,Integer> {
     public void deleteByNumber(String number);
     //查找所有用户
     public List<User> findAll();
+
 }
