@@ -85,88 +85,7 @@
 						</li>
 					</ul>
 				</li>
-				<li ><!--shiro:hasPermission="user:education"-->
-					<a href="#" shiro:hasPermission="admin">
-						<i class="fa fa fa-bar-chart-o"></i>
-						<span class="nav-label">水资源确权</span>
-						<span class="fa arrow"></span>
-					</a>
-					<a href="#" shiro:hasPermission="super">
-						<i class="fa fa fa-bar-chart-o"></i>
-						<span class="nav-label">水资源确权</span>
-						<span class="fa arrow"></span>
-					</a>
 
-					<ul class="nav nav-second-level">
-						<li>
-							<a href="#">
-								<i class="fa fa-home"></i>
-								<span class="nav-label">水资源信息</span>
-								<span class="fa arrow"></span>
-							</a>
-							<ul class="nav nav-second-level">
-								<li >
-									<a class="J_menuItem" th:href="@{/river/show}">河流水系信息</a>
-								</li>
-								<li >
-									<a class="J_menuItem" th:href="@{/indexWater/show}">区域用水指标</a>
-								</li>
-								<li >
-									<a class="J_menuItem" th:href="@{/availableWater/show}">区域可供水量</a>
-								</li>
-								</ul>
-						</li>
-
-						<li>
-							<a href="#">
-								<i class="fa fa-home"></i>
-								<span class="nav-label">用水统计</span>
-								<span class="fa arrow"></span>
-							</a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="J_menuItem" href="/statistics/toShowAllStatistics">用水总量统计信息</a>
-								<li>
-									<a class="J_menuItem" href="/agrStatistics/toShowAgrStatistics">农业用水量统计信息</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/industryStatistics/toShowIndustryStatistics">工业用水量统计信息</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/lifeStatistics/toShowLifeStatistics">居民生活用水量统计信息</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/townStatistics/toShowTownStatistics">城镇公共用水量统计信息</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/ecologyStatistics/toShowEcologyStatistics">生态用水量统计信息</a>
-								</li>
-
-								<li>
-									<a class="J_menuItem" href="/treeFishStatistics/toShowTreeFishStatistics">林牧渔畜用水量统计信息</a>
-								</li>
-								</li>
-							</ul>
-						<li>
-							<a href="#">
-								<i class="fa fa-home"></i>
-								<span class="nav-label">计划水量</span>
-								<span class="fa arrow"></span>
-							</a>
-							<ul class="nav nav-second-level">
-								<li>
-									<a class="J_menuItem" href="/license/show">取水许可证信息</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/manual/show">用水户</a>
-								</li>
-								<li>
-									<a class="J_menuItem" href="/define/show">水资源分区</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
 				<!--meta-->
 				<li>
 					<a href="#">
@@ -178,7 +97,8 @@
 						<li>
 							<a href="#">
 								<i class="fa fa-home"></i>
-								<span class="nav-label">0-12时新冠病毒感染日报表</span>
+								<span class="nav-label">
+									<a class="J_menuItem" href="/form/tz1">0-12时新冠病毒感染日报表</a></span>
 								<span class="fa arrow"></span>
 							</a>
 							<!--<ul class="nav nav-second-level">
@@ -199,7 +119,8 @@
 						<li>
 							<a href="#">
 								<i class="fa fa-home"></i>
-								<span class="nav-label">0-24时新冠病毒感染日报表</span>
+								<span class="nav-label">
+									<a class="J_menuItem" href="/form/tz2">0-24时新冠病毒感染日报表</a></span>
 								<span class="fa arrow"></span>
 							</a>
 
@@ -209,7 +130,8 @@
 						<li>
 							<a href="#">
 								<i class="fa fa-home"></i>
-								<span class="nav-label">0-24时新冠病毒感染确诊日报表</span>
+								<span class="nav-label">
+									<a class="J_menuItem" href="/form/tz3">0-24时新冠病毒感染确诊日报表</a></span>
 								<span class="fa arrow"></span>
 							</a>
 
@@ -261,39 +183,8 @@
 					</ul>
 				</li>
 
-				<li>
-					<a href="#" shiro:hasPermission="super">
-						<i class="fa fa fa-bar-chart-o"></i>
-						<span class="nav-label">信息审核</span>
-						<span class="fa arrow"></span>
-					</a>
-					<a href="#" shiro:hasPermission="admin">
-						<i class="fa fa fa-bar-chart-o"></i>
-						<span class="nav-label">信息审核</span>
-						<span class="fa arrow"></span>
-					</a>
-					<ul class="nav nav-second-level">
-						<li>
-							<a class="J_menuItem" href="/listingInfo/toAuditoListingInfo">挂牌信息审核</a>
-						</li>
 
-						<li>
-							<a class="J_menuItem" href="/transcationApplication/auditoTranscationApplication">交易信息审核</a>
-						</li>
-						<li>
-							<a class="J_menuItem" href="/transcationApplication/toContactAudit">合同信息审核</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a th:href="@{/score/show}" class="J_menuItem" >
-						<i class="fa fa fa-bar-chart-o"></i>
-						<span class="nav-label">评分</span>
-						<span class="fa arrow"></span>
-					</a>
-					<ul class="nav nav-second-level">
-					</ul>
-				</li>
+
 			</ul>
 		</div>
 	</nav>
