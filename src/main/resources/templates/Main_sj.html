@@ -1,419 +1,420 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>ÎŞ±êÌâÎÄµµ</title>
-    <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
-    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-	
-     <style type="text/css">
-     	#TABLE1 {
-     		/*background: pink;*/
-     		
-     	}
-     	#main {
-     		/*background: palegreen;*/
-     	}
-     	.title-01 {
-     		font-size: 25px;
-     		color: #0b4c77;
-     	}
-        .table>tbody>tr>th{
-     		border: 0!important;
-     	}
-     	tr td {
-     		border: 0!important;
-     	}
-     	.list-item {
-     		
-     		font-family: "¿¬Ìå";
-     		color: #00cc99;
-     		/*color: #FFFFFF;*/
-     		background:;
-     		
-     	}
-     	strong {
-     		font-size: 25px;
-     		font-weight: bold;
-     	}
-     	.col-lg-6,
-     	.col-lg-12 {
-     		/*background: peru;*/
-     		border-radius: 10px;
-     		height: 50px;
-     		line-height: 50px;
-     	}
-     	@media (max-width: 700px) {
-     		.td-03 {
-     			font-size: 10px!important;
-     		}
-     		strong {
-     			font-size: 20px;
-     		}
-     		.title-01 {
-     		font-size: 20px;
-     		
-     	}
-     	}
-     	@media (max-width: 485px) {
-     		strong {
-     			font-size: 12px;
-     		}
-     		.title-01 {
-     		font-size:16px;
-     		
-     	}
-     		.span-01,
-     	.span-02,
-     	.span-03,
-     	.span-04,
-     	.span-05,
-     	.span-06 {
-     		width: 10px!important;
-     		height: 10px!important;	
-     	}
-     	}
-        
-         
-     	@media (max-width: 520px) {
-     		strong {
-     			font-size: 16px;
-     		}
-     		
-     	}
-     	@media (max-width: 400px) {
-     		strong {
-     			font-size: 11px;
-     		}
-     		.td-03 {
-     			font-size: 6px!important;
-     		}
-     		.title-01 {
-     		font-size:12px;
-     		
-     	}
-     	}
-     	body {
-     		width: 100%;
-     	}
-     	/*.col-lg-12 {
-     		padding: 0!important;
-     	}*/
-     	.span-01,
-     	.span-02,
-     	.span-03,
-     	.span-04,
-     	.span-05,
-     	.span-06 {
-     		width: 15px;
-     		height: 15px;
-     		
-     		display: inline-block;
-     	}
-     	.span-01 {
-     		background:#007EB5;
-     	}
-     	.span-02 {
-     		background:#E2F279;
-     	}
-     	.span-03 {
-     		background:#A6169A;
-     	}
-     	.span-04 {
-     		background:#D6CAF2;
-     	}
-     	.span-05 {
-     		background:#A8FDBC;
-     	}
-     	.span-06 {
-     		background:red;
-     	}
-     	#main {
-            
-             height:300px
-     	}
-         .ms {
-             width:100%;
-             height:340px;
-             align-content:center
-                 }
-       #main1 {
-         
-           
-           height:300px
-       }     
-     	@media (max-width: 1200px) {
-     		#main {
-             width:500px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:600px;
-           height:300px
-       }     
-     		
-     	}
-         @media (max-width: 1108px) {
-     		#main {
-             width:400px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:500px;
-           height:300px
-       }     
-     		
-     	}
-           @media (max-width: 900px) {
-     		#main {
-             width:400px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:400px;
-           height:300px
-       }     
-     		
-     	}
-           @media (max-width: 801px) {
-     		#main {
-             width:660px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:650px;
-           height:300px
-       }     
-     		
-     	}
-            @media (max-width: 585px) {
-     		#main {
-             width:500px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:600px;
-           height:300px
-       }     
-     		
-     	}
-             @media (max-width:438px) {
-     		#main {
-             width:350px;
-             height:300px
-     	}
-       #main1 {
-         
-           width:400px;
-           height:300px
-       }
-                      
-     		
-     	}
-     	
-     </style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>æ— æ ‡é¢˜æ–‡æ¡£</title>
+	<link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="/css/animate.min.css" rel="stylesheet">
+	<link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+
+	<style type="text/css">
+		#TABLE1 {
+			/*background: pink;*/
+
+		}
+		#main {
+			/*background: palegreen;*/
+		}
+		.title-01 {
+			font-size: 25px;
+			color: #0b4c77;
+		}
+		.table>tbody>tr>th{
+			border: 0!important;
+		}
+		tr td {
+			border: 0!important;
+		}
+		.list-item {
+
+			font-family: "æ¥·ä½“";
+			color: #00cc99;
+			/*color: #FFFFFF;*/
+			background:;
+
+		}
+		strong {
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.col-lg-6,
+		.col-lg-12 {
+			/*background: peru;*/
+			border-radius: 10px;
+			height: 50px;
+			line-height: 50px;
+		}
+		@media (max-width: 700px) {
+			.td-03 {
+				font-size: 10px!important;
+			}
+			strong {
+				font-size: 20px;
+			}
+			.title-01 {
+				font-size: 20px;
+
+			}
+		}
+		@media (max-width: 485px) {
+			strong {
+				font-size: 12px;
+			}
+			.title-01 {
+				font-size:16px;
+
+			}
+			.span-01,
+			.span-02,
+			.span-03,
+			.span-04,
+			.span-05,
+			.span-06 {
+				width: 10px!important;
+				height: 10px!important;
+			}
+		}
+
+
+		@media (max-width: 520px) {
+			strong {
+				font-size: 16px;
+			}
+
+		}
+		@media (max-width: 400px) {
+			strong {
+				font-size: 11px;
+			}
+			.td-03 {
+				font-size: 6px!important;
+			}
+			.title-01 {
+				font-size:12px;
+
+			}
+		}
+		body {
+			width: 100%;
+		}
+		/*.col-lg-12 {
+            padding: 0!important;
+        }*/
+		.span-01,
+		.span-02,
+		.span-03,
+		.span-04,
+		.span-05,
+		.span-06 {
+			width: 15px;
+			height: 15px;
+
+			display: inline-block;
+		}
+		.span-01 {
+			background:#007EB5;
+		}
+		.span-02 {
+			background:#E2F279;
+		}
+		.span-03 {
+			background:#A6169A;
+		}
+		.span-04 {
+			background:#D6CAF2;
+		}
+		.span-05 {
+			background:#A8FDBC;
+		}
+		.span-06 {
+			background:red;
+		}
+		#main {
+
+			height:300px
+		}
+		.ms {
+			width:100%;
+			height:340px;
+			align-content:center
+		}
+		#main1 {
+
+
+			height:300px
+		}
+		@media (max-width: 1200px) {
+			#main {
+				width:500px;
+				height:300px
+			}
+			#main1 {
+
+				width:600px;
+				height:300px
+			}
+
+		}
+		@media (max-width: 1108px) {
+			#main {
+				width:400px;
+				height:300px
+			}
+			#main1 {
+
+				width:500px;
+				height:300px
+			}
+
+		}
+		@media (max-width: 900px) {
+			#main {
+				width:400px;
+				height:300px
+			}
+			#main1 {
+
+				width:400px;
+				height:300px
+			}
+
+		}
+		@media (max-width: 801px) {
+			#main {
+				width:660px;
+				height:300px
+			}
+			#main1 {
+
+				width:650px;
+				height:300px
+			}
+
+		}
+		@media (max-width: 585px) {
+			#main {
+				width:500px;
+				height:300px
+			}
+			#main1 {
+
+				width:600px;
+				height:300px
+			}
+
+		}
+		@media (max-width:438px) {
+			#main {
+				width:350px;
+				height:300px
+			}
+			#main1 {
+
+				width:400px;
+				height:300px
+			}
+
+
+		}
+
+	</style>
 
 </head>
 
 <body>
-  <div class="container-fluid">
-  <div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div><strong><span class="span-01"></span>µ±ÈÕĞÂÔöÈ·Õï:1</strong>                    </div>
-						
-					</div>
-					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div style="text-align: left"  ><strong><span class="span-02"></span>µ±ÈÕĞÂÔöÒÉËÆ:1</strong>                    </div>
-						
-					</div>
-					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div style="text-align: left" ><strong><span class="span-03"></span>µ±ÈÕĞÂÔöÖÎÓú:1</strong>                </div>
-						
-					</div>
-					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div style="text-align: left" ><strong><span class="span-04"></span>ÀÛ¼ÆÖÎÓú:1</strong>                    </div>
-					</div>
-			 <div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
-						<div>
-       	 	
-       	<strong><span class="span-05"></span>ÀÛ¼ÆÈ·Õï£º1</strong>
-                    </div>
-					<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
-						<div ><strong><span class="span-06"></span>ÀÛ¼ÆËÀÍö£º1</strong>
-                    </div>
-					</div>
-  
-  
-  
-            <div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >µ±Ç°½üÆßÈÕÈ·ÕïÍ³¼Æ£º
-                   
-               </div>
-           <div class="row list-con">
-               <div class="col-lg-6 list-item col-md-6 col-sm-6 col-xs-6" style="background: blanchedalmond; top: -4px; left: -1px;" id="main">
+<div class="container-fluid">
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+		<div><strong><span class="span-01"></span>å½“æ—¥æ–°å¢ç¡®è¯Š:1</strong>                    </div>
+
+	</div>
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+		<div style="text-align: left"  ><strong><span class="span-02"></span>å½“æ—¥æ–°å¢ç–‘ä¼¼:1</strong>                    </div>
+
+	</div>
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+		<div style="text-align: left" ><strong><span class="span-03"></span>å½“æ—¥æ–°å¢æ²»æ„ˆ:1</strong>                </div>
+
+	</div>
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+		<div style="text-align: left" ><strong><span class="span-04"></span>ç´¯è®¡æ²»æ„ˆ:1</strong>                    </div>
+	</div>
+	<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
+		<div>
+
+			<strong><span class="span-05"></span>ç´¯è®¡ç¡®è¯Šï¼š1</strong>
+		</div>
+		<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
+			<div ><strong><span class="span-06"></span>ç´¯è®¡æ­»äº¡ï¼š1</strong>
+			</div>
+		</div>
+
+
+
+		<div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >å½“å‰è¿‘ä¸ƒæ—¥ç¡®è¯Šç»Ÿè®¡ï¼š
+
+		</div>
+		<div class="row list-con">
+			<div class="col-lg-6 list-item col-md-6 col-sm-6 col-xs-6" style="background: blanchedalmond; top: -4px; left: -1px;" id="main">
 				<script type="text/javascript">
-				    // Â·¾¶ÅäÖÃ
-				    require.config({
-				        paths: {
-				            echarts: 'http://echarts.baidu.com/build/dist'
-				        }
-				    });
+					// è·¯å¾„é…ç½®
+					require.config({
+						paths: {
+							echarts: 'http://echarts.baidu.com/build/dist'
+						}
+					});
 
-				    // Ê¹ÓÃ
-				    require(
-                    [
-                    'echarts',
-                    'echarts/chart/bar' // Ê¹ÓÃÖù×´Í¼¾Í¼ÓÔØbarÄ£¿é£¬°´Ğè¼ÓÔØ
-                    ],
-                    function (ec) {
-                        // »ùÓÚ×¼±¸ºÃµÄdom£¬³õÊ¼»¯echartsÍ¼±í
-                        var myChart = ec.init(document.getElementById('main'));
+					// ä½¿ç”¨
+					require(
+							[
+								'echarts',
+								'echarts/chart/bar' // ä½¿ç”¨æŸ±çŠ¶å›¾å°±åŠ è½½baræ¨¡å—ï¼ŒæŒ‰éœ€åŠ è½½
+							],
+							function (ec) {
+								// åŸºäºå‡†å¤‡å¥½çš„domï¼Œåˆå§‹åŒ–echartså›¾è¡¨
+								var myChart = ec.init(document.getElementById('main'));
 
-                        var option = {
-                            tooltip: {
-                                show: true
-                            },
-                            color: ['#00CC99'],
-                            legend: {
-                                data: ['µ±Ç°½üÒ»ÖÜÈ·ÕïÍ³¼ÆÍ¼']
+								var option = {
+									tooltip: {
+										show: true
+									},
+									color: ['#00CC99'],
+									legend: {
+										data: ['å½“å‰è¿‘ä¸€å‘¨ç¡®è¯Šç»Ÿè®¡å›¾']
 
-                            },
-                            xAxis: [
-                            {
-                                type: 'category',
-                                data: ["2", "2", "1", "1", "1", "1", "1"]
+									},
+									xAxis: [
+										{
+											type: 'category',
+											data: ["2", "2", "1", "1", "1", "1", "1"]
 
-        }
-        ],
-        yAxis: [
-        {
-            type: 'value'
-        }
-        ],
-        series: [
-        {
-            "name": "È·Õï²¡Àı",
-            "type": "bar",
-            "data": [1,2,3,4,5,6,7]
-        }
-        ]
-    };
+										}
+									],
+									yAxis: [
+										{
+											type: 'value'
+										}
+									],
+									series: [
+										{
+											"name": "ç¡®è¯Šç—…ä¾‹",
+											"type": "bar",
+											"data": [7,6,5,4,3,2,1]
+										}
+									]
+								};
 
-    // Îªecharts¶ÔÏó¼ÓÔØÊı¾İ?
-    myChart.setOption(option);
-}
- );
- </script>
-                   		
-						
-			 </div>
-					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6" style="background: palegreen; top: 0px; left: 0px;" id="main1">
-						<!-- EChartsµ¥ÎÄ¼şÒıÈë -->
-                                            <script src="http://echarts.baidu.com/build/dist/echarts.js" type="text/javascript"></script>
+								// ä¸ºechartså¯¹è±¡åŠ è½½æ•°æ®?
+								myChart.setOption(option);
+							}
+					);
+				</script>
 
-                                            <script type="text/javascript">
-                                                // Â·¾¶ÅäÖÃ
-                                                require.config({
-                                                    paths: {
-                                                        echarts: 'http://echarts.baidu.com/build/dist'
-                                                    }
-                                                });
 
-                                                // Ê¹ÓÃ
-                                                require(
-                                                [
-                                                'echarts',
-                                                'echarts/chart/pie' // Ê¹ÓÃÖù×´Í¼¾Í¼ÓÔØbarÄ£¿é£¬°´Ğè¼ÓÔØ
-                                                ],
-                                                function (ec) {
-                                                    // »ùÓÚ×¼±¸ºÃµÄdom£¬³õÊ¼»¯echartsÍ¼±í
-                                                    var myChart = ec.init(document.getElementById('main1'));
+			</div>
+			<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6" style="background: palegreen; top: 0px; left: 0px;" id="main1">
+				<!-- EChartså•æ–‡ä»¶å¼•å…¥ -->
+				<script src="http://echarts.baidu.com/build/dist/echarts.js" type="text/javascript"></script>
 
-                                                    var option = {
-                                                        //title: {//±êÌâ×é¼ş
-                                                        //    text: '¹ÊÕÏ',
-                                                        //    left: '50px',//±êÌâµÄÎ»ÖÃ Ä¬ÈÏÊÇleft£¬ÆäÓà»¹ÓĞcenter¡¢rightÊôĞÔ
-                                                        //    textStyle: {
-                                                        //        color: "#436EEE",
-                                                        //        fontSize: 17,
-                                                        //    }
-                                                        //},
-                                                        tooltip: { //ÌáÊ¾¿ò×é¼ş
-                                                            trigger: 'item', //´¥·¢ÀàĞÍ(±ı×´Í¼Æ¬¾ÍÊÇÓÃÕâ¸ö)
-                                                            formatter: "{a} <br/>{b} : {c} ({d}%)", //ÌáÊ¾¿ò¸¡²ãÄÚÈİ¸ñÊ½Æ÷
-                                                            
-                                                        },
-                                                        color:['#79DBE9','#CDB2E4'], //['#48cda6', '#fd87fb', '#11abff', '#ffdf6f', '#968ade'],  //ÊÖ¶¯ÉèÖÃÃ¿¸öÍ¼ÀıµÄÑÕÉ«
-                                                        legend: {  //Í¼Àı×é¼ş
-                                                            //right:100,  //Í¼Àı×é¼şÀëÓÒ±ßµÄ¾àÀë
-                                                            orient: 'horizontal',  //²¼¾Ö  ×İÏò²¼¾Ö Í¼Àı±ê¼Ç¾ÓÎÄ×ÖµÄ×ó±ß verticalÔò·´Ö®
-                                                            width: 20,      //Í¼ĞĞÀı×é¼şµÄ¿í¶È,Ä¬ÈÏ×ÔÊÊÓ¦
-                                                            x: 'left',   //Í¼ÀıÏÔÊ¾ÔÚÓÒ±ß
-                                                            y: 'bottom',   //Í¼ÀıÔÚ´¹Ö±·½ÏòÉÏÃæÏÔÊ¾¾ÓÖĞ
-                                                            itemWidth: 10,  //Í¼Àı±ê¼ÇµÄÍ¼ĞÎ¿í¶È
-                                                            itemHeight: 10, //Í¼Àı±ê¼ÇµÄÍ¼ĞÎ¸ß¶È
-                                                            data: ['ÀÛ¼ÆÈ·Õï', 'ÀÛ¼ÆÖÎÓú'],//["" + <%=str[8]%> + "", "" + <%=str[7]%> + "", "" + <%=str[6]%> + "", "" + <%=str[5]%> + "", "" + <%=str[4]%> + "", "" + <%=str[3]%> + "", "" + <%=str[2]%> + ""],//["Õı³£", 'Ò»°ã', 'ÌáÊ¾', '½Ï¼±', 'ÌØ¼±'],
-                                                            textStyle: {    //Í¼ÀıÎÄ×ÖµÄÑùÊ½
-                                                                color: '#333',  //ÎÄ×ÖÑÕÉ«
-                                                                fontSize: 12    //ÎÄ×Ö´óĞ¡
-                                                            }
-                                                        },
-                                                        series: [ //ÏµÁĞÁĞ±í
-                                                            {
-                                                                name: 'È·Õï/ÖÎÓú',  //ÏµÁĞÃû³Æ
-                                                                type: 'pie',   //ÀàĞÍ pie±íÊ¾±ıÍ¼
-                                                                center: ['30%', '40%'], //ÉèÖÃ±ıµÄÔ­ĞÄ×ø±ê ²»ÉèÖÃ¾Í»áÄ¬ÈÏÔÚÖĞĞÄµÄÎ»ÖÃ
-                                                                radius: ['40%', '60%'],  //±ıÍ¼µÄ°ë¾¶,µÚÒ»ÏîÊÇÄÚ°ë¾¶,µÚ¶şÏîÊÇÍâ°ë¾¶,ÄÚ°ë¾¶Îª0¾ÍÊÇÕæµÄ±ı,²»ÊÇ»·ĞÎ
-                                                                itemStyle: {  //Í¼ĞÎÑùÊ½
-                                                                    emphasis: { //normal ÊÇÍ¼ĞÎÔÚÄ¬ÈÏ×´Ì¬ÏÂµÄÑùÊ½£»emphasis ÊÇÍ¼ĞÎÔÚ¸ßÁÁ×´Ì¬ÏÂµÄÑùÊ½£¬±ÈÈçÔÚÊó±êĞü¸¡»òÕßÍ¼ÀıÁª¶¯¸ßÁÁÊ±¡£
-                                                                        label: {  //±ıÍ¼Í¼ĞÎÉÏµÄÎÄ±¾±êÇ©
-                                                                            show: true,  //Æ½³£²»ÏÔÊ¾
-                                                                            
-                                                                        },
-                                                                        labelLine: {     //±êÇ©µÄÊÓ¾õÒıµ¼ÏßÑùÊ½
-                                                                            show: true  //Æ½³£²»ÏÔÊ¾
-                                                                        }
-                                                                    },
-                                                                    emphasis: {   // normalÊÇÍ¼ĞÎÔÚÄ¬ÈÏ×´Ì¬ÏÂµÄÑùÊ½£»emphasis ÊÇÍ¼ĞÎÔÚ¸ßÁÁ×´Ì¬ÏÂµÄÑùÊ½£¬±ÈÈçÔÚÊó±êĞü¸¡»òÕßÍ¼ÀıÁª¶¯¸ßÁÁÊ±¡£
-                                                                        label: {  //±ıÍ¼Í¼ĞÎÉÏµÄÎÄ±¾±êÇ©
-                                                                            show: true,
-                                                                            position: 'center',
-                                                                            textStyle: {
-                                                                                fontSize: '10',
-                                                                                fontWeight: 'bold'
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                },
-                                                                data: [
+				<script type="text/javascript">
+					// è·¯å¾„é…ç½®
+					require.config({
+						paths: {
+							echarts: 'http://echarts.baidu.com/build/dist'
+						}
+					});
 
-                    { value: "1", name: 'È·Õï' },
-                    { value: "2", name: 'ÖÎÓú' },
-                        //{ value: 30, name: 'ÌáÊ¾' },
-                        //{ value: 20, name: '½Ï¼±' },
-                        //{ value: 25, name: 'ÌØ¼±' }
+					// ä½¿ç”¨
+					require(
+							[
+								'echarts',
+								'echarts/chart/pie' // ä½¿ç”¨æŸ±çŠ¶å›¾å°±åŠ è½½baræ¨¡å—ï¼ŒæŒ‰éœ€åŠ è½½
+							],
+							function (ec) {
+								// åŸºäºå‡†å¤‡å¥½çš„domï¼Œåˆå§‹åŒ–echartså›¾è¡¨
+								var myChart = ec.init(document.getElementById('main1'));
 
-                                                                ]
-                                                            }
-                                                        ]
-                                                    };
+								var option = {
+									//title: {//æ ‡é¢˜ç»„ä»¶
+									//    text: 'æ•…éšœ',
+									//    left: '50px',//æ ‡é¢˜çš„ä½ç½® é»˜è®¤æ˜¯leftï¼Œå…¶ä½™è¿˜æœ‰centerã€rightå±æ€§
+									//    textStyle: {
+									//        color: "#436EEE",
+									//        fontSize: 17,
+									//    }
+									//},
+									tooltip: { //æç¤ºæ¡†ç»„ä»¶
+										trigger: 'item', //è§¦å‘ç±»å‹(é¥¼çŠ¶å›¾ç‰‡å°±æ˜¯ç”¨è¿™ä¸ª)
+										formatter: "{a} <br/>{b} : {c} ({d}%)", //æç¤ºæ¡†æµ®å±‚å†…å®¹æ ¼å¼å™¨
 
-                                                    // Îªecharts¶ÔÏó¼ÓÔØÊı¾İ?
-                                                    myChart.setOption(option);
-                                                }
-  );
-                                            </script>
-						
-					</div>
-					
-               </div>
-           
-       </div>     
+									},
+									color:['#79DBE9','#CDB2E4'], //['#48cda6', '#fd87fb', '#11abff', '#ffdf6f', '#968ade'],  //æ‰‹åŠ¨è®¾ç½®æ¯ä¸ªå›¾ä¾‹çš„é¢œè‰²
+									legend: {  //å›¾ä¾‹ç»„ä»¶
+										//right:100,  //å›¾ä¾‹ç»„ä»¶ç¦»å³è¾¹çš„è·ç¦»
+										orient: 'horizontal',  //å¸ƒå±€  çºµå‘å¸ƒå±€ å›¾ä¾‹æ ‡è®°å±…æ–‡å­—çš„å·¦è¾¹ verticalåˆ™åä¹‹
+										width: 20,      //å›¾è¡Œä¾‹ç»„ä»¶çš„å®½åº¦,é»˜è®¤è‡ªé€‚åº”
+										x: 'left',   //å›¾ä¾‹æ˜¾ç¤ºåœ¨å³è¾¹
+										y: 'bottom',   //å›¾ä¾‹åœ¨å‚ç›´æ–¹å‘ä¸Šé¢æ˜¾ç¤ºå±…ä¸­
+										itemWidth: 10,  //å›¾ä¾‹æ ‡è®°çš„å›¾å½¢å®½åº¦
+										itemHeight: 10, //å›¾ä¾‹æ ‡è®°çš„å›¾å½¢é«˜åº¦
+										data: ['ç´¯è®¡ç¡®è¯Š', 'ç´¯è®¡æ²»æ„ˆ'],//["" + <%=str[8]%> + "", "" + <%=str[7]%> + "", "" + <%=str[6]%> + "", "" + <%=str[5]%> + "", "" + <%=str[4]%> + "", "" + <%=str[3]%> + "", "" + <%=str[2]%> + ""],//["æ­£å¸¸", 'ä¸€èˆ¬', 'æç¤º', 'è¾ƒæ€¥', 'ç‰¹æ€¥'],
+										textStyle: {    //å›¾ä¾‹æ–‡å­—çš„æ ·å¼
+											color: '#333',  //æ–‡å­—é¢œè‰²
+											fontSize: 12    //æ–‡å­—å¤§å°
+										}
+									},
+									series: [ //ç³»åˆ—åˆ—è¡¨
+										{
+											name: 'ç¡®è¯Š/æ²»æ„ˆ',  //ç³»åˆ—åç§°
+											type: 'pie',   //ç±»å‹ pieè¡¨ç¤ºé¥¼å›¾
+											center: ['30%', '40%'], //è®¾ç½®é¥¼çš„åŸå¿ƒåæ ‡ ä¸è®¾ç½®å°±ä¼šé»˜è®¤åœ¨ä¸­å¿ƒçš„ä½ç½®
+											radius: ['40%', '60%'],  //é¥¼å›¾çš„åŠå¾„,ç¬¬ä¸€é¡¹æ˜¯å†…åŠå¾„,ç¬¬äºŒé¡¹æ˜¯å¤–åŠå¾„,å†…åŠå¾„ä¸º0å°±æ˜¯çœŸçš„é¥¼,ä¸æ˜¯ç¯å½¢
+											itemStyle: {  //å›¾å½¢æ ·å¼
+												emphasis: { //normal æ˜¯å›¾å½¢åœ¨é»˜è®¤çŠ¶æ€ä¸‹çš„æ ·å¼ï¼›emphasis æ˜¯å›¾å½¢åœ¨é«˜äº®çŠ¶æ€ä¸‹çš„æ ·å¼ï¼Œæ¯”å¦‚åœ¨é¼ æ ‡æ‚¬æµ®æˆ–è€…å›¾ä¾‹è”åŠ¨é«˜äº®æ—¶ã€‚
+													label: {  //é¥¼å›¾å›¾å½¢ä¸Šçš„æ–‡æœ¬æ ‡ç­¾
+														show: true,  //å¹³å¸¸ä¸æ˜¾ç¤º
+
+													},
+													labelLine: {     //æ ‡ç­¾çš„è§†è§‰å¼•å¯¼çº¿æ ·å¼
+														show: true  //å¹³å¸¸ä¸æ˜¾ç¤º
+													}
+												},
+												emphasis: {   // normalæ˜¯å›¾å½¢åœ¨é»˜è®¤çŠ¶æ€ä¸‹çš„æ ·å¼ï¼›emphasis æ˜¯å›¾å½¢åœ¨é«˜äº®çŠ¶æ€ä¸‹çš„æ ·å¼ï¼Œæ¯”å¦‚åœ¨é¼ æ ‡æ‚¬æµ®æˆ–è€…å›¾ä¾‹è”åŠ¨é«˜äº®æ—¶ã€‚
+													label: {  //é¥¼å›¾å›¾å½¢ä¸Šçš„æ–‡æœ¬æ ‡ç­¾
+														show: true,
+														position: 'center',
+														textStyle: {
+															fontSize: '10',
+															fontWeight: 'bold'
+														}
+													}
+												}
+											},
+											data: [
+
+												{ value: "1", name: 'ç¡®è¯Š' },
+												{ value: "2", name: 'æ²»æ„ˆ' },
+												//{ value: 30, name: 'æç¤º' },
+												//{ value: 20, name: 'è¾ƒæ€¥' },
+												//{ value: 25, name: 'ç‰¹æ€¥' }
+
+											]
+										}
+									]
+								};
+
+								// ä¸ºechartså¯¹è±¡åŠ è½½æ•°æ®?
+								myChart.setOption(option);
+							}
+					);
+				</script>
+
+			</div>
+
+		</div>
+
+	</div>
 </body>
 </html>

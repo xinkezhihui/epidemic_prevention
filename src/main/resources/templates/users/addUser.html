@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -81,7 +81,7 @@
                         <select class="form-control" type="text" name="power" required="required">
                             <option value="">---请选择用户权限---</option>
                             <option th:value="user">普通用户</option>
-                            <div >
+                            <div shiro:hasPermission="super">
                             <option th:value="admin">管理员</option>
                             <option th:value="super">超级管理员</option>
                             </div>

@@ -3,6 +3,7 @@ package com.xinke.epidemic_prevention.controller.user;
 import com.google.gson.Gson;
 import com.xinke.epidemic_prevention.bean.user.User;
 import com.xinke.epidemic_prevention.dao.user.userRepository;
+import com.xinke.epidemic_prevention.service.user.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -14,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -28,6 +31,8 @@ import java.util.List;
 public class UserController{
     @Autowired
     userRepository userRepository;
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("tz")
@@ -81,6 +86,7 @@ public class UserController{
     @GetMapping("tofindall")
     public String tofindall(){return "users/findall";}
     @GetMapping("findall")
+    @ResponseBody
     public String findall(){
         List<User> userList = userRepository.findAll();
         Gson gson = new Gson();
@@ -89,6 +95,37 @@ public class UserController{
             result = gson.toJson(userList);
         }
         return result;
+    }
+    @PostMapping("/add")
+    public String saveAdmin(User user,Model model){
+
+        boolean re = userService.userExist(user.getNumber());
+
+        if (re){
+            user.setPassword("123456");
+            userRepository.save(user);
+            model.addAttribute("msg","添加成功");
+           /* *//*lwq:添加未读消息表记录************************************//*
+            IfRead ifRead = new IfRead();
+            ifRead.setUserNumber(user.getNumber());//user的number
+            String str = ifReadService.setString();
+            ifRead.setNoticeInfo(str);
+            ifReadService.registerInfo(ifRead);*/
+        }else {
+            model.addAttribute("msg","该账号已存在");
+        }
+
+        return "users/findall";
+    }
+    @GetMapping("fp")
+    public String tofp(){return "Main_sj";}
+    //推出系统
+    @GetMapping("/loginout")
+    public String loginout(HttpSession session) {
+
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "login";
     }
 
 }
