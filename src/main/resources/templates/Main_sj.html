@@ -234,19 +234,19 @@
 						
 					</div>
 					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div style="text-align: left" ><strong><span class="span-03"></span>单日新增治愈:1</strong>                </div>
+						<div style="text-align: left" ><strong><span class="span-03"></span>当日新增治愈:1</strong>                </div>
 						
 					</div>
 					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-						<div style="text-align: left" ><strong><span class="span-04"></span>累积治愈:1</strong>                    </div>
+						<div style="text-align: left" ><strong><span class="span-04"></span>累计治愈:1</strong>                    </div>
 					</div>
 			 <div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
 						<div>
        	 	
-       	<strong><span class="span-05"></span>累积确诊：1</strong>
+       	<strong><span class="span-05"></span>累计确诊：1</strong>
                     </div>
 					<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
-						<div ><strong><span class="span-06"></span>累积死亡：1</strong>
+						<div ><strong><span class="span-06"></span>累计死亡：1</strong>
                     </div>
 					</div>
   
@@ -254,7 +254,7 @@
   
             <div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >当前近七日确诊统计：
                    
-                </div>
+               </div>
            <div class="row list-con">
                <div class="col-lg-6 list-item col-md-6 col-sm-6 col-xs-6" style="background: blanchedalmond; top: -4px; left: -1px;" id="main">
 				<script type="text/javascript">
@@ -281,13 +281,13 @@
                             },
                             color: ['#00CC99'],
                             legend: {
-                                data: ['当前近一周确诊柱状统计图']
+                                data: ['当前近一周确诊统计图']
 
                             },
                             xAxis: [
                             {
                                 type: 'category',
-                                data: ["" + <%=str[8]%> + "", "" + <%=str[7]%> + "", "" + <%=str[6]%> + "", "" + <%=str[5]%> + "", "" + <%=str[4]%> + "", "" + <%=str[3]%> + "", "" + <%=str[2]%> + ""]
+                                data: ["2", "2", "1", "1", "1", "1", "1"]
 
         }
         ],
@@ -300,7 +300,7 @@
         {
             "name": "确诊病例",
             "type": "bar",
-            "data": [<%=s[6]%>,<%=s[5]%>,<%=s[4]%>,<%=s[3]%>,<%=s[2]%>,<%=s[1]%>,<%=s[0]%>]
+            "data": [1,2,3,4,5,6,7]
         }
         ]
     };
@@ -308,11 +308,11 @@
     // 为echarts对象加载数据?
     myChart.setOption(option);
 }
-? ? ? ? );
-? ? </script>
+ );
+ </script>
                    		
 						
-					</div>
+			 </div>
 					<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6" style="background: palegreen; top: 0px; left: 0px;" id="main1">
 						<!-- ECharts单文件引入 -->
                                             <script src="http://echarts.baidu.com/build/dist/echarts.js" type="text/javascript"></script>
@@ -358,7 +358,7 @@
                                                             y: 'bottom',   //图例在垂直方向上面显示居中
                                                             itemWidth: 10,  //图例标记的图形宽度
                                                             itemHeight: 10, //图例标记的图形高度
-                                                            data: ['总表总用水量', '雨水总表总用水量'],//["" + <%=str[8]%> + "", "" + <%=str[7]%> + "", "" + <%=str[6]%> + "", "" + <%=str[5]%> + "", "" + <%=str[4]%> + "", "" + <%=str[3]%> + "", "" + <%=str[2]%> + ""],//["正常", '一般', '提示', '较急', '特急'],
+                                                            data: ['累计确诊', '累计治愈'],//["" + <%=str[8]%> + "", "" + <%=str[7]%> + "", "" + <%=str[6]%> + "", "" + <%=str[5]%> + "", "" + <%=str[4]%> + "", "" + <%=str[3]%> + "", "" + <%=str[2]%> + ""],//["正常", '一般', '提示', '较急', '特急'],
                                                             textStyle: {    //图例文字的样式
                                                                 color: '#333',  //文字颜色
                                                                 fontSize: 12    //文字大小
@@ -393,15 +393,8 @@
                                                                 },
                                                                 data: [
 
-                    <%--{ value: "" + <%=s[6]%> + "", name: "" + <%=str[8]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[7]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[6]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[5]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[4]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[3]%> + "" },
-                    { value: "" + <%=s[6]%> + "", name: "" + <%=str[2]%> + "" },--%>
-                    { value: "" + <%=d[0]%> +  "", name: '确诊' },
-                    { value: "" + <%=d[1]%> +  "", name: '治愈' },
+                    { value: "1", name: '确诊' },
+                    { value: "2", name: '治愈' },
                         //{ value: 30, name: '提示' },
                         //{ value: 20, name: '较急' },
                         //{ value: 25, name: '特急' }
@@ -414,12 +407,12 @@
                                                     // 为echarts对象加载数据?
                                                     myChart.setOption(option);
                                                 }
-? ? ? ? );
+  );
                                             </script>
 						
 					</div>
 					
-			            </div>
+               </div>
            
        </div>     
 </body>
