@@ -1,15 +1,21 @@
 package com.xinke.epidemic_prevention.controller.user;
 
+import com.google.gson.Gson;
+import com.xinke.epidemic_prevention.bean.user.User;
+import com.xinke.epidemic_prevention.dao.user.userRepository;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * @Author:jlz
@@ -20,6 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("user")
 public class UserController{
+    @Autowired
+    userRepository userRepository;
+
+
     @GetMapping("tz")
     public String tz(){return "login";}
     @GetMapping("tz2")
@@ -65,6 +75,20 @@ public class UserController{
             model.addAttribute("msg", "密码错误");
             return "login";
         }
+    }
+    @GetMapping("toadd")
+    public String toadd(){return "users/addUser";}
+    @GetMapping("tofindall")
+    public String tofindall(){return "users/findall";}
+    @GetMapping("findall")
+    public String findall(){
+        List<User> userList = userRepository.findAll();
+        Gson gson = new Gson();
+        String result = "";
+        if (userList!=null&&userList.size()!=0){
+            result = gson.toJson(userList);
+        }
+        return result;
     }
 
 }

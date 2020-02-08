@@ -26,4 +26,6 @@ public interface userRepository extends JpaRepository<User,Integer> {
     @Transactional
     @Query(value = "delete from ALL_USER_User where number=?1 ",nativeQuery=true)
     public void deleteByNumber(String number);
+    //查找所有用户
+    public List<User> findAll();
 }

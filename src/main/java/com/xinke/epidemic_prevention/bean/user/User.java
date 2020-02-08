@@ -24,6 +24,17 @@ public class User {
     //联系方式（管理员）
     private String phone;
 
+    public String getWorkspace() {
+        return workspace;
+    }
+
+    public void setWorkspace(String workspace) {
+        this.workspace = workspace;
+    }
+
+    //工作地点
+    private String workspace;
+
 
     public void setRealname(String realname) {
         this.realname = realname;
@@ -32,7 +43,7 @@ public class User {
     public User() {
     }
 
-    public User(String number, String password, Integer state, String power, String realname, String position, String phone) {
+    public User(String number, String password, Integer state, String power, String realname, String position, String phone,String workspace) {
         this.number = number;
         this.password = password;
         this.state = state;
@@ -40,6 +51,7 @@ public class User {
         this.realname = realname;
         this.position = position;
         this.phone = phone;
+        this.workspace = workspace;
     }
     public User(Integer id, String number, String realname, String position, String phone, String power){
         this.id = id;

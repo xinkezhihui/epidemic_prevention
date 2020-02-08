@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <title> 用户信息管理</title>
+
+
+
+    <link href="favicon.ico" rel="shortcut icon"> <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="/css/animate.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <!--汉化文件，放在 bootstrap-table.js 后面-->
+    <script src="/js/bootstrap-table-zh-CN.js"></script>
+    <script src="/js/plugins/layer/laydate/laydate.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var message2=$("#msg").html();
+            if(message2!="") {
+                // alert(message2);
+                if(message2=="上传成功"){
+                    alert(message2);
+
+                }
+                else{
+                    alert(message2);
+                }
+            }
+        })
+    </script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div id="msg" style="display:none" th:text="${msg}"></div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>用户信息管理</h5>
+                    <h5 style="padding-left: 50px" >
+
+                    </h5>
+                    <div class="ibox-tools">
+                        <a href="/user/toadd" class="btn btn-primary btn-xs">添加用户信息</a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-b-sm m-t-sm">
+                        <div class="col-sm-1">
+                            <button class="btn btn-sm btn-white" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a href=""> 刷新</a></button>
+                        </div>
+                        <div class="col-sm-11" style="margin-bottom:10px;">
+                            <div class="input-group" style="width: 100%">
+
+                                <div class="col-sm-3">
+                                    <input class="input-sm-2 form-control" id="number2" name="number2" placeholder="账号" type="text">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control layer-date" id="position2" name="position2" placeholder="职位"   stype="text">
+                                </div>
+
+                                <!--                                input-group-btn-->
+                                <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
+
+                                <div>
+                                    <!-- 修改数据模态框（Modal） -->
+                                    <form action="" class="form-horizontal"id="test" method="get">
+                                        <div aria-hidden="true" aria-labelledby="updateModalLabel" class="modal fade bs-example-modal-lg" id="updateModal" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">
+                                                            &times;
+                                                        </button>
+                                                        <h4 class="modal-title" id="updateModalLabel">
+                                                            修改用户信息
+                                                        </h4>
+                                                    </div>
+                                                    <!--{# 模态框body #}-->
+                                                    <div class="modal-body" style="height: 100%;">
+                                                        <input id="id1" name="id1" type="hidden">
+                                                        <div class="form-group">
+
+
+                                                            <label class="col-sm-2 control-label">账号：</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="number1" name="number1" type="text" readonly="readonly">
+
+                                                            </div>
+                                                            <label class="col-sm-2 control-label">姓名：</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="realname1" name="realname1" type="text" >
+
+                                                            </div>
+                                                        </div>
+                                                        <br/><br/>
+                                                        <div class="form-group">
+
+
+                                                            <label class="col-sm-2 control-label">职位：</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="position1" name="position1" type="text" >
+
+                                                            </div>
+                                                            <label class="col-sm-2 control-label">联系方式：</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="phone1" name="phone1" type="text" >
+
+                                                            </div>
+                                                        </div>
+                                                        <br/><br/>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">工作地点：</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="workspace1" name="workspace1" type="text" >
+
+                                                            </div>
+
+                                                            <label class="col-sm-2 control-label">权限：</label>
+                                                            <div class="col-sm-4">
+                                                                <select class="form-control" type="text" name="power1" id="power1" required="required">
+                                                                    <option value="">---请选择用户权限---</option>
+                                                                    <option th:value="user">普通用户</option>
+                                                                    <div>
+                                                                    <option th:value="admin">管理员</option>
+                                                                    <option th:value="super">超级管理员</option>
+                                                                    </div>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <br/><br/>
+
+
+
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4 col-sm-offset-3">
+                                                            </div>
+                                                            <!--{#            模态框底部#}-->
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+                                                                <button class="btn btn-primary" onclick="updatepeople()" type="button">提交</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+
+                        </div>
+                        <div  class="project-list">
+                            <table class="table table-hover text-nowrap" id="mytab"></table>
+                        </div>
+                        <!--<div class="col-sm-12">
+                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/Fblw/form" style="color: white" target="_self"> 信息录入</a></button></span>
+                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export"   type="button"> 下载</button> </span>
+
+                        </div>-->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+    //模态框
+    $('#mytab').bootstrapTable({
+        url: '/user/findall',
+        method: "GET",
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        json: 'callback',
+        queryParams: "",//传递参数
+        toolbar: "#toolbar",//工具按钮用哪个容器
+        sidePagination: "true",//分页方式，客户端分页服务端分页
+        striped: true, // 是否显示行间隔色
+        //search : "true",
+        uniqueId: "listingInfoId",
+        //每页显示几条数据
+        pageSize: "10",
+        pagination: true, // 是否分页
+        sortable: true, // 是否启用排序
+
+        /* showExport: true,                     //是否显示导出
+         exportDataType: "basic",              //basic', 'all', 'selected'.
+         buttonsAlign:"right",  //按钮位置
+         exportTypes:['excel'],  //导出文件类型
+         exportOptions:{
+             ignoreColumn: [0,1],  //忽略某一列的索引
+             fileName: '总台帐报表',  //文件名称设置
+             worksheetName: 'sheet1',  //表格工作区名称
+             tableName: '总台帐报表',
+             excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+             onMsoNumberFormat: DoOnMsoNumberFormat
+         },*/
+
+        columns: [{
+            checkbox: false,
+            visible: false                  //是否显示复选框
+        },
+            {
+                field: 'SerialNumber',
+                title: '序号',
+                width: 80,
+                formatter: function (value, row, index) {
+                    return index + 1;
+                }
+            },
+
+            {field: 'number', title: '账号', align: 'center', width: 50},
+
+            {field: 'realname', title: '姓名', align: 'center', width: 120},
+            {field: 'position', title: '职位', align: 'center', width: 120},
+            {field: 'phone', title: '联系方式', align: 'center', width: 120},
+            {field: 'power', title: '权限', align: 'center', width: 120},
+            {field: 'workspace', title: '工作地点', align: 'center', width: 120},
+
+            {
+
+                title: '操作',
+                field: 'id',
+                align: 'center',
+                valign: 'middle',
+                width:200,
+                formatter: option
+
+            }
+
+        ]
+
+
+    })
+    //带参数的修改删除按钮
+    function option(value, row, index) {
+        var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updUser(\''
+            + row.id + '\',\'' + row.number+ '\',\'' + row.realname+ '\',\'' + row.position+ '\',\'' + row.phone+ '\',\'' + row.power+ '\')">修改</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.id+'\')">删除</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="repwd(\''+row.number+'\')">重置密码</button>'
+        return htm;
+    };
+    //删除提示
+    function del(id) {
+
+
+        var mymessage = confirm("确认删除吗？");
+        if (mymessage == true) {
+            window.location.href = '/user/delete/'+id;
+        }
+    }
+    //重置密码
+    function repwd(number) {
+        var mymessage = confirm("确认将该用户的密码重置为“123456”吗？");
+
+        if (mymessage == true) {
+            confirm("重置成功！");
+            var tz = 2;
+            window.location.href = '/user/repwd/'+number+'/'+tz;
+        }
+    }
+    // 编辑用户
+    function updUser(id,number,realname,position,phone,power) {
+
+        if (id != ("undefined")) $("#id1").val(id);
+        else
+            $("#id1").val("");
+
+        if (number != ("undefined")) $("#number1").val(number);
+        else
+            $("#number1").val("");
+        if (realname != ("undefined")) $("#realname1").val(realname);
+        else
+            $("#realname1").val("");
+        if (position != ("undefined")) $("#position1").val(position);
+        else
+            $("#position1").val("");
+        if (phone != ("undefined")) $("#phone1").val(phone);
+        else
+            $("#phone1").val("");
+        if (power != ("undefined")) $("#power1").val(power);
+        else
+            $("#power1").val("");
+
+
+        //弹出修改模态框，非新增模态框
+        $('#updateModal').modal('show')
+
+    }
+    //提交模态框修改信息
+    function updatepeople() {
+
+
+        var id = $('#id1').val();
+
+        var number = $('#number1').val();
+
+        var realname = $('#realname1').val();
+        var position = $('#position1').val();
+
+        var phone = $('#phone1').val();
+        var power = $('#power1').val();
+
+        // confirm(id)
+        // confirm(gh)
+
+        if (number.length==0||realname.length==0||position.length==0||phone.length==0||power.length==0)
+
+            confirm("必填项不能为空 ");
+        else
+        {
+            $.ajax({
+                type: 'post',
+                data: {id:id,number:number,realname:realname,position:position,phone:phone,power:power
+
+
+                },
+                url: '/user/updateAdmin',//请求数据的地址
+                dataType: "json",        //返回数据形式为json
+                success: function (result) {
+
+                    confirm("修改信息成功");
+                    $('#updateModal').modal('hide');//模态框消失
+                    var opt = {
+                        url: "/user/findalladmin", //重新请求的链接
+                        method:'GET',
+
+
+                    };
+                    $("#mytab").bootstrapTable('refresh',opt);
+
+                },
+                error: function (errorMsg) {
+
+                    //请求失败时执行该函数
+                    confirm("修改信息失败");
+                    $('#updateModal').modal('hide');//模态框消失
+                }
+            });
+
+
+        }
+
+    }
+    //组合查询
+    function check() {
+
+        var number = $('#number2').val();
+
+        var position = $('#position2').val();
+        var opt = {
+            url: "/user/check", //重新请求的链接
+            method:'GET',
+            query: {number:number,position:position}//传到后台的参数
+
+        };
+        $("#mytab").bootstrapTable('refresh',opt);
+    };
+
+</script>
+
+<script src="https://cdn.bootcss.com/bootstrap-table/1.15.4/extensions/export/bootstrap-table-export.js"></script>
+<script src="/js/content.min.js?v=1.0.0"></script>
+<script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>
+</body>
+
+
+</html>
