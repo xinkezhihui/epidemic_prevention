@@ -29,4 +29,5 @@ public interface userRepository extends JpaRepository<User,Integer> {
     //查找所有用户
     public List<User> findAll();
 
+
 }
