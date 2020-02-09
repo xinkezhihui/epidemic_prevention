@@ -6,10 +6,7 @@ import com.xinke.epidemic_prevention.service.hospital.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,26 +22,26 @@ public class HospitalController {
     @Autowired
     HospitalService hospitalService;
 
-    /**
-     * @author: jlz
-     * 功能描述：查看所有疑似案例的信息
-     */
-    @GetMapping("showYiSiList")
-    public String showYiSiList() {
-        return "hospital/yisiList";
-    }
-
-    @ResponseBody
-    @GetMapping("showAgricultureInfo")
-    public String showAgricultureInfo(){
-        List<Person> allAgrInfo = hospitalService.findAllHospInfo();
-        Gson gson = new Gson();
-        String result = "";
-        if (allAgrInfo!=null && allAgrInfo.size()!=0){
-            result = gson.toJson(allAgrInfo);
-        }
-        return result;
-    }
+//    /**
+//     * @author: jlz
+//     * 功能描述：查看所有疑似案例的信息
+//     */
+//    @GetMapping("showYiSiList")
+//    public String showYiSiList() {
+//        return "hospital/yisiList";
+//    }
+//
+//    @ResponseBody
+//    @GetMapping("showAgricultureInfo")
+//    public String showAgricultureInfo(){
+//        List<Person> allAgrInfo = hospitalService.findAllHospInfo();
+//        Gson gson = new Gson();
+//        String result = "";
+//        if (allAgrInfo!=null && allAgrInfo.size()!=0){
+//            result = gson.toJson(allAgrInfo);
+//        }
+//        return result;
+//    }
 
     /**
      * @author: jlz
@@ -65,5 +62,59 @@ public class HospitalController {
             model.addAttribute("msg","该取水用户已存在");
         }
         return "hospital/yisiList";
+    }
+    /**
+     * @author: WRR
+     * 功能描述:查看所有未提交疑似病例
+     */
+    @GetMapping("showYiSiList")
+    public String mijieList(){ return  "hospital/yisiList";}
+    @ResponseBody
+    @GetMapping("ysInfoList")
+    public  String mjryInfoList(){
+        List<Person> ysPersons = hospitalService.findAllYsInfoByYstj();
+        Gson gson = new Gson();
+        String result = "";
+        if (ysPersons!=null&&ysPersons.size()!=0){
+            result = gson.toJson(ysPersons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：添加疑似病例时进行验证
+     */
+    @ResponseBody
+    @PostMapping("checke")
+    public String checke(String sfzmhm){
+        boolean bl = hospitalService.infoIsExists(sfzmhm);
+        if (bl) {
+            return "该条数据已存在";
+        }
+        return "ok!";
+    }
+    /**
+     * @author: WRR
+     * 功能描述：添加疑似案例
+     */
+    @ResponseBody
+    @PostMapping("addYs")
+    public String addYs(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
+        boolean bl = hospitalService.infoIsExists(sfzmhm);
+        if(bl){
+            boolean b = hospitalService.addChangeYiSi(sfzmhm, xzsf, xzdjs, xzxq, ssbsc, rqfl, xingming, lxdh, xxdz, yq_sfcwwh, yq_sfczqtsf, yq_zhumingsf, binganhao, yq_sfmjfb, mjren, yq_sfzz, yq_sfwzz);
+            if (b) {
+                return "200";
+            }else {
+                return "400";
+            }
+        }else {
+            boolean b = hospitalService.addYiSi(sfzmhm, xzsf, xzdjs, xzxq, ssbsc, rqfl, xingming, lxdh, xxdz, yq_sfcwwh, yq_sfczqtsf, yq_zhumingsf, binganhao, yq_sfmjfb, mjren, yq_sfzz, yq_sfwzz);
+            if (b) {
+                return "200";
+            }else {
+                return "400";
+            }
+        }
     }
 }

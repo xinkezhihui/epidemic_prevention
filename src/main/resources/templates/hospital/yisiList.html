@@ -22,9 +22,9 @@
     <link href="../../static/build/css/custom.min.css" rel="stylesheet">
     <!-- Custom Theme Scripts -->
     <script src="../../static/build/js/custom.min.js"></script>
-	
-	<!-- 省市区三级联动 -->
-	 <script type="text/javascript" src="addr_update.js"></script>
+
+    <!-- 省市区三级联动 -->
+    <script type="text/javascript" src="addr_update.js"></script>
     <script src="static/build/js/custom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/assets/css/nice-select.css">
     <style>
@@ -49,35 +49,35 @@
                 <div class="ibox-title">
                     <h3 style="float: left;margin-bottom: 5px;">疑似病例信息</h3>
                     <!--<div class="col-sm-1" style="margin-top: -2px">-->
-                        <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
+                    <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
                     <!--</div>-->
-                    <a th:href="@{/hospital/toAddYiSiInfo}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加疑似病例</button></a>
-<!--
-                    <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
--->
+                    <a th:href="@{/hospital/toAddYiSiInfo}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加密接人员信息</button></a>
+                    <!--
+                                        <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
+                    -->
                 </div>
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
                         <div class="col-sm-1">
-                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a href="/indexWater/show">刷新</a></button>
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/hospital/showYiSiList}">刷新</a></button>
                         </div>
                         <div class="col-md-11" style="margin-bottom: -13px">
                             <div class="input-group">
                                 <div class="col-sm-3">
-                                    <input class="input-sm-1 form-control" id="riverSystem1" placeholder="请输入身份证号码" type="text">
+                                    <input class="input-sm-1 form-control" id="sfzmhm0" placeholder="请输入身份证号码" type="text">
                                 </div>
                                 <div class="col-sm-3">
-                                    <input class="input-sm-2 form-control" id="riverName1" placeholder="请输入姓名" type="text">
+                                    <input class="input-sm-2 form-control" id="xingming0" placeholder="请输入姓名" type="text">
                                 </div>
-                              
-                               <div class="col-sm-3">
-                                    <input class="input-sm-2 form-control" id="riverName" placeholder="请选择日期" type="text">
+                                <div class="col-sm-3">
+                                    <input class="form-control layer-date" id="qrmjsj" name="qrmjsj" placeholder="请选择日期" style="width: 97px"   stype="text">
+                                    <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#qrmjsj'});"  style="width: 30px"></label>
                                 </div>
                                 <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
                                 <div>
                                     <!-- 修改数据模态框（Modal） -->
-                                    <form action="/Jc/update" class="form-horizontal"id="test" method="get">
-                                        <div aria-hidden="true" aria-labelledby="updateModalLabel" class="modal fade bs-example-modal-lg" id="updateModal" role="dialog" tabindex="-1">
+                                    <form  class="form-horizontal"id="test" method="get">
+                                        <div aria-hidden="true" aria-labelledby="updateModalLabel" class="modal fade bs-example-modal-lg" id="xqModal" role="dialog" tabindex="-1">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -85,142 +85,97 @@
                                                             &times;
                                                         </button>
                                                         <h4 class="modal-title" id="updateModalLabel">
-                                                            修改疑似病例信息
+                                                            详情
                                                         </h4>
                                                     </div>
                                                     <!--{# 模态框body #}-->
                                                     <div class="modal-body" style="height: 100%;">
-                                                        <input type="hidden" id="id" name="id">
-                                                      <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="sfzmhm">本人证件号码 <span class="required">*</span> </label>
-                    <div class="col-md-6 col-sm-6">
-                        <input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required"  >
-                    </div>
-              </div>
-                <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">现住区域<span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        <select class="select" name="province" id="s_province">
-   <option></option>
-  </select>
-  <select class="select" name="city" id="s_city">
-   <option></option>
-  </select>
-  <select class="select" name="town" id="s_county">
-   <option></option>
-  </select>
-   <script type="text/javascript">
-     // 改装后的初始化省市区的方法
-     initAddress();
-     // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
-     function set_addr(province,city,county) {
-         var $province=document.getElementById('s_province');
-             // 设置值并模拟人为select下拉框的改变事件
-             $province.onchange($province.value=province);
-         if(city){
-            var $city=document.getElementById('s_city');
-                $city.onchange($city.value=city);
-         }
-         if(county){
-             var $town=document.getElementById('s_county');
-                 $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
-         }
-     }
-     // set_addr('四川省');
-     // set_addr('四川省','成都市');
-      set_addr('山东省','泰安市','泰山区');
- </script>
-                    </div>
-                </div>
-				
-				
-				
-                <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="ssbsc">所属办事处<span class="required"></span>
-                    </label>
-                    <label class="col-form-label col-md-3 col-sm-3 label-align"><span class="required">*</span> </label>
-<div class="col-md-6 col-sm-6">
-                          <select class="select" name="ssbsc" id="ssbsc">
-   <option></option>
-  </select>select * from p_Organ
-                  </div>
-                </div>
-				 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="rqfl">人群分类<span class="required"></span>
-                    </label>
-                    <label class="col-form-label col-md-3 col-sm-3 label-align"><span class="required">*</span> </label>
-<div class="col-md-6 col-sm-6">
-                          <select class="select" name="rqfl" id="rqfl">
-   <option></option>
-  </select>
-                  select * from p_ClassN where ClassID=1</div>
-                </div>
-             
-			  
-			   <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="xingming">姓名 <span class="required">*</span> </label>
-                    <div class="col-md-6 col-sm-6">
-                        <input id="xingming" class="form-control" name="xingming" placeholder="" required="required"  >
-                    </div>
-              </div>
-			    <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="lxdh">联系电话 <span class="required">*</span> </label>
-                    <div class="col-md-6 col-sm-6">
-                        <input id="lxdh" class="form-control" name="lxdh" placeholder="" required="required" type="number"  >
-                    </div>
-              </div>
-			  
-			    <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="xxdz">现住详细地址 <span class="required">*</span> </label>
-                    <div class="col-md-6 col-sm-6">
-                        <textarea name="xxdz" class="form-control" id="xxdz" placeholder="" required="required" width="300"></textarea>
-                    </div>
-              </div>
-			  
-                <div class="item">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往武汉 <span class="">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
-                    </div>
-                </div>
-				 <div class="item">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往其他省份 <span class="">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
-                    </div>
-                </div>
-				 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="yq_zhumingsf">其他省份注明 </label>
-                    <div class="col-md-6 col-sm-6">
-                        <input id="yq_zhumingsf" class="form-control" name="yq_zhumingsf" placeholder="" required="required"  >
-                    </div>
-              </div>
-                 <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="mjren">所密接人证件号码 <span class="required">*</span> </label>
-                    <div class="col-md-6 col-sm-6">
-                        <input id="mjren" class="form-control" name="mjren" placeholder="" required="required"  >
-                    </div>
-              </div>
-			   <div class="item">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">是否密接发病 <span class="">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="status" value="0">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="status" value="1">否</label>
-                    </div>
-                </div>
-                                                        <div class="form-group">
-                                                            <div class="col-sm-4 col-sm-offset-3">
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >本人证件号码<span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required" readonly="readonly" >
                                                             </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >现住区域<span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="xzqy" class="form-control" name="xzqy" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="ssbsc" class="form-control" name="ssbsc" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >人群分类<span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="rqfl" class="form-control" name="rqfl" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >姓名 <span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="xingming" class="form-control" name="xingming" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >联系电话 <span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="lxdh" class="form-control" name="lxdh" placeholder="" required="required" type="number"  readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >现住详细地址 <span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <textarea name="xxdz" class="form-control" id="xxdz" placeholder="" required="required" width="300" readonly="readonly"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往武汉 <span class="">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" id="yq_sfcwwh2" name="yq_sfcwwh2" value="1" disabled="disabled">是</label>
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfcwwh1" name="yq_sfcwwh1" value="0" disabled="disabled">否</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往其他省份 <span class="">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" id="yq_sfczqtsf2" name="yq_sfczqtsf2" value="1" disabled="disabled">是</label>
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfczqtsf1" name="yq_sfczqtsf1" value="0" disabled="disabled">否</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >其他省份注明 </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="yq_zhumingsf" class="form-control" name="yq_zhumingsf" placeholder="" required="required"  readonly="readonly">
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >所密接人证件号码 <span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="mjren" class="form-control" name="mjren" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align">是否密接发病 <span class="">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" id="yq_sfmjfb2" name="yq_sfmjfb2" value="1" disabled="disabled">是</label>
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfmjfb1" name="yq_sfmjfb1" value="0" disabled="disabled">否</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" style="text-align: center; margin-top: 10px" >
+                                                            <!--<div class="col-md-6 col-md-offset-2">-->
                                                             <!--{#            模态框底部#}-->
                                                             <div class="modal-footer" style="text-align: center">
                                                                 <button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
-                                                                <button class="btn btn-primary" onclick="updateRiver()" type="button">提交</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -237,7 +192,6 @@
                             <table class="table table-hover text-nowrap" id="mytab"></table>
                         </div>
                         <div class="col-sm-12">
-                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/river/form" style="color: white" target="_self"> 信息录入</a></button></span>
                             <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export" type="button"> 下载</button> </span>
                         </div>
                     </div>
@@ -255,7 +209,7 @@
         window.location.href="/river/download?riverSystem="+riverSystem+"&riverName="+riverName+"&year="+year+"&status="+status;
     });
     $('#mytab').bootstrapTable({
-        url: '/hospital/showAgricultureInfo',
+        url: '/hospital/ysInfoList',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -265,7 +219,7 @@
         sidePagination: "true",//分页方式，客户端分页服务端分页
         striped: true, // 是否显示行间隔色
         //search : "true",
-        uniqueId: "riverId",
+        uniqueId: "PersonId",
         //每页显示几条数据
         pageSize: "10",
         pagination: true, // 是否分页
@@ -283,152 +237,179 @@
                     return index + 1;
                 }
             },
-            {field: 'riverSystem', title: '所属地区', align: 'center', width: 90},
-            {field: 'riverName', title: '身份证号码', align: 'center', width: 90},
-            {field: 'start', title: '姓名', align: 'center', width: 100},
-            {field: 'end', title: '联系电话', align: 'center', width: 100},
-            {field: 'length', title: '地址', align: 'center', width: 50},
-           
-            {field: 'year', title: '日期', align: 'center', width: 50},
+            {field: 'ssbsc', title: '所属办事处', align: 'center', width: 90},
+            {field: 'sfzmhm', title: '身份证号码', align: 'center', width: 90},
+            {field: 'xingming', title: '姓名', align: 'center', width: 80},
+            {field: 'lxdh', title: '联系电话', align: 'center', width: 80},
+            {field: 'xxdz', title: '地址', align: 'center', width: 120},
+            {field: 'qrmjsj', title: '日期', align: 'center', width: 50
+                // ,
+                // formatter: function (value, row, index) {
+                //     // return value.substring(0,11);
+                //     if (value == null) {
+                //         return "";
+                //     }
+                //     var offlineTimeStr = new Date(value.time).format("yyyy-MM-dd");
+                //     return offlineTimeStr;
+                // }
+            },
             {
-                field: 'status', title: '状态', align: 'center', width: 100,
-                formatter : function (value, row, index) {
-                    if (row['status'] == 0) {
-                        return '不可公开';
-                    }
-                    if (row['status'] == 1) {
-                        return '可公开';
-                    }
-                    return value;
-                }
+                field: 'xxsf', title: '详情', align: 'center', width:80,formatter: option2
             },
             {
                 title: '操作',
-                field: 'id',
+                field: 'xzxq',
                 align: 'center',
                 valign: 'middle',
                 width:120,
                 formatter: option
+            },
+            {
+                title: '提交',
+                align: 'center',
+                valign: 'middle',
+                width:90,
+                formatter:  function (value, row, index) {
+                    var htm = '<button class="btn btn-sm btn-danger"  onclick="submit(\''+row.sfzmhm+'\')">提交</button>'
+                    return htm;
+                }
             }
         ]
     });
-    function check() {//组合查询
-        var riverSystem = $('#riverSystem1').val();
-        var riverName = $('#riverName1').val();
-        var year = $('#year1').val();
-        var status = $('#select option:selected').val();
+    //组合查询
+    function check() {
+        var sfzmhm = $('#sfzmhm0').val();
+        var xingming = $('#xingming0').val();
+        var qrmjsj = $('#qrmjsj').val();
         var opt = {
-            url: "/river/check", //重新请求的链接
+            url: "/community/check", //重新请求的链接
             method:'GET',
-            query: {riverSystem:riverSystem,riverName:riverName,year:year,status:status}//传到后台的参数
+            query: {sfzmhm:sfzmhm,xingming:xingming,qrmjsj:qrmjsj}//传到后台的参数
         };
         $("#mytab").bootstrapTable('refresh',opt);
     };
     function option(value, row, index) {
         var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updRiver(\''+row.id +'\',\''+row.riverSystem+'\',\''+row.riverName+'\',\''+row.start+'\',\''+row.end+'\',\''+row.length+'\',\''+row.riverArea+'\',\''+row.bottomWidth+'\',\''+row.paiLao+'\',\''+row.productionBridge+'\',\''+row.controlGate+'\',\''+row.culvert+'\',\''+row.status+'\',\''+row.year+'\')">修改' +
-           + '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="tijiao(\''+row.id+'\')">提交</button>'+
-		    '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.id+'\')">删除</button>'
+            '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.sfzmhm+'\')">删除</button>'
         return htm;
     };
-    function del(id) {
+    function option2(value, row, index) {
+        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.mjren+'\',\''+row.yq_sfmjfb+'\')">详情' +
+            '</button>'
+        return htm;
+    };
+    function del(sfzmhm) {
         var mymessage = confirm("确认删除吗？");
         if (mymessage == true) {
             $.ajax({
                 type: 'GET',
-                data:{id:id},
-                url: '/river/delete',//请求年级数据的地址
+                data:{sfzmhm:sfzmhm},
+                url: '/community/deleteMj',//请求年级数据的地址
                 dataType: "json",        //返回数据形式为json
-                success: function (result) {
-                    confirm("删除成功");
-                    var opt = {
-                        url: "/river/showRiverInfo", //重新请求的链接
-                        method:'GET'
-                    };
-                    $("#mytab").bootstrapTable('refresh',opt);
+                success: function (data) {
+                    // confirm("删除成功");
+                    alert(data.result);
+                    $("#mytab").bootstrapTable('refresh');
                 },
                 error: function (errorMsg) {
-                    confirm("删除失败");
+                    confirm("服务器正忙，请稍后重试！");
                 }
             });
-			
-	 function tijiao(id) {
+        }
+    };
+    function submit(sfzmhm) {
         var mymessage = confirm("确认提交吗？");
         if (mymessage == true) {
             $.ajax({
                 type: 'GET',
-                data:{id:id},
-                url: '/river/tijiao',//请求提交地址！！！一定别忘记写这个日提交动作文件
+                data: {sfzmhm:sfzmhm},
+                url: '/community/mijieSubmit',//请求年级数据的地址
                 dataType: "json",        //返回数据形式为json
                 success: function (result) {
                     confirm("提交成功");
-                    var opt = {
-                        url: "/river/showRiverInfo", //重新请求的链接
-                        method:'GET'
-                    };
-                    $("#mytab").bootstrapTable('refresh',opt);
+                    $("#mytab").bootstrapTable('refresh');
                 },
                 error: function (errorMsg) {
-                    confirm("提交失败");
+                    confirm("服务器正忙，请稍后重试!");
                 }
             });
         }
     }
-    // 编辑密接人员信息
-    function updRiver(id,riverSystem,riverName,start,end,length,riverArea,bottomWidth,paiLao,productionBridge,controlGate,culvert,status,year) {
-        if (id != ("undefined")) $("#id").val(id);
+    // 模态框获取信息
+    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb) {
+        var xzqy = xzsf+xzdjs+xzxq;
+        $("#xzqy").val(xzqy);
+        if (sfzmhm != ("undefined")) $("#sfzmhm").val(sfzmhm);
         else
-            $("#id").val("");
-        if (riverSystem!= ("undefined")) $("#riverSystem").val(riverSystem);
+            $("#sfzmhm").val("");
+        // if (xzsf!= ("undefined")) $("#s_province").val(xzsf);
+        // else
+        //     $("#s_province").val("");
+        // if (xzdjs != ("undefined")) $("#s_city").val(xzdjs);
+        // else
+        //     $("#s_city").val("");
+        // if (xzxq != ("undefined")) $("#s_county").val(xzxq);
+        // else
+        //     $("#s_county").val("");
+        if (ssbsc!= ("undefined")) $("#ssbsc").val(ssbsc);
         else
-            $("#riverSystem").val("");
-        if (riverName != ("undefined")) $("#riverName").val(riverName);
+            $("#ssbsc").val("");
+        if (rqfl!= ("undefined")) $("#rqfl").val(rqfl);
         else
-            $("#riverName").val("");
-        if (start != ("undefined")) $("#start").val(start);
+            $("#rqfl").val("");
+        if (xingming!= ("undefined")) $("#xingming").val(xingming);
         else
-            $("#start").val("");
-        if (end!= ("undefined")) $("#end").val(end);
+            $("#xingming").val("");
+        if (lxdh!= ("undefined")) $("#lxdh").val(lxdh);
         else
-            $("#end").val("");
-        if (length!= ("undefined")) $("#length").val(length);
+            $("#lxdh").val("");
+        if (xxdz!= ("undefined")) $("#xxdz").val(xxdz);
         else
-            $("#length").val("");
-        if (riverArea!= ("undefined")) $("#riverArea").val(riverArea);
-        else
-            $("#riverArea").val("");
-        if (bottomWidth!= ("undefined")) $("#bottomWidth").val(bottomWidth);
-        else
-            $("#bottomWidth").val("");
-        if (paiLao!= ("undefined")) $("#paiLao").val(paiLao);
-        else
-            $("#paiLao").val("");
-        if (productionBridge != ("undefined")) $("#productionBridge").val(productionBridge);
-        else
-            $("#productionBridge").val("");
-        if (controlGate!= ("undefined")) $("#controlGate").val(controlGate);
-        else
-            $("#controlGate").val("");
-        if (culvert!= ("undefined")) $("#culvert").val(culvert);
-        else
-            $("#culvert").val("");
-        if (status!= ("undefined")) {
-            if (status == 0) {
-                $("#status1").prop("checked",true);
-                $("#status2").prop("checked",false);
+            $("#xxdz").val("");
+        if (yq_sfcwwh!= ("undefined")) {
+            if (yq_sfcwwh == 0) {
+                $("#yq_sfcwwh1").prop("checked",true);
+                $("#yq_sfcwwh2").prop("checked",false);
             }
-            if (status == 1) {
-                $("#status1").prop("checked",false);
-                $("#status2").prop("checked",true);
+            if (yq_sfcwwh == 1) {
+                $("#yq_sfcwwh1").prop("checked",false);
+                $("#yq_sfcwwh2").prop("checked",true);
             }
         }
         else
-            $("#status").val("");
-        if (year!= ("undefined")) $("#year").val(year);
+            $("#yq_sfcwwh").val("");
+        if (yq_sfczqtsf!= ("undefined")) {
+            if (yq_sfczqtsf == 0) {
+                $("#yq_sfczqtsf1").prop("checked",true);
+                $("#yq_sfczqtsf2").prop("checked",false);
+            }
+            if (yq_sfczqtsf == 1) {
+                $("#yq_sfczqtsf1").prop("checked",false);
+                $("#yq_sfczqtsf2").prop("checked",true);
+            }
+        }
         else
-            $("#year").val("");
-
-         //弹出修改模态框，非新增模态框
-        $('#updateModal').modal('show')
+            $("#yq_sfczqtsf").val("");
+        if (yq_zhumingsf!= ("undefined")) $("#yq_zhumingsf").val(yq_zhumingsf);
+        else
+            $("yq_zhumingsf").val("");
+        if (mjren!= ("undefined")) $("#mjren").val(mjren);
+        else
+            $("mjren").val("");
+        if (yq_sfmjfb!= ("undefined")) {
+            if (yq_sfmjfb == 0) {
+                $("#yq_sfmjfb1").prop("checked",true);
+                $("#yq_sfmjfb2").prop("checked",false);
+            }
+            if (yq_sfmjfb == 1) {
+                $("#yq_sfmjfb1").prop("checked",false);
+                $("#yq_sfmjfb2").prop("checked",true);
+            }
+        }
+        else
+            $("#yq_sfmjfb").val("");
+        //弹出修改模态框，非新增模态框
+        $('#xqModal').modal('show')
     }
     //提交模态框修改信息
     function updateRiver() {
@@ -451,7 +432,7 @@
                 confirm("状态必须选中")
             }
             else {
-            alert("必填项不能为空 ");}
+                alert("必填项不能为空 ");}
         }
         else
         {
@@ -476,8 +457,6 @@
                 }
             });
         }
-    }
-    }
     }
 </script>
 <script src="/js/content.min.js?v=1.0.0"></script>

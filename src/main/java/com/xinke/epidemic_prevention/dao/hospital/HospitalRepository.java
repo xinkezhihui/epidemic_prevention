@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @Author:jlz
@@ -23,4 +24,11 @@ public interface HospitalRepository extends JpaRepository<Person,Integer>, JpaSp
     public boolean existsById(int id);
     //查询单条用户信息
     public Person findById(int id);
+    //查询所有未提交疑似人员
+    @Query(value = "select * from yq_bldjb where ystj= 0 and yq_sfys = 1",nativeQuery=true)
+    public List<Person> findAllYsInfoByYstj();
+    //查询病例信息是否存在
+    public boolean existsBySfzmhm(String sfzmhm);
+    //根据sfzmhm返回一条数据
+    public Person findBySfzmhm(String sfzmhm);
 }

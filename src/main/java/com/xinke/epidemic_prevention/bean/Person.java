@@ -137,10 +137,14 @@ public class Person {
     private  Integer sfmjry;
     //确诊时间
     private String  yq_qzsj;
-    //密接添加人uaerid
+    //密接添加人userid
     private String mj_userID;
     //确诊添加人userid
     private String qz_userID;
+    //疑似添加人userid
+    private String ys_userID;
+    //疑似提交状态
+    private Integer ystj;
 
     @Override
     public String toString() {
@@ -206,10 +210,13 @@ public class Person {
                 ", yq_qzsj='" + yq_qzsj + '\'' +
                 ", mj_userID='" + mj_userID + '\'' +
                 ", qz_userID='" + qz_userID + '\'' +
+                ", ys_userID='" + ys_userID + '\'' +
+                ", ystj=" + ystj +
                 '}';
     }
 
-    public Person(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb, String qrmjsj, Integer qztj, Integer mjtj, Integer sfmjry, String mj_userID){
+    //添加新密接人员所需构造方法
+    public Person(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, String mjren, Integer yq_sfmjfb, String qrmjsj, Integer qztj, Integer mjtj, Integer sfmjry, String mj_userID){
         this.sfzmhm = sfzmhm;
         this.xingming = xingming;
         this.lxdh = lxdh;
@@ -228,8 +235,34 @@ public class Person {
         this.mjtj =mjtj;
         this.sfmjry = sfmjry;
         this.mj_userID = mj_userID;
+        this.yq_zhumingsf = yq_zhumingsf;
     }
-
+    //添加新疑似人员所需构造方法
+    public Person(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz, Integer ystj, Integer qztj, Integer mjtj, String ys_userID,Integer yq_sfys,String yq_yszdrq){
+        this.sfzmhm = sfzmhm;
+        this.xingming = xingming;
+        this.lxdh = lxdh;
+        this.xxdz = xxdz;
+        this.ssbsc = ssbsc;
+        this.mjren = mjren;
+        this.rqfl = rqfl;
+        this.xzsf = xzsf;
+        this.xzdjs = xzdjs;
+        this.xzxq = xzxq;
+        this.yq_sfmjfb = yq_sfmjfb;
+        this.yq_sfcwwh = yq_sfcwwh;
+        this.yq_sfczqtsf = yq_sfczqtsf;
+        this.qztj = qztj;
+        this.mjtj = mjtj;
+        this.yq_zhumingsf = yq_zhumingsf;
+        this.binganhao = binganhao;
+        this.yq_sfzz = yq_sfzz;
+        this.yq_sfwzz = yq_sfwzz;
+        this.ystj = ystj;
+        this.ys_userID = ys_userID;
+        this.yq_sfys = yq_sfys;
+        this.yq_yszdrq = yq_yszdrq;
+    }
     public Person() {
     }
 
@@ -719,5 +752,21 @@ public class Person {
 
     public void setQz_userID(String qz_userID) {
         this.qz_userID = qz_userID;
+    }
+
+    public String getYs_userID() {
+        return ys_userID;
+    }
+
+    public void setYs_userID(String ys_userID) {
+        this.ys_userID = ys_userID;
+    }
+
+    public Integer getYstj() {
+        return ystj;
+    }
+
+    public void setYstj(Integer ystj) {
+        this.ystj = ystj;
     }
 }
