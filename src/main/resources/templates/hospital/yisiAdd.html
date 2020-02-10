@@ -101,7 +101,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >姓名 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
@@ -238,7 +237,26 @@
                 if(arg=="ok!"){
                     $("#username").focus();
                 }else {
-                    $("#span").html(arg);
+                    var mymessage = confirm("已有该条密接数据，是否直接转为疑似人员");
+                    if (mymessage == true) {
+                        $.ajax({
+                            type: 'post',
+                            data:"sfzmhm="+$("#sfzmhm").val(),
+                            url: '/hospital/changeYs',//请求年级数据的地址
+                            dataType: "json",        //返回数据形式为json
+                            success: function (data) {
+                               if(data.result==1){
+                                   confirm("提交成功");
+                                    window.location.href = '/hospital/showYiSiList'
+                               }else{
+                                   confirm("提交失败！");
+                               }
+                            },
+                            error: function (errorMsg) {
+                                confirm("服务器正忙，请稍后重试！");
+                            }
+                        });
+                    }
                 }
             }});
     };

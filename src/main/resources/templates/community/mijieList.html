@@ -33,13 +33,6 @@
 
         }
     </style>
-    <script src="/static/assets/js/jquery.nice-select.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('select:not(.ignore)').niceSelect();
-            FastClick.attach(document.body);
-        });
-    </script>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInUp">
@@ -48,13 +41,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h3 style="float: left;margin-bottom: 5px;">密接人员管理</h3>
-                    <!--<div class="col-sm-1" style="margin-top: -2px">-->
-                    <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
-                    <!--</div>-->
                     <a th:href="@{/community/addmijie}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加密接人员信息</button></a>
-                    <!--
-                                        <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
-                    -->
                 </div>
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
@@ -290,13 +277,31 @@
     };
     function option(value, row, index) {
         var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updRiver(\''+row.id +'\',\''+row.riverSystem+'\',\''+row.riverName+'\',\''+row.start+'\',\''+row.end+'\',\''+row.length+'\',\''+row.riverArea+'\',\''+row.bottomWidth+'\',\''+row.paiLao+'\',\''+row.productionBridge+'\',\''+row.controlGate+'\',\''+row.culvert+'\',\''+row.status+'\',\''+row.year+'\')">修改' +
-            '</button>'
+            '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.sfzmhm+'\')">删除</button>'
         return htm;
     };
     function option2(value, row, index) {
         var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.mjren+'\',\''+row.yq_sfmjfb+'\')">详情' +
             '</button>'
         return htm;
+    };
+    function del(sfzmhm) {
+        var mymessage = confirm("确认删除吗？");
+        if (mymessage == true) {
+            $.ajax({
+                type: 'GET',
+                data:{sfzmhm:sfzmhm},
+                url: '/community/deleteMj',//请求年级数据的地址
+                dataType: "json",        //返回数据形式为json
+                success: function (data) {
+                    alert(data.result);
+                    $("#mytab").bootstrapTable('refresh');
+                },
+                error: function (errorMsg) {
+                    confirm("服务器正忙，请稍后重试！");
+                }
+            });
+        }
     };
     function submit(sfzmhm) {
         var mymessage = confirm("确认提交吗？");

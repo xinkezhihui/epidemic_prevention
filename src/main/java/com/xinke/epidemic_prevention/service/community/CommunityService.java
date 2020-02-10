@@ -35,7 +35,18 @@ public class CommunityService {
     private SsbscRepository ssbscRepository;
     @Autowired
     private userRepository ur;
-
+    //删除未提交密接人员
+    public  int deleteMijieInfo(String sfzmhm){
+        boolean bl = communityRepository.existsBySfzmhm(sfzmhm);
+        if (bl){
+            int i = communityRepository.deleteMijieBySfzmhm(sfzmhm);
+            if(i > 0){
+                return 1;
+            }
+            return 0;
+        }
+        return 2;
+    }
     //密接管理界面组合查询
     public List<Person> selectCheck(String sfzmhm, String xingming, String qrmjsj){
         List<Person> persons=new ArrayList<Person>();
@@ -135,7 +146,7 @@ public class CommunityService {
         }
     }
     //添加密接人员
-    public boolean addMijie(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb){
+    public boolean addMijie(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,String yq_zhumingsf, String mjren, Integer yq_sfmjfb){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String qrmjsj = df.format(new Date());
         int qztj = 0;

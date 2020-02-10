@@ -7,6 +7,8 @@ import com.xinke.epidemic_prevention.dao.user.userRepository;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -89,6 +91,24 @@ public class HospitalService {
     }
     /**
      * @author: WRR
+     * 功能描述：添加疑似案例只改变ystj、yq_sfys
+     */
+    public boolean changeYs(String sfzmhm){
+        Person person = personInfo(sfzmhm);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String yq_yszdrq = df.format(new Date());
+        person.setYq_yszdrq(yq_yszdrq);
+        person.setYstj(0);
+        person.setYq_sfys(1);
+        Person save = hospitalRepository.save(person);
+        if(save != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * @author: WRR
      * 功能描述：已有数据变疑似病例
      */
     public boolean addChangeYiSi(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
@@ -112,6 +132,7 @@ public class HospitalService {
             person.setYq_sfzz(yq_sfzz);
             person.setYq_sfwzz(yq_sfwzz);
             person.setYstj(0);
+            person.setYq_sfys(1);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             String yq_yszdrq = df.format(new Date());
             person.setYq_yszdrq(yq_yszdrq);

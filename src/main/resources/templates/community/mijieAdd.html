@@ -87,7 +87,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6">
                         <select class="select" name="ssbsc" id="ssbsc" >
-                       <option>请选择</option>
+                            <option >请选择</option>
                       </select>
                   </div>
                 </div>
@@ -100,7 +100,6 @@
                     </select>
                 </div>
                 </div>
-
 			   <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >姓名 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
@@ -233,10 +232,23 @@
         else {
             $.ajax({
                 type: 'post',
-                data: {sfzmhm:sfzmhm,xzsf:xzsf,xzdjs:xzdjs,xzxq:xzxq,ssbsc:ssbsc,rqfl:rqfl,xingming:xingming,lxdh:lxdh,xxdz:xxdz,yq_sfcwwh:yq_sfcwwh,yq_sfczqtsf:yq_sfczqtsf,yq_zhumingsf:yq_zhumingsf,mjren:mjren,yq_sfmjfb:yq_sfmjfb},
-                // data: {rqfl:rqfl},
-                // url: '/community/ceshi',
-                url: '/community/add',//请求年级数据的地址
+                data: {
+                    sfzmhm: sfzmhm,
+                    xzsf: xzsf,
+                    xzdjs: xzdjs,
+                    xzxq: xzxq,
+                    ssbsc: ssbsc,
+                    rqfl: rqfl,
+                    xingming: xingming,
+                    lxdh: lxdh,
+                    xxdz: xxdz,
+                    yq_sfcwwh: yq_sfcwwh,
+                    yq_sfczqtsf: yq_sfczqtsf,
+                    yq_zhumingsf: yq_zhumingsf,
+                    mjren: mjren,
+                    yq_sfmjfb: yq_sfmjfb
+                },
+                url: '/community/add',
                 dataType: "json",        //返回数据形式为json
                 success: function (result) {
                     confirm("添加信息成功");

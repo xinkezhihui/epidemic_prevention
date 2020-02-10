@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: 王冉冉
@@ -25,6 +27,22 @@ import java.util.List;
 public class CommunityController {
     @Autowired
     private CommunityService communityService;
+    //删除密接未提交人员
+    @ResponseBody
+    @GetMapping("deleteMj")
+    public Map<String,String> deleteMj(String sfzmhm){
+        //map集合用来存放返回值
+        Map<String,String> map = new HashMap<String, String>();
+        int i = communityService.deleteMijieInfo(sfzmhm);
+        if (i == 1) {
+            map.put("result","删除成功！");
+        } else if (i == 2) {
+            map.put("result", "该人员已被删除");
+        } else {
+            map.put("result", "服务器正忙，请稍后重试！");
+        }
+        return map;
+    }
     //密接管理界面组合查询
     @ResponseBody
     @GetMapping("check")
@@ -96,7 +114,7 @@ public class CommunityController {
     //添加密接人员信息
     @ResponseBody
     @PostMapping("add")
-    public String addMijie(String sfzmhm,String xzsf,String xzdjs,String xzxq,String ssbsc,String rqfl,String xingming,String lxdh,String xxdz,Integer yq_sfcwwh,Integer yq_sfczqtsf,Integer yq_zhumingsf, String mjren, Integer yq_sfmjfb){
+    public String addMijie(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
         boolean bl =  communityService.addMijie(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb);
         if (bl) {
             return "200";

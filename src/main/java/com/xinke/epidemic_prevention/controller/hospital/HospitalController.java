@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:jlz
@@ -92,6 +94,22 @@ public class HospitalController {
             return "该条数据已存在";
         }
         return "ok!";
+    }
+    /**
+     * @author: WRR
+     * 功能描述：添加疑似案例只改变ystj、yq_sfys
+     */
+    @ResponseBody
+    @PostMapping("changeYs")
+    public Map<String,Integer> changeYs(String sfzmhm){
+        boolean bl = hospitalService.changeYs(sfzmhm);
+        Map<String,Integer> map = new HashMap<String, Integer>();
+        if (bl) {
+            map.put("result",1);
+        }else {
+            map.put("result", 0);
+        }
+        return map;
     }
     /**
      * @author: WRR
