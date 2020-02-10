@@ -237,15 +237,13 @@
             {field: 'lxdh', title: '联系电话', align: 'center', width: 80},
             {field: 'xxdz', title: '地址', align: 'center', width: 120},
             {field: 'qrmjsj', title: '日期', align: 'center', width: 50
-                // ,
-                // formatter: function (value, row, index) {
-                //     // return value.substring(0,11);
-                //     if (value == null) {
-                //         return "";
-                //     }
-                //     var offlineTimeStr = new Date(value.time).format("yyyy-MM-dd");
-                //     return offlineTimeStr;
-                // }
+                ,
+                formatter: function (value, row, index) {
+                    if (value == null) {
+                        return "";
+                    }
+                    else return value.substring(0,11);
+                }
             },
             {
                 field: 'xxsf', title: '详情', align: 'center', width:80,formatter: option2
