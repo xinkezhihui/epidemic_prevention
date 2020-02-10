@@ -110,7 +110,6 @@ public class CommunityService {
     //提交密接状态
     public Boolean miJieSubmit(String sfzmhm){
         Person person = communityRepository.findBySfzmhm(sfzmhm);
-        System.out.println(person.toString());
         if(person!=null){
             person.setMjtj(1);
             communityRepository.flush();

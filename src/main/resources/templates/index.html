@@ -67,8 +67,8 @@
 					<ul class="nav nav-second-level">
 						<li>
 							<a class="J_menuItem" th:href="@{/community/mijieList}">密接人员管理</a>
-							<a class="J_menuItem" >查看已确诊人员</a>
-							<a class="J_menuItem" th:href="@{/community/mijieShow}">查看密接人员</a>
+							<a class="J_menuItem" th:href="@{/community/mijieShow}">密接人员信息</a>
+							<a class="J_menuItem" th:href="@{/quezhen/sqQzShow}" >确诊人员信息</a>
 						</li>
 					</ul>
 				</li>
@@ -80,7 +80,10 @@
 					</a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a class="J_menuItem" th:href="@{/hospital/showYiSiList}">疑似病例管理信息</a>
+							<a class="J_menuItem" th:href="@{/hospital/showYiSiList}">疑似病例管理</a>
+							<a class="J_menuItem" th:href="@{/hospital/ytjYiSiInfo}">疑似病例信息</a>
+							<a class="J_menuItem" th:href="@{/quezhen/wtjQzShow}" >确诊人员管理</a>
+							<a class="J_menuItem" th:href="@{/quezhen/ytjQzShow}" >确诊人员信息</a>
 						</li>
 					</ul>
 				</li>

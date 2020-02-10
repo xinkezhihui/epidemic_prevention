@@ -72,10 +72,74 @@ public class HospitalService {
     }
     /**
      * @author: WRR
+     * 功能描述：确诊疑似病例
+     */
+    public Boolean ysQueZhen(String sfzmhm){
+        Person person = hospitalRepository.findBySfzmhm(sfzmhm);
+        if(person!=null){
+            person.setYq_sfys(0);
+            person.setYq_sfqz(1);
+            person.setQztj(0);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String yq_qzsj = df.format(new Date());
+            person.setYq_qzsj(yq_qzsj);
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            User user1 = ur.findByNumber(user.getNumber());
+            String qz_userID = String.valueOf(user1.getId());
+            person.setQz_userID(qz_userID);
+            System.out.println("=============");
+            System.out.println(person.toString());
+            hospitalRepository.flush();
+            return true;
+        }else
+            return false;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：排除疑似病例
+     */
+    public Boolean ysPaiChu(String sfzmhm){
+        Person person = hospitalRepository.findBySfzmhm(sfzmhm);
+        if(person!=null){
+            person.setYq_sfys(0);
+            System.out.println("=============");
+            System.out.println(person.toString());
+            hospitalRepository.flush();
+            return true;
+        }else
+            return false;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：提交疑似病例
+     */
+    public Boolean ysSubmit(String sfzmhm){
+        Person person = hospitalRepository.findBySfzmhm(sfzmhm);
+        if(person!=null){
+            person.setYstj(1);
+            hospitalRepository.flush();
+            return true;
+        }else
+            return false;
+    }
+    /**
+     * @author: WRR
      * 功能描述：根据sfzmhm返回person信息
      */
     public Person personInfo(String sfzmhm){
         return hospitalRepository.findBySfzmhm(sfzmhm);
+    }
+    /**
+     * @author: WRR
+     * 功能描述：查看所有已提交疑似人员
+     */
+    public List<Person> findAllSubmitYsInfoByYstj(){
+        List<Person> ysPerson = hospitalRepository.findAllSubmitYsInfoByYstj();
+        if(ysPerson != null && ysPerson.size() !=0 ){
+            return ysPerson;
+        }else {
+            return null;
+        }
     }
     /**
      * @author: WRR
@@ -136,6 +200,10 @@ public class HospitalService {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             String yq_yszdrq = df.format(new Date());
             person.setYq_yszdrq(yq_yszdrq);
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            User user1 = ur.findByNumber(user.getNumber());
+            String ys_userID = String.valueOf(user1.getId());
+            person.setYs_userID(ys_userID);
             save = hospitalRepository.save(person);
         } catch (Exception e) {
             return false;

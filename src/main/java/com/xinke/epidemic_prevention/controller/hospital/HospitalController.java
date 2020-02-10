@@ -67,6 +67,65 @@ public class HospitalController {
     }
     /**
      * @author: WRR
+     * 功能描述: 疑似病例确诊
+     */
+    @ResponseBody
+    @GetMapping("ysQueZhen")
+    public  String ysQueZhen(String sfzmhm){
+        System.out.println(sfzmhm);
+        boolean bl = hospitalService.ysQueZhen(sfzmhm);
+        if(bl){
+            return "200";
+        }
+        return "400";
+    }
+    /**
+     * @author: WRR
+     * 功能描述:疑似病例排除
+     */
+    @ResponseBody
+    @GetMapping("ysPaiChu")
+    public  String ysPaiChu(String sfzmhm){
+        System.out.println(sfzmhm);
+        boolean bl = hospitalService.ysPaiChu(sfzmhm);
+        if(bl){
+            return "200";
+        }
+        return "400";
+    }
+    /**
+     * @author: WRR
+     * 功能描述:查看所有已提交疑似病例
+     */
+    @GetMapping("ytjYiSiInfo")
+    public String ysInfo(){ return  "hospital/yisiShow";}
+    @ResponseBody
+    @GetMapping("ytjYsInfo")
+    public  String ytjYSInfo(){
+        List<Person> ysPersons = hospitalService.findAllSubmitYsInfoByYstj();
+        Gson gson = new Gson();
+        String result = "";
+        if (ysPersons!=null&&ysPersons.size()!=0){
+            result = gson.toJson(ysPersons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
+     * 功能描述:提交疑似病例
+     */
+    @ResponseBody
+    @GetMapping("ysSubmit")
+    public  String miJieSubmit(String sfzmhm){
+        System.out.println(sfzmhm);
+        boolean bl = hospitalService.ysSubmit(sfzmhm);
+        if(bl){
+            return "200";
+        }
+        return "400";
+    }
+    /**
+     * @author: WRR
      * 功能描述:查看所有未提交疑似病例
      */
     @GetMapping("showYiSiList")

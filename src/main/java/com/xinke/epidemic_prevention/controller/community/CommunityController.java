@@ -101,7 +101,6 @@ public class CommunityController {
     @ResponseBody
     @GetMapping("mijieSubmit")
     public  String miJieSubmit(String sfzmhm){
-        System.out.println(sfzmhm);
         boolean bl = communityService.miJieSubmit(sfzmhm);
         if(bl){
             return "200";
