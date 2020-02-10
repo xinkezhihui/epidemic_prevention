@@ -227,33 +227,33 @@
 <body>
 <div class="container-fluid">
 	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-		<div><strong><span class="span-01"></span>当日新增确诊:1</strong>                    </div>
+		<div><strong><span class="span-01"></span>当日新增确诊:<span th:text="${qzxzNum}"></span></strong>                    </div>
 
 	</div>
 	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-		<div style="text-align: left"  ><strong><span class="span-02"></span>当日新增疑似:1</strong>                    </div>
+		<p style="text-align: left"  ><strong><span class="span-02"></span>当日新增疑似:<span th:text="${ysxzNum}"></span></strong>                    </div>
 
 	</div>
 	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-		<div style="text-align: left" ><strong><span class="span-03"></span>当日新增治愈:1</strong>                </div>
+		<div style="text-align: left" ><strong><span class="span-03"></span>当日新增密切接触:<span th:text="${mjxzNum}"></span></strong>                </div>
 
 	</div>
 	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
-		<div style="text-align: left" ><strong><span class="span-04"></span>累计治愈:1</strong>                    </div>
+		<div style="text-align: left" ><strong><span class="span-04"></span>累计确诊:<span th:text="${ljqzNum}"></span></strong>                    </div>
 	</div>
 	<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
 		<div>
 
-			<strong><span class="span-05"></span>累计确诊：1</strong>
+			<strong><span class="span-05"></span>累计疑似：<span th:text="${ljysNum}"></span></strong>
 		</div>
 		<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
-			<div ><strong><span class="span-06"></span>累计死亡：1</strong>
+			<div ><strong><span class="span-06"></span>累计密切接触：<span th:text="${ljmjNum}"></span></strong>
 			</div>
 		</div>
 
 
 
-		<div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >当前近七日确诊统计：
+		<!--<div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >当前近七日确诊统计：
 
 		</div>
 		<div class="row list-con">
@@ -288,7 +288,7 @@
 									xAxis: [
 										{
 											type: 'category',
-											data: ["2", "2", "1", "1", "1", "1", "1"]
+											data: ["0", "2", "1", "1", "1", "1", "1"]
 
 										}
 									],
@@ -315,7 +315,7 @@
 
 			</div>
 			<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6" style="background: palegreen; top: 0px; left: 0px;" id="main1">
-				<!-- ECharts单文件引入 -->
+				&lt;!&ndash; ECharts单文件引入 &ndash;&gt;
 				<script src="http://echarts.baidu.com/build/dist/echarts.js" type="text/javascript"></script>
 
 				<script type="text/javascript">
@@ -413,7 +413,7 @@
 
 			</div>
 
-		</div>
+		</div>-->
 
 	</div>
 </body>
