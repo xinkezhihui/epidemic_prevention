@@ -35,6 +35,36 @@ public class CommunityService {
     private SsbscRepository ssbscRepository;
     @Autowired
     private userRepository ur;
+
+    //修改密接人员信息
+    public boolean updateMj(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, String mjren, Integer yq_sfmjfb) {
+        Person person = findOneMiJieInfo(sfzmhm);
+        person.setXzsf(xzsf);
+        person.setXzdjs(xzdjs);
+        person.setXzxq(xzxq);
+        person.setSsbsc(ssbsc);
+        person.setRqfl(rqfl);
+        person.setXingming(xingming);
+        person.setLxdh(lxdh);
+        person.setXxdz(xxdz);
+        person.setYq_sfcwwh(yq_sfcwwh);
+        person.setYq_sfczqtsf(yq_sfczqtsf);
+        person.setYq_zhumingsf(yq_zhumingsf);
+        person.setMjren(mjren);
+        person.setYq_sfmjfb(yq_sfmjfb);
+        Person save = communityRepository.save(person);
+        if (save != null) {
+            return true;
+        }else
+            return false;
+    }
+    //查询某一人员信息
+    public Person findOneMiJieInfo(String sfzmhm) {
+        Person person = communityRepository.findBySfzmhm(sfzmhm);
+        if (person != null) {
+            return person;
+        } else return null;
+    }
     //删除未提交密接人员
     public  int deleteMijieInfo(String sfzmhm){
         boolean bl = communityRepository.existsBySfzmhm(sfzmhm);

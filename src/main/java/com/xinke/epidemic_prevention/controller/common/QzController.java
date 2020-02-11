@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @Author: WRR
  * @Date: 2020/2/10
- * 功能描述：
+ * 功能描述：确诊功能Controller
  * 路径：com.xinke.epidemic_prevention.controller.common
  */
 @Controller
@@ -47,6 +47,18 @@ public class QzController {
     @RequestMapping("qzWtjInfo")
     public String qzWtjInfo(){
         List<Person> persons = qzService.findAllWtjQueZhen();
+        Gson gson = new Gson();
+        String result = "";
+        if (persons!=null&&persons.size()!=0){
+            result = gson.toJson(persons);
+        }
+        return result;
+    }
+    //组合查询已提交确诊人员
+    @ResponseBody
+    @RequestMapping("selectQzYtj")
+    public String selectQzYtj(String sfzmhm,String xingming,String yq_qzsj){
+        List<Person> persons = qzService.selectYtj(sfzmhm,xingming,yq_qzsj);
         Gson gson = new Gson();
         String result = "";
         if (persons!=null&&persons.size()!=0){

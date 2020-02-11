@@ -151,9 +151,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="item form-group">
-                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >所密接人证件号码 <span class="required">*</span> </label>
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="binganhao">病案号 <span class="required">*</span> </label>
                                                             <div class="col-md-6 col-sm-6">
-                                                                <input id="mjren" class="form-control" name="mjren" placeholder="" required="required" readonly="readonly" >
+                                                                <input id="binganhao" class="form-control" name="binganhao" placeholder="" required="required"  >
                                                             </div>
                                                         </div>
                                                         <div class="item">
@@ -164,6 +164,27 @@
                                                                 <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfmjfb1" name="yq_sfmjfb1" value="0" disabled="disabled">否</label>
                                                             </div>
                                                         </div>
+                                                        <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >所密接人证件号码 <span class="required">*</span> </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="mjren" class="form-control" name="mjren" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align">是否重症 <span class="">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" id="yq_sfzz2" name="yq_sfzz2" value="1" disabled="disabled">是</label>
+                                                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfzz1" name="yq_sfzz1" value="0" disabled="disabled">否</label>
+                                                            </div>
+                                                        </div><div class="item">
+                                                        <label class="col-form-label col-md-3 col-sm-3 label-align">是否危重症<span class="">*</span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" id="yq_sfwzz2" name="yq_sfwzz2" value="1" disabled="disabled">是</label>
+                                                            <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" id="yq_sfwzz1" name="yq_sfwzz1" value="0" disabled="disabled">否</label>
+                                                        </div>
+                                                    </div>
                                                         <div class="form-group" style="text-align: center; margin-top: 10px" >
                                                             <!--<div class="col-md-6 col-md-offset-2">-->
                                                             <!--{#            模态框底部#}-->
@@ -274,7 +295,7 @@
         return htm;
     };
     function option2(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.mjren+'\',\''+row.yq_sfmjfb+'\')">详情' +
+        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.binganhao+'\',\''+row.yq_sfmjfb+'\',\''+row.mjren+'\',\''+row.yq_sfzz+'\',\''+row.yq_sfwzz+'\')">详情' +
             '</button>'
         return htm;
     };
@@ -314,21 +335,12 @@
             });
         }
     }
-    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb) {
+    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf,binganhao,yq_sfmjfb,mjren,yq_sfzz,yq_sfwzz) {
         var xzqy = xzsf+xzdjs+xzxq;
         $("#xzqy").val(xzqy);
         if (sfzmhm != ("undefined")) $("#sfzmhm").val(sfzmhm);
         else
             $("#sfzmhm").val("");
-        // if (xzsf!= ("undefined")) $("#s_province").val(xzsf);
-        // else
-        //     $("#s_province").val("");
-        // if (xzdjs != ("undefined")) $("#s_city").val(xzdjs);
-        // else
-        //     $("#s_city").val("");
-        // if (xzxq != ("undefined")) $("#s_county").val(xzxq);
-        // else
-        //     $("#s_county").val("");
         if (ssbsc!= ("undefined")) $("#ssbsc").val(ssbsc);
         else
             $("#ssbsc").val("");
@@ -371,6 +383,9 @@
         if (yq_zhumingsf!= ("undefined")) $("#yq_zhumingsf").val(yq_zhumingsf);
         else
             $("yq_zhumingsf").val("");
+        if (binganhao!= ("undefined")) $("#binganhao").val(binganhao);
+        else
+            $("#binganhao").val("");
         if (mjren!= ("undefined")) $("#mjren").val(mjren);
         else
             $("mjren").val("");
@@ -386,6 +401,30 @@
         }
         else
             $("#yq_sfmjfb").val("");
+        if (yq_sfzz!= ("undefined")) {
+            if (yq_sfzz == 0) {
+                $("#yq_sfzz1").prop("checked",true);
+                $("#yq_sfzz2").prop("checked",false);
+            }
+            if (yq_sfzz == 1) {
+                $("#yq_sfzz1").prop("checked",false);
+                $("#yq_sfzz2").prop("checked",true);
+            }
+        }
+        else
+            $("#yq_sfzz").val("");
+        if (yq_sfwzz!= ("undefined")) {
+            if (yq_sfwzz == 0) {
+                $("#yq_sfwzz1").prop("checked",true);
+                $("#yq_sfwzz2").prop("checked",false);
+            }
+            if (yq_sfwzz == 1) {
+                $("#yq_sfwzz1").prop("checked",false);
+                $("#yq_sfwzz2").prop("checked",true);
+            }
+        }
+        else
+            $("#yq_sfwzz").val("");
         //弹出修改模态框，非新增模态框
         $('#xqModal').modal('show')
     }

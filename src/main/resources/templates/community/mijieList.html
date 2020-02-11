@@ -274,8 +274,8 @@
         $("#mytab").bootstrapTable('refresh',opt);
     };
     function option(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updRiver(\''+row.id +'\',\''+row.riverSystem+'\',\''+row.riverName+'\',\''+row.start+'\',\''+row.end+'\',\''+row.length+'\',\''+row.riverArea+'\',\''+row.bottomWidth+'\',\''+row.paiLao+'\',\''+row.productionBridge+'\',\''+row.controlGate+'\',\''+row.culvert+'\',\''+row.status+'\',\''+row.year+'\')">修改' +
-            '</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.sfzmhm+'\')">删除</button>'
+        var htm = '<a href="/community/update?sfzmhm='+row.sfzmhm+'"><button class="btn btn-sm btn-success"  >修改</button></a>' +
+            '&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.sfzmhm+'\')">删除</button>'
         return htm;
     };
     function option2(value, row, index) {

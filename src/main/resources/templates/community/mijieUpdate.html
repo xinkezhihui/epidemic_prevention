@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -21,9 +21,9 @@
     <script src="/js/plugins/layer/laydate/laydate.js"></script>
     <script src="/js/demo/form-validate-demo.min.js"></script>
     <script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>
-	<!-- 省市区三级联动 -->
+    <!-- 省市区三级联动 -->
     <script type="text/javascript" src="../../static/assets/js/addr_update.js"></script>
-	
+
     <!-- Font Awesome -->
     <link href="../../static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
@@ -35,7 +35,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins" style="width: 1000px; margin: auto">
         <div class="ibox-title">
-            <h5>密切接触人员录入</h5>
+            <h5>修改密切接触人员</h5>
         </div>
         <div class="ibox-content">
             <form class="form-horizontal form-label-left" enctype="multipart/form-data"
@@ -43,121 +43,162 @@
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >本人证件号码<span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required"  onblur="checke();">
+                        <input id="sfzmhm" class="form-control" name="sfzmhm" placeholder="" required="required" th:value="${person.sfzmhm}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >现住区域<span class="required">*</span>
                     </label>
+                    <input type="hidden" id="xzsf" th:value="${person.xzsf}">
+                    <input type="hidden" id="xzdjs" th:value="${person.xzdjs}">
+                    <input type="hidden" id="xzxq" th:value="${person.xzxq}">
                     <div class="col-md-6 col-sm-6">
                         <select class="select" name="province" id="s_province">
-                           <option></option>
-                          </select>
-                          <select class="select" name="city" id="s_city">
-                           <option></option>
-                          </select>
-                          <select class="select" name="town" id="s_county">
-                           <option></option>
-                          </select>
-   <script type="text/javascript">
-     // 改装后的初始化省市区的方法
-     initAddress();
-     // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
-     function set_addr(province,city,county) {
-         var $province=document.getElementById('s_province');
-             // 设置值并模拟人为select下拉框的改变事件
-             $province.onchange($province.value=province);
-         if(city){
-            var $city=document.getElementById('s_city');
-                $city.onchange($city.value=city);
-         }
-         if(county){
-             var $town=document.getElementById('s_county');
-                 $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
-         }
-     }
-     // set_addr('四川省');
-     // set_addr('四川省','成都市');
-      set_addr('山东省','泰安市','泰山区');
- </script>
+                            <option></option>
+                        </select>
+                        <select class="select" name="city" id="s_city">
+                            <option></option>
+                        </select>
+                        <select class="select" name="town" id="s_county">
+                            <option></option>
+                        </select>
+                        <script type="text/javascript">
+                            // 改装后的初始化省市区的方法
+                            initAddress();
+                            // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
+                            set_addr($(xzsf).val(),$(xzdjs).val(),$(xzxq).val());
+                            function set_addr(province,city,county) {
+                                var $province=document.getElementById('s_province');
+                                // 设置值并模拟人为select下拉框的改变事件
+                                $province.onchange($province.value=province);
+                                if(city){
+                                    var $city=document.getElementById('s_city');
+                                    $city.onchange($city.value=city);
+                                }
+                                if(county){
+                                    var $town=document.getElementById('s_county');
+                                    $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
                     </label>
+                    <input type="hidden" id="ssbsc1" th:value="${person.ssbsc}">
                     <div class="col-md-6 col-sm-6">
-                        <select class="select" name="ssbsc" id="ssbsc" >
+                        <select class="select" name="ssbsc" id="ssbsc">
                             <option >请选择</option>
-                      </select>
-                  </div>
+                        </select>
+                    </div>
                 </div>
-				 <div class="item form-group">
+                <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >人群分类<span class="required">*</span>
                     </label>
-                <div class="col-md-6 col-sm-6">
-                    <select class="select" name="rqfl" id="rqfl">
-                        <option>请选择</option>
-                    </select>
+                    <input type="hidden" id="rqfl1" th:value="${person.rqfl}">
+                    <div class="col-md-6 col-sm-6">
+                        <select class="select" name="rqfl" id="rqfl">
+                            <option>请选择</option>
+                        </select>
+                    </div>
                 </div>
-                </div>
-			   <div class="item form-group">
+
+                <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >姓名 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="xingming" class="form-control" name="xingming" placeholder="" required="required"  >
+                        <input id="xingming" class="form-control" name="xingming" placeholder="" required="required"  th:value="${person.xingming}" >
                     </div>
-              </div>
-			    <div class="item form-group">
+                </div>
+                <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >联系电话 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="lxdh" class="form-control" name="lxdh" placeholder="" required="required" type="number"  >
+                        <input id="lxdh" class="form-control" name="lxdh" placeholder="" required="required" type="number"  th:value="${person.lxdh}">
                     </div>
-              </div>
-			  
-			    <div class="item form-group">
+                </div>
+
+                <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >现住详细地址 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
+                        <input type="hidden" id="xxdz1" th:value="${person.xxdz}">
                         <textarea name="xxdz" class="form-control" id="xxdz" placeholder="" required="required" width="300"></textarea>
                     </div>
-              </div>
+                </div>
                 <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往武汉 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfcwwh" value="1">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfcwwh" value="0">否</label>
+                        <div th:switch="${person.yq_sfcwwh}">
+                            <div th:case="1">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfcwwh" value="1" checked="checked">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfcwwh" value="0">否</label>
+                            </div>
+                            <div th:case="0" >
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfcwwh" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfcwwh" value="0" checked>否</label>
+                            </div>
+                            <div th:case="*" >
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfcwwh" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfcwwh" value="0">否</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-				 <div class="item">
+                <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">2周内是否曾往其他省份 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfczqtsf" value="1">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfczqtsf" value="0">否</label>
+                        <div th:switch="${person.yq_sfczqtsf}">
+                            <div th:case="0">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfczqtsf" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfczqtsf" value="0" checked>否</label>
+                            </div>
+                            <div th:case="1">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfczqtsf" value="1" checked>是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfczqtsf" value="0">否</label>
+                            </div>
+                            <div th:case="*">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfczqtsf" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfczqtsf" value="0">否</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-				 <div class="item form-group">
+                <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >其他省份注明 </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="yq_zhumingsf" class="form-control" name="yq_zhumingsf" placeholder="" required="required"  >
+                        <input id="yq_zhumingsf" class="form-control" name="yq_zhumingsf" placeholder="" required="required" th:value="${person.yq_zhumingsf}" >
                     </div>
                 </div>
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >所密接人证件号码 <span class="required">*</span> </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="mjren" class="form-control" name="mjren" placeholder="" required="required" th:value="${mjren}" >
+                        <input id="mjren" class="form-control" name="mjren" placeholder="" required="required" th:value="${person.mjren}" >
                     </div>
-               </div>
-			   <div class="item">
+                </div>
+                <div class="item">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">是否密接发病 <span class="">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfmjfb" value="1">是</label>
-                        <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfmjfb" value="0">否</label>
+                        <div th:switch="${person.yq_sfmjfb}">
+                            <div th:case="0">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfmjfb" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfmjfb" value="0" checked>否</label>
+                            </div>
+                            <div th:case="1">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfmjfb" value="1" checked>是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfmjfb" value="0">否</label>
+                            </div>
+                            <div th:case="*">
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px;margin-left: 20px;" type="radio" name="yq_sfmjfb" value="1">是</label>
+                                <label><input  required="required" style="font-size: 20px;margin-top: 10px; margin-left: 20px;"  type="radio" name="yq_sfmjfb" value="0">否</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group" style="text-align: center; margin-top: 10px" >
                     <div class="col-md-6 col-md-offset-2">
-                        <button id="send" type="button" onclick="addMijie()" class="btn btn-success">提交</button>
+                        <button id="send" type="button" onclick="updateMijie()" class="btn btn-success">提交</button>
                         <button type="button" class="btn btn-primary" onClick="javascript:history.back();">取消</button>
                     </div>
                 </div>
@@ -167,6 +208,7 @@
 </div>
 </div>
 <script>
+    document.getElementById("xxdz").value=$(xxdz1).val();
     window.onload = SearchVehicleTag();//加载页面时自动执行方法
     function SearchVehicleTag() {
         $.ajax({
@@ -176,10 +218,16 @@
             contentType: "application/json",
             traditional: true,
             success: function (data) {
+                var key=$("#rqfl1").val();
                 for (var i = 0; i < data.length; i++) {
                     var jsonObj = data[i];
-                    $("#rqfl").append("<option>" + jsonObj.ClassNName + "</option>");
+                    if(key == jsonObj.ClassNName){
+                        $("#rqfl").append("<option selected='selected'>" + jsonObj.ClassNName + "</option>");
+                    }else {
+                         $("#rqfl").append("<option>" + jsonObj.ClassNName + "</option>");
+                    }
                 }
+                $("#rqfl option[value='"+key+"']").attr("selected","selected");
             },
             error: function (msg) {
                 alert("数据加载出错，请重试！");
@@ -195,9 +243,14 @@
             contentType: "application/json",
             traditional: true,
             success: function (data) {
+                var key=$("#ssbsc1").val();
                 for (var i = 0; i < data.length; i++) {
                     var jsonObj = data[i];
-                    $("#ssbsc").append("<option >" + jsonObj.OrganName + "</option>");
+                    if(key == jsonObj.OrganName){
+                        $("#ssbsc").append("<option selected='selected'>" + jsonObj.OrganName + "</option>");
+                    }else {
+                        $("#ssbsc").append("<option>" + jsonObj.OrganName + "</option>");
+                    }
                 }
             },
             error: function (msg) {
@@ -219,7 +272,7 @@
                 }
             }});
     };
-    function addMijie(){
+    function updateMijie(){
         var sfzmhm = $('#sfzmhm').val();
         var xzsf = $('#s_province').val();
         var xzdjs = $('#s_city').val();
@@ -262,14 +315,14 @@
                     mjren: mjren,
                     yq_sfmjfb: yq_sfmjfb
                 },
-                url: '/community/add',
+                url: '/community/updateMj',
                 dataType: "json",        //返回数据形式为json
                 success: function (result) {
-                    confirm("添加信息成功");
+                    confirm("修改信息成功");
                     window.location.href = '/community/mijieList'
                 },
                 error: function (errorMsg) {
-                    confirm("添加信息失败");
+                    confirm("服务器繁忙，请稍后重试");
                 }
             });
         }

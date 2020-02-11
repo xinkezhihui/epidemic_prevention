@@ -27,7 +27,6 @@
     <style>
         .btn-success {
             background: #1c84c6;
-
         }
     </style>
 </head>
@@ -42,7 +41,7 @@
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
                         <div class="col-sm-1">
-                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/community/mijieShow}">刷新</a></button>
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/quezhen/ytjQzShow}">刷新</a></button>
                         </div>
                         <div class="col-md-11" style="margin-bottom: -13px">
                             <div class="input-group">
@@ -204,7 +203,7 @@
         $("#mytab").bootstrapTable('refresh',opt);
     };
     $('#mytab').bootstrapTable({
-        url: '/community/mjInfoShow',
+        url: '/quezhen/qzYtjInfo',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -237,7 +236,7 @@
             {field: 'xingming', title: '姓名', align: 'center', width: 80},
             {field: 'lxdh', title: '联系电话', align: 'center', width: 80},
             {field: 'xxdz', title: '地址', align: 'center', width: 120},
-            {field: 'qrmjsj', title: '日期', align: 'center', width: 50
+            {field: 'yq_qzsj', title: '日期', align: 'center', width: 50
                 ,
                 formatter: function (value, row, index) {
                     if (value == null) {

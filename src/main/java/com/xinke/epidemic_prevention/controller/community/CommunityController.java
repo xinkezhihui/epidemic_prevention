@@ -7,10 +7,8 @@ import com.xinke.epidemic_prevention.bean.community.Ssbsc;
 import com.xinke.epidemic_prevention.service.community.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +25,29 @@ import java.util.Map;
 public class CommunityController {
     @Autowired
     private CommunityService communityService;
+    //已有确诊人员添加密接
+    @GetMapping("qzAddMj")
+    public String qzAddMj(String sfzmhm, Model model) {
+        model.addAttribute("mjren",sfzmhm);
+        return "community/mijieAdd";
+    }
+    //修改密接人员信息
+    @GetMapping("update")
+    public String update(String sfzmhm, Model model) {
+        Person person = communityService.findOneMiJieInfo(sfzmhm);
+        model.addAttribute("person", person);
+        return "community/mijieUpdate";
+    }
+    @ResponseBody
+    @PostMapping("updateMj")
+    public String updateMj(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, String mjren, Integer yq_sfmjfb){
+        boolean bl =  communityService.updateMj(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb);
+        if (bl) {
+            return "200";
+        }else {
+            return "400";
+        }
+    }
     //删除密接未提交人员
     @ResponseBody
     @GetMapping("deleteMj")
@@ -113,7 +134,7 @@ public class CommunityController {
     //添加密接人员信息
     @ResponseBody
     @PostMapping("add")
-    public String addMijie(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
+    public String addMijie(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf, String mjren, Integer yq_sfmjfb){
         boolean bl =  communityService.addMijie(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb);
         if (bl) {
             return "200";

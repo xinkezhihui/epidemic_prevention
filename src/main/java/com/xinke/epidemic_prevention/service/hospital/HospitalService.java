@@ -72,6 +72,35 @@ public class HospitalService {
     }
     /**
      * @author: WRR
+     * 功能描述：疑似病例信息修改
+     */
+    //修改密接人员信息
+    public boolean updateYs(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz) {
+        Person person = hospitalRepository.findBySfzmhm(sfzmhm);
+        person.setXzsf(xzsf);
+        person.setXzdjs(xzdjs);
+        person.setXzxq(xzxq);
+        person.setSsbsc(ssbsc);
+        person.setRqfl(rqfl);
+        person.setXingming(xingming);
+        person.setLxdh(lxdh);
+        person.setXxdz(xxdz);
+        person.setYq_sfcwwh(yq_sfcwwh);
+        person.setYq_sfczqtsf(yq_sfczqtsf);
+        person.setYq_zhumingsf(yq_zhumingsf);
+        person.setBinganhao(binganhao);
+        person.setYq_sfmjfb(yq_sfmjfb);
+        person.setMjren(mjren);
+        person.setYq_sfzz(yq_sfzz);
+        person.setYq_sfwzz(yq_sfwzz);
+        Person save = hospitalRepository.save(person);
+        if (save != null) {
+            return true;
+        }else
+            return false;
+    }
+    /**
+     * @author: WRR
      * 功能描述：确诊疑似病例
      */
     public Boolean ysQueZhen(String sfzmhm){
@@ -87,8 +116,6 @@ public class HospitalService {
             User user1 = ur.findByNumber(user.getNumber());
             String qz_userID = String.valueOf(user1.getId());
             person.setQz_userID(qz_userID);
-            System.out.println("=============");
-            System.out.println(person.toString());
             hospitalRepository.flush();
             return true;
         }else
@@ -102,8 +129,6 @@ public class HospitalService {
         Person person = hospitalRepository.findBySfzmhm(sfzmhm);
         if(person!=null){
             person.setYq_sfys(0);
-            System.out.println("=============");
-            System.out.println(person.toString());
             hospitalRepository.flush();
             return true;
         }else

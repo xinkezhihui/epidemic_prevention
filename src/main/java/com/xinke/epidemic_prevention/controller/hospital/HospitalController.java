@@ -23,28 +23,26 @@ import java.util.Map;
 public class HospitalController {
     @Autowired
     HospitalService hospitalService;
-
-//    /**
-//     * @author: jlz
-//     * 功能描述：查看所有疑似案例的信息
-//     */
-//    @GetMapping("showYiSiList")
-//    public String showYiSiList() {
-//        return "hospital/yisiList";
-//    }
-//
-//    @ResponseBody
-//    @GetMapping("showAgricultureInfo")
-//    public String showAgricultureInfo(){
-//        List<Person> allAgrInfo = hospitalService.findAllHospInfo();
-//        Gson gson = new Gson();
-//        String result = "";
-//        if (allAgrInfo!=null && allAgrInfo.size()!=0){
-//            result = gson.toJson(allAgrInfo);
-//        }
-//        return result;
-//    }
-
+    /**
+     * @author: WRR
+     * 功能描述：修改疑似案例信息
+     */
+    @GetMapping("update")
+    public String update(String sfzmhm, Model model) {
+        Person person = hospitalService.personInfo(sfzmhm);
+        model.addAttribute("person", person);
+        return "hospital/yisiUpdate";
+    }
+    @ResponseBody
+    @PostMapping("updateYs")
+    public String updateMj(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
+        boolean bl =  hospitalService.updateYs(sfzmhm, xzsf, xzdjs, xzxq, ssbsc, rqfl, xingming, lxdh, xxdz, yq_sfcwwh, yq_sfczqtsf, yq_zhumingsf, binganhao, yq_sfmjfb, mjren, yq_sfzz, yq_sfwzz);
+        if (bl) {
+            return "200";
+        }else {
+            return "400";
+        }
+    }
     /**
      * @author: jlz
      * 功能描述：查看所有疑似案例的信息

@@ -41,7 +41,7 @@
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
                         <div class="col-sm-1">
-                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/community/mijieShow}">刷新</a></button>
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/quezhen/sqQzShow}">刷新</a></button>
                         </div>
                         <div class="col-md-11" style="margin-bottom: -13px">
                             <div class="input-group">
@@ -52,8 +52,8 @@
                                     <input class="input-sm-2 form-control" id="xingming0" placeholder="请输入姓名" type="text">
                                 </div>
                                 <div class="col-sm-3">
-                                    <input class="form-control layer-date" id="qrmjsj" name="qrmjsj" placeholder="请选择日期" style="width: 97px"   stype="text">
-                                    <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#qrmjsj'});"  style="width: 30px"></label>
+                                    <input class="form-control layer-date" id="yq_qzsj" name="yq_qzsj" placeholder="请选择日期" style="width: 97px"   stype="text">
+                                    <label class="laydate-icon inline demoicon" onclick="laydate({elem: '#yq_qzsj'});"  style="width: 30px"></label>
                                 </div>
                                 <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
                                 <div>
@@ -194,16 +194,16 @@
     function check() {
         var sfzmhm = $('#sfzmhm0').val();
         var xingming = $('#xingming0').val();
-        var qrmjsj = $('#qrmjsj').val();
+        var yq_qzsj = $('#yq_qzsj').val();
         var opt = {
-            url: "/community/checkShow", //重新请求的链接
+            url: "/quezhen/selectQzYtj", //重新请求的链接
             method:'GET',
-            query: {sfzmhm:sfzmhm,xingming:xingming,qrmjsj:qrmjsj}//传到后台的参数
+            query: {sfzmhm:sfzmhm,xingming:xingming,yq_qzsj:yq_qzsj}//传到后台的参数
         };
         $("#mytab").bootstrapTable('refresh',opt);
     };
     $('#mytab').bootstrapTable({
-        url: '/community/mjInfoShow',
+        url: '/quezhen/qzYtjInfo',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -236,7 +236,7 @@
             {field: 'xingming', title: '姓名', align: 'center', width: 80},
             {field: 'lxdh', title: '联系电话', align: 'center', width: 80},
             {field: 'xxdz', title: '地址', align: 'center', width: 120},
-            {field: 'qrmjsj', title: '日期', align: 'center', width: 50
+            {field: 'yq_qzsj', title: '日期', align: 'center', width: 50
                 ,
                 formatter: function (value, row, index) {
                     if (value == null) {
@@ -247,6 +247,13 @@
             },
             {
                 field: 'xxsf', title: '详情', align: 'center', width:80,formatter: option2
+            },
+            {
+                field: 'xxsf', title: '操作', align: 'center', width:80,
+                formatter: function (value, row, index){
+                    var htm = '<a href="/community/qzAddMj?sfzmhm='+row.sfzmhm+'"><button class="btn btn-sm btn-success">添加密接</button></a>';
+                    return htm;
+                }
             }
         ]
     });
