@@ -25,6 +25,70 @@ public class HospitalController {
     HospitalService hospitalService;
     /**
      * @author: WRR
+     * 功能描述：疑似已排除人员信息
+     */
+    @GetMapping("ysYPC")
+    public String ysYPC(){
+        return "hospital/ysYPC";
+    }
+    @ResponseBody
+    @RequestMapping("ysYPCInfo")
+    public String ysYPCInfo(){
+        List<Person> persons = hospitalService.ysYPCAllInfo();
+        Gson gson = new Gson();
+        String result = "";
+        if (persons!=null&&persons.size()!=0){
+            result = gson.toJson(persons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似已排除查询
+     */
+    @ResponseBody
+    @RequestMapping("selectYsYPC")
+    public String selectYsYPC(String sfzmhm,String xingming,String yq_yszdrq){
+        List<Person> persons = hospitalService.selectYsYPC(sfzmhm, xingming, yq_yszdrq);
+        Gson gson = new Gson();
+        String result = "";
+        if (persons!=null&&persons.size()!=0){
+            result = gson.toJson(persons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似未提交查询
+     */
+    @ResponseBody
+    @RequestMapping("selectYsWtj")
+    public String selectYsWtj(String sfzmhm,String xingming,String yq_yszdrq){
+        List<Person> persons = hospitalService.selectYsWtj(sfzmhm, xingming, yq_yszdrq);
+        Gson gson = new Gson();
+        String result = "";
+        if (persons!=null&&persons.size()!=0){
+            result = gson.toJson(persons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似已提交查询
+     */
+    @ResponseBody
+    @RequestMapping("selectYsYtj")
+    public String selectYsYtj(String sfzmhm,String xingming,String yq_yszdrq){
+        List<Person> persons = hospitalService.selectYsYtj(sfzmhm, xingming, yq_yszdrq);
+        Gson gson = new Gson();
+        String result = "";
+        if (persons!=null&&persons.size()!=0){
+            result = gson.toJson(persons);
+        }
+        return result;
+    }
+    /**
+     * @author: WRR
      * 功能描述：修改疑似案例信息
      */
     @GetMapping("update")
@@ -115,7 +179,6 @@ public class HospitalController {
     @ResponseBody
     @GetMapping("ysSubmit")
     public  String miJieSubmit(String sfzmhm){
-        System.out.println(sfzmhm);
         boolean bl = hospitalService.ysSubmit(sfzmhm);
         if(bl){
             return "200";

@@ -6,11 +6,14 @@ import com.xinke.epidemic_prevention.dao.hospital.HospitalRepository;
 import com.xinke.epidemic_prevention.dao.user.userRepository;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +30,117 @@ public class HospitalService {
     HospitalRepository hospitalRepository;
     @Autowired
     private userRepository ur;
+    /**
+     * @author: WRR
+     * 功能描述：疑似已排除所有人员
+     */
+    public List<Person> ysYPCAllInfo(){
+        List<Person> ysPerson = hospitalRepository.findAllYsYPCInfo();
+        if(ysPerson != null && ysPerson.size() !=0 ){
+            return ysPerson;
+        }else {
+            return null;
+        }
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似已排除查询
+     */
+    public List<Person> selectYsYPC(String sfzmhm, String xingming, String yq_yszdrq){
+        List<Person> persons=new ArrayList<Person>();
+        //jpa多条件多表查询，灵活 创建查询语句
+        Specification<Person> specification=new Specification<Person>() {
+            @Override
+            public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList();
+                if (sfzmhm!= null && sfzmhm!= "") {
+                    Path exp0 = root.get("sfzmhm");
+                    predicates.add(criteriaBuilder.like(exp0, "%" + sfzmhm + "%"));
+                }
+                if (xingming!=null) {
+                    Path exp1 = root.get("xingming");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + xingming + "%"));
+                }
+                if (yq_yszdrq!=null) {
+                    Path exp1 = root.get("yq_yszdrq");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + yq_yszdrq + "%"));
+                }
+                Path exp2 = root.get("ystj");
+                predicates.add(criteriaBuilder.equal(exp2, 1));
+                Path exp3 = root.get("yq_sfys");
+                predicates.add(criteriaBuilder.equal(exp3, 0));
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        };
+        persons = hospitalRepository.findAll(specification);
+        return persons;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似未提交查询
+     */
+    public List<Person> selectYsWtj(String sfzmhm, String xingming, String yq_yszdrq){
+        List<Person> persons=new ArrayList<Person>();
+        //jpa多条件多表查询，灵活 创建查询语句
+        Specification<Person> specification=new Specification<Person>() {
+            @Override
+            public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList();
+                if (sfzmhm!= null && sfzmhm!= "") {
+                    Path exp0 = root.get("sfzmhm");
+                    predicates.add(criteriaBuilder.like(exp0, "%" + sfzmhm + "%"));
+                }
+                if (xingming!=null) {
+                    Path exp1 = root.get("xingming");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + xingming + "%"));
+                }
+                if (yq_yszdrq!=null) {
+                    Path exp1 = root.get("yq_yszdrq");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + yq_yszdrq + "%"));
+                }
+                Path exp2 = root.get("ystj");
+                predicates.add(criteriaBuilder.equal(exp2, 0));
+                Path exp3 = root.get("yq_sfys");
+                predicates.add(criteriaBuilder.equal(exp3, 1));
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        };
+        persons = hospitalRepository.findAll(specification);
+        return persons;
+    }
+    /**
+     * @author: WRR
+     * 功能描述：疑似已提交查询
+     */
+    public List<Person> selectYsYtj(String sfzmhm, String xingming, String yq_yszdrq){
+        List<Person> persons=new ArrayList<Person>();
+        //jpa多条件多表查询，灵活 创建查询语句
+        Specification<Person> specification=new Specification<Person>() {
+            @Override
+            public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList();
+                if (sfzmhm!= null && sfzmhm!= "") {
+                    Path exp0 = root.get("sfzmhm");
+                    predicates.add(criteriaBuilder.like(exp0, "%" + sfzmhm + "%"));
+                }
+                if (xingming!=null) {
+                    Path exp1 = root.get("xingming");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + xingming + "%"));
+                }
+                if (yq_yszdrq!=null) {
+                    Path exp1 = root.get("yq_yszdrq");
+                    predicates.add(criteriaBuilder.like(exp1,"%" + yq_yszdrq + "%"));
+                }
+                Path exp2 = root.get("ystj");
+                predicates.add(criteriaBuilder.equal(exp2, 1));
+                Path exp3 = root.get("yq_sfys");
+                predicates.add(criteriaBuilder.equal(exp3, 1));
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        };
+        persons = hospitalRepository.findAll(specification);
+        return persons;
+    }
     /**
      * @author: jlz
      * 功能描述：查询

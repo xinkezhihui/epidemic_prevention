@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>疑似病例管理信息</title>
+    <title>疑似已排除人员信息</title>
     <link href="favicon.ico" rel="shortcut icon"> <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.min.css" rel="stylesheet">
@@ -47,19 +47,12 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h3 style="float: left;margin-bottom: 5px;">疑似病例管理</h3>
-                    <!--<div class="col-sm-1" style="margin-top: -2px">-->
-                    <!--<button class="btn btn-white btn-sm" id="loading-example-btn" type="button" style="margin-bottom: 0px"><i class="fa fa-refresh"></i> <a href="/river/show">刷新</a></button>-->
-                    <!--</div>-->
-                    <a th:href="@{/hospital/toAddYiSiInfo}" style="float: right"  ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加疑似人员信息</button></a>
-                    <!--
-                                        <a th:href="@{/river/riverAdd}" style="float: right" shiro:hasPermission="super" ><button type="button" class="btn btn-sm btn-primary" style="margin-bottom: 0">添加</button></a>
-                    -->
+                    <h3 style="float: left;margin-bottom: 5px;">疑似已排除人员信息</h3>
                 </div>
                 <div class="ibox-content" style="padding-top: 1px">
                     <div class="row m-b-sm m-t-sm"style="margin-top: 5px">
                         <div class="col-sm-1">
-                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/hospital/showYiSiList}">刷新</a></button>
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button" ><i class="fa fa-refresh"></i> <a th:href="@{/hospital/ysYPC}">刷新</a></button>
                         </div>
                         <div class="col-md-11" style="margin-bottom: -13px">
                             <div class="input-group">
@@ -223,7 +216,7 @@
 </div>
 <script>
     $('#mytab').bootstrapTable({
-        url: '/hospital/ysInfoList',
+        url: '/hospital/ysYPCInfo',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -267,24 +260,6 @@
             },
             {
                 field: 'xxsf', title: '详情', align: 'center', width:80,formatter: option2
-            },
-            {
-                title: '操作',
-                field: 'xzxq',
-                align: 'center',
-                valign: 'middle',
-                width:120,
-                formatter: option
-            },
-            {
-                title: '提交',
-                align: 'center',
-                valign: 'middle',
-                width:90,
-                formatter:  function (value, row, index) {
-                    var htm = '<button class="btn btn-sm btn-danger"  onclick="submit(\''+row.sfzmhm+'\')">提交</button>'
-                    return htm;
-                }
             }
         ]
     });
@@ -294,60 +269,18 @@
         var xingming = $('#xingming0').val();
         var yq_yszdrq = $('#yq_yszdrq').val();
         var opt = {
-            url: "/hospital/selectYsWtj", //重新请求的链接
+            url: "/hospital/selectYsYPC", //重新请求的链接
             method:'GET',
             query: {sfzmhm:sfzmhm,xingming:xingming,yq_yszdrq:yq_yszdrq}//传到后台的参数
         };
         $("#mytab").bootstrapTable('refresh',opt);
-    };
-    function option(value, row, index) {
-        var htm = '<a href="/hospital/update?sfzmhm='+row.sfzmhm+'"><button class="btn btn-sm btn-success"  >修改</button></a>' +
-            '&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.sfzmhm+'\')">删除</button>'
-        return htm;
     };
     function option2(value, row, index) {
         var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.binganhao+'\',\''+row.yq_sfmjfb+'\',\''+row.mjren+'\',\''+row.yq_sfzz+'\',\''+row.yq_sfwzz+'\')">详情' +
             '</button>'
         return htm;
     };
-    function del(sfzmhm) {
-        var mymessage = confirm("确认删除吗？");
-        if (mymessage == true) {
-            $.ajax({
-                type: 'GET',
-                data:{sfzmhm:sfzmhm},
-                url: '/community/deleteMj',//请求年级数据的地址
-                dataType: "json",        //返回数据形式为json
-                success: function (data) {
-                    // confirm("删除成功");
-                    alert(data.result);
-                    $("#mytab").bootstrapTable('refresh');
-                },
-                error: function (errorMsg) {
-                    confirm("服务器正忙，请稍后重试！");
-                }
-            });
-        }
-    };
-    function submit(sfzmhm) {
-        var mymessage = confirm("确认提交吗？");
-        if (mymessage == true) {
-            $.ajax({
-                type: 'GET',
-                data: {sfzmhm:sfzmhm},
-                url: '/hospital/ysSubmit',//请求年级数据的地址
-                dataType: "json",        //返回数据形式为json
-                success: function (result) {
-                    confirm("提交成功");
-                    $("#mytab").bootstrapTable('refresh');
-                },
-                error: function (errorMsg) {
-                    confirm("服务器正忙，请稍后重试!");
-                }
-            });
-        }
-    }
-    // 模态框获取信息
+    //模态框回显数据
     function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf,binganhao,yq_sfmjfb,mjren,yq_sfzz,yq_sfwzz) {
         var xzqy = xzsf+xzdjs+xzxq;
         $("#xzqy").val(xzqy);
@@ -441,7 +374,6 @@
         //弹出修改模态框，非新增模态框
         $('#xqModal').modal('show')
     }
-
 </script>
 <script src="/js/content.min.js?v=1.0.0"></script>
 <script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>

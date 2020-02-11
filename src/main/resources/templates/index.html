@@ -82,6 +82,7 @@
 						<li>
 							<a class="J_menuItem" th:href="@{/hospital/showYiSiList}">疑似病例管理</a>
 							<a class="J_menuItem" th:href="@{/hospital/ytjYiSiInfo}">疑似病例信息</a>
+							<a class="J_menuItem" th:href="@{/hospital/ysYPC}">疑似已排除人员</a>
 							<a class="J_menuItem" th:href="@{/quezhen/wtjQzShow}" >确诊人员管理</a>
 							<a class="J_menuItem" th:href="@{/quezhen/ytjQzShow}" >确诊人员信息</a>
 						</li>
@@ -174,18 +175,10 @@
 					</a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a class="J_menuItem n_a1" th:href="@{/notice/show(notice_type=1,n_msg=0)}">确权相关</a>
-						</li>
-						<li>
-							<a class="J_menuItem n_a2" th:href="@{/notice/show(notice_type=2,n_msg=0)}">交易相关</a>
-						</li>
-						<li>
-							<a class="J_menuItem n_a3" th:href="@{/notice/show(notice_type=3,n_msg=0)}">政策法规</a>
+							<a class="J_menuItem n_a1" th:href="@{/notice/show(n_msg=0)}">通知公告</a>
 						</li>
 					</ul>
 				</li>
-
-
 
 			</ul>
 		</div>
@@ -194,69 +187,69 @@
 	<!--右侧部分开始-->
 	<div id="page-wrapper" class="gray-bg dashbard-1">
 		<div class="row border-bottom">
-          <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-               <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
-                        class="fa fa-bars"></i> </a>
-                    <!--<form role="search" class="navbar-form-custom" method="post"
+			<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+				<div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+						class="fa fa-bars"></i> </a>
+					<!--<form role="search" class="navbar-form-custom" method="post"
                           action="http://www.zi-han.net/theme/hplus/search_results.html">
                         <div class="form-group">
                             <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
                                    id="top-search">
                         </div>
                     </form>-->
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info n_list" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i> <span class="label label-primary"
-                                                             th:text="${allCount}">0</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <div>
-                                    <i class="fa fa-envelope fa-fw  "></i>
-                                    <span th:text="'您有'+${allCount}+'条未读公告'" ></span>
-                                </div>
-                                <!--&lt;!&ndash;-->                                </a><!--&ndash;&gt;-->
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a class="J_menuItem noticeA1" th:if="${count1!=0}" >
+				</div>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle count-info n_list" data-toggle="dropdown" href="#">
+							<i class="fa fa-bell"></i> <span class="label label-primary"
+															 th:text="${allCount}">0</span>
+						</a>
+						<ul class="dropdown-menu dropdown-alerts">
+							<li>
+								<div>
+									<i class="fa fa-envelope fa-fw  "></i>
+									<span th:text="'您有'+${allCount}+'条未读公告'" ></span>
+								</div>
+								<!--&lt;!&ndash;-->                                </a><!--&ndash;&gt;-->
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="text-center link-block">
+									<a class="J_menuItem noticeA1" th:if="${count1!=0}" >
 										<strong class="notice1">查看确权<span th:text="${count1}"></span>未读 </strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a class="J_menuItem noticeA2" th:if="${count2!=0}" >
+										<i class="fa fa-angle-right"></i>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="text-center link-block">
+									<a class="J_menuItem noticeA2" th:if="${count2!=0}" >
 										<strong class="notice2">查看交易<span th:text="${count2}"></span>未读 </strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a class="J_menuItem noticeA3" th:if="${count3!=0}" >
-                                        <strong class="notice3">查看政策<span th:text="${count3}"></span>未读 </strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+										<i class="fa fa-angle-right"></i>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="text-center link-block">
+									<a class="J_menuItem noticeA3" th:if="${count3!=0}" >
+										<strong class="notice3">查看政策<span th:text="${count3}"></span>未读 </strong>
+										<i class="fa fa-angle-right"></i>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</li>
 
-                </ul>
-           </nav>
-        </div>
+				</ul>
+			</nav>
+		</div>
 		<div class="row content-tabs">
 			<button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
 			</button>
 			<nav class="page-tabs J_menuTabs">
-				<div class="page-tabs-content">
-					<a href="javascript:void(0)" class="active J_menuTab" data-id="index_v1.html">首页</a>
-				</div>
+				<!--				<div class="page-tabs-content">-->
+				<!--					<a href="javascript:void(0)" class="active J_menuTab" data-id="index_v1.html">首页</a>-->
+				<!--				</div>-->
 			</nav>
 			<button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
 			</button>
@@ -287,14 +280,13 @@
 	</div>
 	<!--右侧部分结束-->
 	<!--右侧边栏开始-->
-
 </div>
 <script>
     function logout() {
-      var message =  confirm("确认退出系统吗？");
-      if(message == true){
-          window.location.href = '/user/loginout';
-      }
+        var message =  confirm("确认退出系统吗？");
+        if(message == true){
+            window.location.href = '/user/loginout';
+        }
     }
 </script>
 <script src="/js/jquery.min.js?v=2.1.4"></script>
@@ -308,20 +300,12 @@
 
 <!--lwq-->
 <script type="text/javascript">
-	$(function () {
-		$(".noticeA1").click(function () {
-			$(".notice1").html("确权相关");
-			$(".n_a1").click();
-		});
-		$(".noticeA2").click(function () {
-			$(".notice2").html("交易相关");
-			$(".n_a2").click();
-		});
-		$(".noticeA3").click(function () {
-			$(".notice3").html("政策法规");
-			$(".n_a3").click();
-		});
-	})
+    $(function () {
+        $(".noticeA1").click(function () {
+            $(".notice1").html("通知公告");
+            $(".n_a1").click();
+        });
+    })
 </script>
 </body>
 </html>
