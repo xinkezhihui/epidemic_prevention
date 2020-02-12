@@ -3,8 +3,8 @@ package com.xinke.epidemic_prevention.bean.form;
 import javax.persistence.*;
 
 @Entity
-@Table(name="All_Form")
-public class form1 {
+@Table(name="All_Formtwo")
+public class FormTwo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //自增id
@@ -54,7 +54,21 @@ public class form1 {
     //密接-前日累计解除
     private Integer mj_qrjc;
 
-    public form1(String city, String country, Integer ys_xz, Integer ys_lj, Integer qz_qrlj, Integer qz_xz, Integer qz_lj, Integer qz_zy_zs, Integer qz_zy_zz, Integer qz_zy_wz, Integer qz_cy_qrlj, Integer qz_cy_xz, Integer qz_cy_lj, Integer qz_sw_qrlj, Integer qz_sw_xz, Integer qz_sw_lj, Integer mj_gc_yw, Integer mj_gc_fyw, Integer mj_jc, Integer mj_zd, Integer mj_lj, Integer mj_qrjc) {
+    public String getNowdate() {
+        return nowdate;
+    }
+
+    public void setNowdate(String nowdate) {
+        this.nowdate = nowdate;
+    }
+
+    //当前时间
+    private String nowdate;
+
+    public FormTwo() {
+    }
+
+    public FormTwo(String city, String country, Integer ys_xz, Integer ys_lj, Integer qz_qrlj, Integer qz_xz, Integer qz_lj, Integer qz_zy_zs, Integer qz_zy_zz, Integer qz_zy_wz, Integer qz_cy_qrlj, Integer qz_cy_xz, Integer qz_cy_lj, Integer qz_sw_qrlj, Integer qz_sw_xz, Integer qz_sw_lj, Integer mj_gc_yw, Integer mj_gc_fyw, Integer mj_jc, Integer mj_zd, Integer mj_lj, Integer mj_qrjc, String nowdate) {
         this.city = city;
         this.country = country;
         this.ys_xz = ys_xz;
@@ -77,6 +91,7 @@ public class form1 {
         this.mj_zd = mj_zd;
         this.mj_lj = mj_lj;
         this.mj_qrjc = mj_qrjc;
+        this.nowdate = nowdate;
     }
 
     public String getCity() {
@@ -255,3 +270,4 @@ public class form1 {
         this.mj_qrjc = mj_qrjc;
     }
 }
+

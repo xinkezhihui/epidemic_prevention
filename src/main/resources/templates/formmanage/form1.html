@@ -58,7 +58,7 @@
                 <div class="ibox-content">
                     <div class="row m-b-sm m-t-sm">
                         <div class="col-sm-1">
-                            <button class="btn btn-sm btn-white" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a href="/tofindall"> 刷新</a></button>
+                            <button class="btn btn-sm btn-white" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a href="/form/tz1"> 刷新</a></button>
                         </div>
               <!--          <div class="col-sm-11" style="margin-bottom:10px;">
                             <div class="input-group" style="width: 100%">
@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-sm-12">
                             <!--<span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/touploadUser" style="color: white" target="_self"> 信息录入</a></button></span>-->
-                            <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export"   type="button"> 下载</button> </span>
+                           <!-- <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export"   type="button"> 下载</button> </span>-->
 
                         </div>
                     </div>
@@ -224,7 +224,7 @@
     });
     //模态框
     $('#mytab').bootstrapTable({
-        url: 'findall',
+        url: '/form/form1',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -265,28 +265,29 @@
                     return index + 1;
                 }
             },
-            {field: 'name', title: '地市', align: 'center', width: 80},
-            {field: 'number', title: '县区', align: 'center', width: 50},
-            {field: 'faren', title: '疑似-当日新增', align: 'center', width: 100},
-            {field: 'type', title: '疑似-现有', align: 'center', width: 120},
-            {field: 'code', title: '确诊-前日报告累计', align: 'center', width: 120},
-            {field: 'people', title: '确诊-当日新增', align: 'center', width: 120},
-            {field: 'phone', title: '确诊-累计', align: 'center', width: 120},
-            {field: 'emailcode', title: '确诊-在院治疗-总数', align: 'center', width: 120},
-            {field: 'addre', title: '确诊-在院治疗-重症', align: 'center', width: 120},
-            {field: 'email', title: '确诊-在院治疗-危重', align: 'center', width: 120},
-            {field: 'email', title: '确诊-出院病例-前日报告累计', align: 'center', width: 120},
-            {field: 'email', title: '确诊-出院病例-当日新增', align: 'center', width: 120},
-            {field: 'email', title: '确诊-出院病例-累计', align: 'center', width: 120},
-            {field: 'email', title: '确诊-死亡病例-前日累计报告', align: 'center', width: 120},
-            {field: 'email', title: '确诊-死亡病例-当日新增', align: 'center', width: 120},
-            {field: 'email', title: '确诊-死亡病例-累计', align: 'center', width: 120},
-            {field: 'email', title: '密接-尚在医学观察-医务人员', align: 'center', width: 120},
-            {field: 'email', title: '密接-尚在医学观察-非医务人员', align: 'center', width: 120},
-            {field: 'email', title: '密接-当日解除', align: 'center', width: 120},
-            {field: 'email', title: '密接-当日诊断为疑似或确诊', align: 'center', width: 120},
-            {field: 'email', title: '密接-累计', align: 'center', width: 120},
-            {field: 'email', title: '密接-前日累计解除', align: 'center', width: 120},
+            {field: 'city', title: '地市', align: 'center', width: 80},
+            {field: 'country', title: '县区', align: 'center', width: 50},
+            {field: 'ys_xz', title: '疑似-当日新增', align: 'center', width: 100},
+            {field: 'ys_lj', title: '疑似-现有', align: 'center', width: 120},
+            {field: 'qz_qrlj', title: '确诊-前日报告累计', align: 'center', width: 120},
+            {field: 'qz_xz', title: '确诊-当日新增', align: 'center', width: 120},
+            {field: 'qz_lj', title: '确诊-累计', align: 'center', width: 120},
+            {field: 'qz_zy_zs', title: '确诊-在院治疗-总数', align: 'center', width: 120},
+            {field: 'qz_zy_zz', title: '确诊-在院治疗-重症', align: 'center', width: 120},
+            {field: 'qz_zy_wz', title: '确诊-在院治疗-危重', align: 'center', width: 120},
+            {field: 'qz_cy_qrlj', title: '确诊-出院病例-前日报告累计', align: 'center', width: 120},
+            {field: 'qz_cy_xz', title: '确诊-出院病例-当日新增', align: 'center', width: 120},
+            {field: 'qz_cy_lj', title: '确诊-出院病例-累计', align: 'center', width: 120},
+            {field: 'qz_sw_qrlj', title: '确诊-死亡病例-前日累计报告', align: 'center', width: 120},
+            {field: 'qz_sw_xz', title: '确诊-死亡病例-当日新增', align: 'center', width: 120},
+            {field: 'qz_sw_lj', title: '确诊-死亡病例-累计', align: 'center', width: 120},
+            {field: 'mj_gc_yw', title: '密接-尚在医学观察-医务人员', align: 'center', width: 120},
+            {field: 'mj_gc_fyw', title: '密接-尚在医学观察-非医务人员', align: 'center', width: 120},
+            {field: 'mj_jc', title: '密接-当日解除', align: 'center', width: 120},
+            {field: 'mj_zd', title: '密接-当日诊断为疑似或确诊', align: 'center', width: 120},
+            {field: 'mj_lj', title: '密接-累计', align: 'center', width: 120},
+            {field: 'mj_qrjc', title: '密接-前日累计解除', align: 'center', width: 120},
+            {field: 'nowdate', title: '上次查询时间', align: 'center', width: 120},
 
             /*{
 

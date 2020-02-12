@@ -58,7 +58,7 @@
                 <div class="ibox-content">
                     <div class="row m-b-sm m-t-sm">
                         <div class="col-sm-1">
-                            <button class="btn btn-sm btn-white" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a href="/tofindall"> 刷新</a></button>
+                            <button class="btn btn-sm btn-white" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a href="/form/tz3"> 刷新</a></button>
                         </div>
                         <!--          <div class="col-sm-11" style="margin-bottom:10px;">
                                       <div class="input-group" style="width: 100%">
@@ -198,7 +198,9 @@
                         </div>
                         <div class="col-sm-12">
                             <!--<span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/touploadUser" style="color: white" target="_self"> 信息录入</a></button></span>-->
+<!--
                             <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export"   type="button"> 下载</button> </span>
+-->
 
                         </div>
                     </div>
@@ -224,7 +226,7 @@
     });
     //模态框
     $('#mytab').bootstrapTable({
-        url: 'findall',
+        url: '/form/form3',
         method: "GET",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -265,20 +267,20 @@
                     return index + 1;
                 }
             },
-            {field: 'name', title: '姓名', align: 'center', width: 80},
-            {field: 'number', title: '性别', align: 'center', width: 50},
-            {field: 'faren', title: '证件号码', align: 'center', width: 100},
-            {field: 'type', title: '病案号', align: 'center', width: 120},
-            {field: 'code', title: '联系电话', align: 'center', width: 120},
-            {field: 'people', title: '现住详细地址', align: 'center', width: 120},
-            {field: 'phone', title: '人群分类', align: 'center', width: 120},
-            {field: 'emailcode', title: '发病日期', align: 'center', width: 120},
-            {field: 'addre', title: '诊断时间', align: 'center', width: 120},
-            {field: 'email', title: '出院/死亡时间', align: 'center', width: 120},
-            {field: 'email', title: '报告单位', align: 'center', width: 120},
-            {field: 'email', title: '报告日期', align: 'center', width: 120},
-            {field: 'email', title: '做出诊断的医疗机构所在区县', align: 'center', width: 120},
-            {field: 'email', title: '是否为密切接触者发病', align: 'center', width: 120},
+            {field: 'xingming', title: '姓名', align: 'center', width: 80},
+            {field: 'sex', title: '性别', align: 'center', width: 50},
+            {field: 'sfzmhm', title: '证件号码', align: 'center', width: 100},
+            {field: 'binganhao', title: '病案号', align: 'center', width: 120},
+            {field: 'lxdh', title: '联系电话', align: 'center', width: 120},
+            {field: 'xxdz', title: '现住详细地址', align: 'center', width: 120},
+            {field: 'rqfl', title: '人群分类', align: 'center', width: 120},
+            {field: 'yq_fbrq', title: '发病日期', align: 'center', width: 120},
+            {field: 'yq_qzsj', title: '诊断时间', align: 'center', width: 120},
+            {field: 'yq_chuysj', title: '出院/死亡时间', align: 'center', width: 120},
+            {field: 'bgyljg', title: '报告单位', align: 'center', width: 120},
+            {field: 'bgsj', title: '报告日期', align: 'center', width: 120},
+            {field: 'szqx', title: '做出诊断的医疗机构所在区县', align: 'center', width: 120},
+            {field: 'sfmjry', title: '是否为密切接触者发病', align: 'center', width: 120},
 
             /*{
 
