@@ -97,6 +97,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >籍贯区域<span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="jgqy" class="form-control" name="jgqy" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
                                                             <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6">
@@ -276,14 +283,22 @@
         $("#mytab").bootstrapTable('refresh',opt);
     };
     function option2(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.binganhao+'\',\''+row.yq_sfmjfb+'\',\''+row.mjren+'\',\''+row.yq_sfzz+'\',\''+row.yq_sfwzz+'\')">详情' +
+        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.binganhao+'\',\''+row.yq_sfmjfb+'\',\''+row.mjren+'\',\''+row.yq_sfzz+'\',\''+row.yq_sfwzz+'\',\''+row.jiguansf+'\',\''+row.jiguandjs+'\',\''+row.jiguanxq+'\')">详情' +
             '</button>'
         return htm;
     };
     //模态框回显数据
-    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf,binganhao,yq_sfmjfb,mjren,yq_sfzz,yq_sfwzz) {
-        var xzqy = xzsf+xzdjs+xzxq;
-        $("#xzqy").val(xzqy);
+    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf,binganhao,yq_sfmjfb,mjren,yq_sfzz,yq_sfwzz,jiguansf,jiguandjs,jiguanxq) {
+        if (xzsf != ("undefined")&&xzsf != ("undefined")&&xzsf != ("undefined")) {
+            var xzqy = xzsf+xzdjs+xzxq;
+            $("#xzqy").val(xzqy);
+        }else
+            $("#xzqy").val("");
+        if (jiguansf != ("undefined")&&jiguandjs != ("undefined")&&jiguanxq != ("undefined")) {
+            var jgqy = jiguansf+jiguandjs+jiguanxq;
+            $("#jgqy").val(jgqy);
+        }else
+            $("#jgqy").val("");
         if (sfzmhm != ("undefined")) $("#sfzmhm").val(sfzmhm);
         else
             $("#sfzmhm").val("");

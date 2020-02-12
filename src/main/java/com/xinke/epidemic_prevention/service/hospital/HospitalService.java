@@ -189,7 +189,7 @@ public class HospitalService {
      * 功能描述：疑似病例信息修改
      */
     //修改密接人员信息
-    public boolean updateYs(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz) {
+    public boolean updateYs(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz,String jiguansf, String jiguandjs, String jiguanxq) {
         Person person = hospitalRepository.findBySfzmhm(sfzmhm);
         person.setXzsf(xzsf);
         person.setXzdjs(xzdjs);
@@ -207,6 +207,9 @@ public class HospitalService {
         person.setMjren(mjren);
         person.setYq_sfzz(yq_sfzz);
         person.setYq_sfwzz(yq_sfwzz);
+        person.setJiguansf(jiguansf);
+        person.setJiguandjs(jiguandjs);
+        person.setJiguanxq(jiguanxq);
         Person save = hospitalRepository.save(person);
         if (save != null) {
             return true;

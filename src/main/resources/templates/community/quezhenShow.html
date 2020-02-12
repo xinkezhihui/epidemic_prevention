@@ -86,6 +86,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3 label-align" >籍贯区域<span class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input id="jgqy" class="form-control" name="jgqy" placeholder="" required="required" readonly="readonly" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="item form-group">
                                                             <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
                                                             </label>
                                                             <div class="col-md-6 col-sm-6">
@@ -251,14 +258,22 @@
         ]
     });
     function option2(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.mjren+'\',\''+row.yq_sfmjfb+'\')">详情' +
+        var htm = '<button class="btn btn-sm btn-success"  onclick="detail(\''+row.sfzmhm +'\',\''+row.xzsf+'\',\''+row.xzdjs+'\',\''+row.xzxq+'\',\''+row.ssbsc+'\',\''+row.rqfl+'\',\''+row.xingming+'\',\''+row.lxdh+'\',\''+row.xxdz+'\',\''+row.yq_sfcwwh+'\',\''+row.yq_sfczqtsf+'\',\''+row.yq_zhumingsf+'\',\''+row.binganhao+'\',\''+row.yq_sfmjfb+'\',\''+row.mjren+'\',\''+row.yq_sfzz+'\',\''+row.yq_sfwzz+'\',\''+row.jiguansf+'\',\''+row.jiguandjs+'\',\''+row.jiguanxq+'\')">详情' +
             '</button>'
         return htm;
     };
     // 模态框获取信息
-    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf, mjren,yq_sfmjfb) {
-        var xzqy = xzsf+xzdjs+xzxq;
-        $("#xzqy").val(xzqy);
+    function detail(sfzmhm,xzsf,xzdjs,xzxq,ssbsc,rqfl,xingming,lxdh,xxdz,yq_sfcwwh,yq_sfczqtsf,yq_zhumingsf,binganhao,yq_sfmjfb,mjren,yq_sfzz,yq_sfwzz,jiguansf,jiguandjs,jiguanxq) {
+        if (xzsf != ("undefined")&&xzsf != ("undefined")&&xzsf != ("undefined")) {
+            var xzqy = xzsf+xzdjs+xzxq;
+            $("#xzqy").val(xzqy);
+        }else
+            $("#xzqy").val("");
+        if (jiguansf != ("undefined")&&jiguandjs != ("undefined")&&jiguanxq != ("undefined")) {
+            var jgqy = jiguansf+jiguandjs+jiguanxq;
+            $("#jgqy").val(jgqy);
+        }else
+            $("#jgqy").val("");
         if (sfzmhm != ("undefined")) $("#sfzmhm").val(sfzmhm);
         else
             $("#sfzmhm").val("");
@@ -304,6 +319,9 @@
         if (yq_zhumingsf!= ("undefined")) $("#yq_zhumingsf").val(yq_zhumingsf);
         else
             $("yq_zhumingsf").val("");
+        if (binganhao!= ("undefined")) $("#binganhao").val(binganhao);
+        else
+            $("#binganhao").val("");
         if (mjren!= ("undefined")) $("#mjren").val(mjren);
         else
             $("mjren").val("");
@@ -319,6 +337,30 @@
         }
         else
             $("#yq_sfmjfb").val("");
+        if (yq_sfzz!= ("undefined")) {
+            if (yq_sfzz == 0) {
+                $("#yq_sfzz1").prop("checked",true);
+                $("#yq_sfzz2").prop("checked",false);
+            }
+            if (yq_sfzz == 1) {
+                $("#yq_sfzz1").prop("checked",false);
+                $("#yq_sfzz2").prop("checked",true);
+            }
+        }
+        else
+            $("#yq_sfzz").val("");
+        if (yq_sfwzz!= ("undefined")) {
+            if (yq_sfwzz == 0) {
+                $("#yq_sfwzz1").prop("checked",true);
+                $("#yq_sfwzz2").prop("checked",false);
+            }
+            if (yq_sfwzz == 1) {
+                $("#yq_sfwzz1").prop("checked",false);
+                $("#yq_sfwzz2").prop("checked",true);
+            }
+        }
+        else
+            $("#yq_sfwzz").val("");
         //弹出修改模态框，非新增模态框
         $('#xqModal').modal('show')
     }

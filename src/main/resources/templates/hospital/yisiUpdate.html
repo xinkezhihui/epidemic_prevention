@@ -23,7 +23,7 @@
     <script charset="UTF-8" src="http://tajs.qq.com/stats?sId=9051096" type="text/javascript"></script>
     <!-- 省市区三级联动 -->
     <script type="text/javascript" src="/js/addr_update.js"></script>
-
+    <script type="text/javascript" src="../../static/assets/js/dz.js"></script>
     <!-- Font Awesome -->
     <link href="../../static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
@@ -63,27 +63,60 @@
                         <select class="select" name="town" id="s_county">
                             <option></option>
                         </select>
-                        <script type="text/javascript">
-                            // 改装后的初始化省市区的方法
-                            initAddress();
-                            // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
-                            set_addr($(xzsf).val(),$(xzdjs).val(),$(xzxq).val());
-                            function set_addr(province,city,county) {
-                                var $province=document.getElementById('s_province');
-                                // 设置值并模拟人为select下拉框的改变事件
-                                $province.onchange($province.value=province);
-                                if(city){
-                                    var $city=document.getElementById('s_city');
-                                    $city.onchange($city.value=city);
-                                }
-                                if(county){
-                                    var $town=document.getElementById('s_county');
-                                    $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
-                                }
-                            }
-                        </script>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" >籍贯区域<span class="required">*</span>
+                    </label>
+                    <input type="hidden" id="jiguansf" th:value="${person.jiguansf}">
+                    <input type="hidden" id="jiguandjs" th:value="${person.jiguandjs}">
+                    <input type="hidden" id="jiguanxq" th:value="${person.jiguanxq}">
+                    <div class="col-md-6 col-sm-6">
+                        <select class="select" name="province2" id="x_province">
+                            <option></option>
+                        </select>
+                        <select class="select" name="city2" id="x_city">
+                            <option></option>
+                        </select>
+                        <select class="select" name="town2" id="x_county">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    // 改装后的初始化省市区的方法
+                    initAddress();
+                    // 自定义一个可设置省市区方法示例,如果多个页面需要可封装成公共方法直接调用即可
+                    set_addr($(xzsf).val(),$(xzdjs).val(),$(xzxq).val());
+                    function set_addr(province,city,county) {
+                        var $province=document.getElementById('s_province');
+                        // 设置值并模拟人为select下拉框的改变事件
+                        $province.onchange($province.value=province);
+                        if(city){
+                            var $city=document.getElementById('s_city');
+                            $city.onchange($city.value=city);
+                        }
+                        if(county){
+                            var $town=document.getElementById('s_county');
+                            $town.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
+                        }
+                    }
+                    initDz();
+                    set_addr($(xzsf).val(),$(xzdjs).val(),$(xzxq).val());
+                    function set_addr2(province,city,county) {
+                        var $province2=document.getElementById('x_province');
+                        // 设置值并模拟人为select下拉框的改变事件
+                        $province2.onchange($province2.value=province);
+                        if(city){
+                            var $city2=document.getElementById('x_city');
+                            $city2.onchange($city2.value=city);
+                        }
+                        if(county){
+                            var $town2=document.getElementById('x_county');
+                            $town2.value=county; // 仅设置值即可,此处已不需要再模拟change改变事件了
+                        }
+                    }
+                </script>
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >所属办事处<span class="required">*</span>
                     </label>
@@ -340,6 +373,9 @@
         var xzsf = $('#s_province').val();
         var xzdjs = $('#s_city').val();
         var xzxq = $('#s_county').val();
+        var jiguansf = $('#x_province').val();
+        var jiguandjs = $('#x_city').val();
+        var jiguanxq = $('#x_county').val();
         var ssbsc = $('#ssbsc').val();
         var rqfl = $('#rqfl').val();
         var xingming = $('#xingming').val();
@@ -353,7 +389,7 @@
         var mjren = $('#mjren').val();
         var yq_sfzz= $("input[name='yq_sfzz']:checked").val();
         var yq_sfwzz= $("input[name='yq_sfwzz']:checked").val();
-        if(sfzmhm.length==0||xzsf.length==0||xzdjs.length==0||xzxq.length==0||ssbsc.length==0|| rqfl.length==0||xingming.length==0||lxdh.length==0||yq_sfcwwh==null||yq_sfczqtsf==null||binganhao.length==0||yq_sfmjfb==null||yq_sfzz==null||yq_sfwzz==null){
+        if(sfzmhm.length==0||xzsf.length==0||xzdjs.length==0||xzxq.length==0||jiguansf.length==0||jiguandjs.length==0||jiguanxq.length==0||ssbsc.length==0|| rqfl.length==0||xingming.length==0||lxdh.length==0||yq_sfcwwh==null||yq_sfczqtsf==null||binganhao.length==0||yq_sfmjfb==null||yq_sfzz==null||yq_sfwzz==null){
             if ( yq_sfcwwh==null||yq_sfczqtsf==null||yq_sfmjfb==null||yq_sfzz==null||yq_sfwzz==null){
                 confirm("选项必须选中");
             }
@@ -364,7 +400,7 @@
         else {
             $.ajax({
                 type: 'post',
-                data: {sfzmhm:sfzmhm,xzsf:xzsf,xzdjs:xzdjs,xzxq:xzxq,ssbsc:ssbsc,rqfl:rqfl,xingming:xingming,lxdh:lxdh,xxdz:xxdz,yq_sfcwwh:yq_sfcwwh,yq_sfczqtsf:yq_sfczqtsf,yq_zhumingsf:yq_zhumingsf,binganhao:binganhao,yq_sfmjfb:yq_sfmjfb,mjren:mjren,yq_sfzz:yq_sfzz,yq_sfwzz:yq_sfwzz},
+                data: {sfzmhm:sfzmhm,xzsf:xzsf,xzdjs:xzdjs,xzxq:xzxq,ssbsc:ssbsc,rqfl:rqfl,xingming:xingming,lxdh:lxdh,xxdz:xxdz,yq_sfcwwh:yq_sfcwwh,yq_sfczqtsf:yq_sfczqtsf,yq_zhumingsf:yq_zhumingsf,binganhao:binganhao,yq_sfmjfb:yq_sfmjfb,mjren:mjren,yq_sfzz:yq_sfzz,yq_sfwzz:yq_sfwzz,jiguansf:jiguansf,jiguandjs:jiguandjs,jiguanxq:jiguanxq},
                 url: '/hospital/updateYs',
                 dataType: "json",        //返回数据形式为json
                 success: function (result) {

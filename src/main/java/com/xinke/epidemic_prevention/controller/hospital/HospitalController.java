@@ -99,8 +99,8 @@ public class HospitalController {
     }
     @ResponseBody
     @PostMapping("updateYs")
-    public String updateMj(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz){
-        boolean bl =  hospitalService.updateYs(sfzmhm, xzsf, xzdjs, xzxq, ssbsc, rqfl, xingming, lxdh, xxdz, yq_sfcwwh, yq_sfczqtsf, yq_zhumingsf, binganhao, yq_sfmjfb, mjren, yq_sfzz, yq_sfwzz);
+    public String updateMj(String sfzmhm, String xzsf, String xzdjs, String xzxq, String ssbsc, String rqfl, String xingming, String lxdh, String xxdz, Integer yq_sfcwwh, Integer yq_sfczqtsf, String yq_zhumingsf,String binganhao, Integer yq_sfmjfb, String mjren, Integer yq_sfzz,Integer yq_sfwzz,String jiguansf, String jiguandjs, String jiguanxq){
+        boolean bl =  hospitalService.updateYs(sfzmhm, xzsf, xzdjs, xzxq, ssbsc, rqfl, xingming, lxdh, xxdz, yq_sfcwwh, yq_sfczqtsf, yq_zhumingsf, binganhao, yq_sfmjfb, mjren, yq_sfzz, yq_sfwzz,jiguansf,jiguandjs,jiguanxq);
         if (bl) {
             return "200";
         }else {
