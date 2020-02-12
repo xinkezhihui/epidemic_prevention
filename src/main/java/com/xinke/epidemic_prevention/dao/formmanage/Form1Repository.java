@@ -12,6 +12,6 @@ public interface Form1Repository extends JpaRepository<Person,Integer>, JpaSpeci
     //查询0-12时疑似——当日新增
    /* @Modifying
     @Transactional
-    @Query(value = "select count(*) from yq_bldjb where yq_yszdrq>? 00:00:00 and yq_yszdrq<? 12:00:00 and 1",nativeQuery=true)
+    @Query(value = "select count(*) from yq_bldjb where yq_yszdrq>?1"+" 00:00:00 and yq_yszdrq<?1"+" 12:00:00 and xzzq=''",nativeQuery=true)
     public int ysxz(String date);*/
 }

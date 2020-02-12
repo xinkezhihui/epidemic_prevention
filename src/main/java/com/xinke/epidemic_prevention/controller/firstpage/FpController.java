@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("fp")
@@ -15,7 +18,11 @@ public class FpController {
     @Autowired
     FpRepository fpRepository;
 
+    @GetMapping("tz")
+    public String tz(){return "Main_sj";}
+
     @GetMapping("tofp")
+
     public String tofp(Model model){
         DateUtil dateUtil = new DateUtil();
         String date = dateUtil.getDate();
@@ -40,5 +47,12 @@ public class FpController {
         model.addAttribute("ljmjNum",ljmjNum);
 
         return "Main_sj";
+    }
+    @GetMapping("echar")
+    @ResponseBody
+    public List<Integer> re(){
+        List<Integer> list = fpRepository.Weekqz();
+
+        return list;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface FpRepository extends JpaRepository<User,Integer>, JpaSpecificationExecutor<Person> {
     //当日新增疑似
@@ -30,4 +31,15 @@ public interface FpRepository extends JpaRepository<User,Integer>, JpaSpecificat
     //累计密接病例
     @Query(value = "SELECT  COUNT(*) from yq_bldjb where  yq_sfmjfb=1 and xzxq='泰山区' ",nativeQuery=true)
     public int ljmj();
+    /**
+     * @author: 刘文文
+     * 功能描述：查看近一周确诊数量
+     */
+
+    @Query(value = "SELECT  COUNT(*)as qznum, DATE_FORMAT(yq_qzsj,'%m%d') as riqi from yq_bldjb where  \n" +
+            "yq_sfqz=1 and xzxq='泰山区' and yq_qzsj >date_add(now(), interval -7 Day) group by yq_qzsj",nativeQuery=true)
+    public List<Integer> Weekqz();
+    //累计治愈
+    @Query(value = "SELECT  COUNT(*) from yq_bldjb where  yq_sfcy=1 and xzxq='泰山区' ",nativeQuery=true)
+    public int ljzy();
 }

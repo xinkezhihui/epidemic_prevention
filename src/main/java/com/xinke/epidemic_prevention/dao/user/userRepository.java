@@ -31,5 +31,4 @@ public interface userRepository extends JpaRepository<User,Integer> {
 
 
 
-
 }

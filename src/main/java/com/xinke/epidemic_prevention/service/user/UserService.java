@@ -65,4 +65,22 @@ public class UserService {
         }
         return re;
     }
+    /*//更新个人信息
+    public void updatePersonal(User user){
+        User people1 = UserService.findByNumber(user.getNumber());
+        people1.setName(people.getName());
+        people1.setNumber(people.getNumber());
+        people1.setFaren(people.getFaren());
+        people1.setType(people.getType());
+        people1.setCode(people.getCode());
+        people1.setPeople(people.getPeople());
+        people1.setPhone(people.getPhone());
+        people1.setEmailcode(people.getEmailcode());
+        people1.setAddre(people.getAddre());
+        people1.setEmail(people.getEmail());
+        // people1.setScore(people.getScore());
+        //people1.setWaterNum(people.getWaterNum());
+        peopleRepository.save(people1);
+
+    }*/
 }

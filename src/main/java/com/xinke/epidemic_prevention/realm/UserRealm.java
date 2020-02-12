@@ -3,8 +3,10 @@ package com.xinke.epidemic_prevention.realm;
 
 import com.xinke.epidemic_prevention.bean.user.User;
 import com.xinke.epidemic_prevention.dao.user.userRepository;
+import com.xinke.epidemic_prevention.service.util.MD5;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -23,6 +25,8 @@ public class UserRealm extends AuthorizingRealm{
     /**
      * 执行授权逻辑
      */
+
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
         System.out.println("执行授权逻辑");
@@ -43,15 +47,20 @@ public class UserRealm extends AuthorizingRealm{
         System.out.println("执行认证逻辑");
         //1.判断用户名
         UsernamePasswordToken token  =  (UsernamePasswordToken)authenticationToken;
-       // System.out.println(token.getUsername());
+
         User user = ur.findByNumber(token.getUsername());
-       // System.out.println(user);
+
         if(user==null){
             return  null;
             //shiro底层抛出unknown
         }
         //判断密码
+        MD5 md5 = new MD5();
+        String pwd = String.valueOf(token.getPassword());
+        String recode = md5.md5(pwd);
+        System.out.println(recode+pwd);
         return new SimpleAuthenticationInfo(user,user.getPassword(),"");
+
 
     }
 }

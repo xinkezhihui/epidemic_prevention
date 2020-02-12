@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.xinke.epidemic_prevention.bean.user.User;
 import com.xinke.epidemic_prevention.dao.user.userRepository;
 import com.xinke.epidemic_prevention.service.user.UserService;
+import com.xinke.epidemic_prevention.service.util.MD5;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -12,10 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -48,10 +46,12 @@ public class UserController{
         //1.获取Subject
 
         Subject subject = SecurityUtils.getSubject();
-
+        //md5加密
+        MD5 md5 = new MD5();
+        String recode = md5.md5(password);
 
         //2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(number,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(number,recode);
 
        /* *//*获取全部未读消息*//*System.out.println(number);
         if(number!=""&&userService.findByNumber(number)!=null){
@@ -102,7 +102,9 @@ public class UserController{
         boolean re = userService.userExist(user.getNumber());
 
         if (re){
-            user.setPassword("123456");
+            MD5 md5 = new MD5();
+            String recode = md5.md5("123456");
+            user.setPassword(recode);
             userRepository.save(user);
             model.addAttribute("msg","添加成功");
            /* *//*lwq:添加未读消息表记录************************************//*
@@ -126,6 +128,37 @@ public class UserController{
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return "login";
+    }
+    @GetMapping("/repwd/{number}/{tz}")
+    public String repwd(@PathVariable("number") String number, @PathVariable("tz") Integer tz){
+        User user = userService.findByNumber(number);
+        user.setPassword("123456");
+        userRepository.save(user);
+        if(tz==1){return "redirect:/user/tofindall";}
+        else{return "redirect:/user/tofindall";}
+
+    }
+    //删除用户
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id){
+
+        User user = userRepository.findById(id).get();
+
+
+        userRepository.deleteById(id);
+        return "redirect:/user/tofindall";
+    }
+    //查看个人信息
+    @GetMapping("/personalInfo")
+    public String personalInfo(Model model){
+        // System.out.println("1111111");
+        User user1 = (User) SecurityUtils.getSubject().getPrincipal();
+
+        User user = userRepository.findByNumber(user1.getNumber());
+        model.addAttribute("user",user);
+
+
+        return "/users/personalInfo";
     }
 
 }

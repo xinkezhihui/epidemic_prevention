@@ -54,7 +54,7 @@
 				</li>
 				<!--meta-->
 				<li>
-					<a href="#" shiro:hasPermission="admin">
+					<a href="#" shiro:hasPermission="user">
 						<i class="fa fa fa-bar-chart-o"></i>
 						<span class="nav-label">社区</span>
 						<span class="fa arrow"></span>
@@ -73,6 +73,11 @@
 					</ul>
 				</li>
 				<li>
+					<a href="#" shiro:hasPermission="user">
+						<i class="fa fa fa-bar-chart-o"></i>
+						<span class="nav-label">医院</span>
+						<span class="fa arrow"></span>
+					</a>
 					<a href="#" shiro:hasPermission="super">
 						<i class="fa fa fa-bar-chart-o"></i>
 						<span class="nav-label">医院</span>
@@ -151,11 +156,11 @@
 					</a>
 					<ul class="nav nav-second-level">
 
-						<li shiro:hasPermission="admin">
+						<li shiro:hasPermission="super">
 							<a class="J_menuItem" href="/user/tofindall">用户信息管理</a>
 						</li>
 						<li shiro:hasPermission="super">
-							<a class="J_menuItem" href="/user/tofindall">用户信息管理</a>
+							<a class="J_menuItem" href="/user/personalInfo">个人信息</a>
 						</li>
 
 						<!--<li>

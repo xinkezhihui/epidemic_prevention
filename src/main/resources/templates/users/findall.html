@@ -257,10 +257,10 @@
 
 
     })
-    //带参数的修改删除按钮
+    //带参数的修改删除按钮<button class="btn btn-sm btn-success" id="dupUser" onclick="updUser(\''
+   // + row.id + '\',\'' + row.number+ '\',\'' + row.realname+ '\',\'' + row.position+ '\',\'' + row.phone+ '\',\'' + row.power+ '\')">修改</button>
     function option(value, row, index) {
-        var htm = '<button class="btn btn-sm btn-success" id="dupUser" onclick="updUser(\''
-            + row.id + '\',\'' + row.number+ '\',\'' + row.realname+ '\',\'' + row.position+ '\',\'' + row.phone+ '\',\'' + row.power+ '\')">修改</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.id+'\')">删除</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="repwd(\''+row.number+'\')">重置密码</button>'
+        var htm = '<button class="btn btn-sm btn-danger" id="del" onclick="del(\''+row.id+'\')">删除</button>&nbsp;<button class="btn btn-sm btn-danger" id="del" onclick="repwd(\''+row.number+'\')">重置密码</button>'
         return htm;
     };
     //删除提示

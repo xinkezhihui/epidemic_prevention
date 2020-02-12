@@ -53,13 +53,14 @@ public class User {
         this.phone = phone;
         this.workspace = workspace;
     }
-    public User(Integer id, String number, String realname, String position, String phone, String power){
+    public User(Integer id, String number, String realname, String position, String phone, String power,String workspace){
         this.id = id;
         this.number = number;
         this.realname = realname;
         this.position = position;
         this.phone = phone;
         this.power = power;
+        this.workspace = workspace;
     }
 
     public User(Integer id) {
