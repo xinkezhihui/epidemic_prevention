@@ -40,6 +40,9 @@ public class QzService {
     public boolean qzDeath(String sfzmhm){
         Person person = qzRepository.findBySfzmhm(sfzmhm);
         if(person!=null){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String swsj = df.format(new Date());
+            person.setSwsj(swsj);
             person.setYq_sfsw(1);
             person.setYq_sfqz(0);
             qzRepository.flush();

@@ -145,6 +145,8 @@ public class Person {
     private String ys_userID;
     //疑似提交状态
     private Integer ystj;
+    //死亡时间
+    private String swsj;
 
     @Override
     public String toString() {
@@ -212,6 +214,7 @@ public class Person {
                 ", qz_userID='" + qz_userID + '\'' +
                 ", ys_userID='" + ys_userID + '\'' +
                 ", ystj=" + ystj +
+                ", swsj='" + swsj + '\'' +
                 '}';
     }
 
@@ -264,6 +267,14 @@ public class Person {
         this.yq_yszdrq = yq_yszdrq;
     }
     public Person() {
+    }
+
+    public String getSwsj() {
+        return swsj;
+    }
+
+    public void setSwsj(String swsj) {
+        this.swsj = swsj;
     }
 
     public String getSfzmhm() {
