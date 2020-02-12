@@ -18,6 +18,9 @@ public interface QzRepository extends JpaRepository<Person,Integer>, JpaSpecific
     @Query(value = "select * from yq_bldjb where yq_sfqz = 1 and qztj = 1",nativeQuery=true)
     public List<Person> findAllYtjQueZhen();
     //查询所有未提交确诊人员
-    @Query(value = "select * from yq_bldjb where yq_sfqz = 1 and qztj = 0",nativeQuery=true)
+    @Query(value = "select * from yq_bldjb where yq_sfqz = 1 and qztj = 0 ",nativeQuery=true)
     public List<Person> findAllWtjQueZhen();
+
+    //根据sfzmhm查询某一病例
+    public Person findBySfzmhm(String sfzmhm);
 }
