@@ -68,9 +68,9 @@
                                 <div class="col-sm-3">
                                     <input class="input-sm-2 form-control" id="number2" name="number2" placeholder="账号" type="text">
                                 </div>
-                                <div class="col-sm-3">
+                                <!--<div class="col-sm-3">
                                     <input class="form-control layer-date" id="position2" name="position2" placeholder=""   stype="text">
-                                </div>
+                                </div>-->
 
                                 <!--                                input-group-btn-->
                                 <span class="col-sm-1"><button class="btn btn-sm btn-primary" onclick="check()"  type="button"> 搜索</button> </span>
@@ -370,11 +370,11 @@
 
         var number = $('#number2').val();
 
-        var position = $('#position2').val();
+      //  var position = $('#position2').val();
         var opt = {
             url: "/user/check", //重新请求的链接
             method:'GET',
-            query: {number:number,position:position}//传到后台的参数
+            query: {number:number}//传到后台的参数
 
         };
         $("#mytab").bootstrapTable('refresh',opt);

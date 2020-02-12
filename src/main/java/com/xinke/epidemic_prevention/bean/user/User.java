@@ -62,6 +62,16 @@ public class User {
         this.power = power;
         this.workspace = workspace;
     }
+    public User( String realname,String number,  String position, String phone, String workspace){
+
+        this.number = number;
+        this.realname = realname;
+        this.position = position;
+        this.phone = phone;
+
+        this.workspace = workspace;
+    }
+
 
     public User(Integer id) {
         this.id = id;

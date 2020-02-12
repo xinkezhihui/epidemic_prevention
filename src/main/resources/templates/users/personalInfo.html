@@ -38,7 +38,7 @@
     <div class="ibox float-e-margins" style="width: 1000px; margin: auto">
         <div class="ibox-title">
             <h5 style="float: left">个人信息</h5>
-            <button id="ss" type="submit" class="btn btn-success" style="width: 10%;letter-spacing: 6px;float: right;margin-top: -10px;" onclick="tc('001')">修改密码</button>
+            <button id="ss" type="submit" class="btn btn-success" style="width: 10%;letter-spacing: 6px;float: right;margin-top: -10px;" onclick="tc()">修改密码</button>
         </div>
 
         <div>
@@ -60,7 +60,7 @@
                                 <input id="id1" name="id1" type="hidden">
                                 <div class="form-group" style="display: none;">
 
-                                    <label class="col-sm-2 control-label">用户名：</label>
+                                    <label class="col-sm-2 control-label">账号：</label>
                                     <div class="col-sm-4">
                                         <input class="form-control" id="number1" name="number1" type="text" >
 
@@ -111,7 +111,7 @@
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="realname">姓名:
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="realname" class="form-control"name="realname" placeholder="" required="required" type="text" readonly="readonly" th:value="${user.realname}">
+                        <input id="realname" class="form-control"name="realname" placeholder="" required="required" type="text"  th:value="${user.realname}">
                     </div>
                 </div>
 
@@ -126,14 +126,14 @@
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="position">职位:
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="position" class="form-control"  name="position" placeholder="职位" required="required" type="text" readonly="readonly" th:value="${user.position}">
+                        <input id="position" class="form-control"  name="position" placeholder="职位" required="required" type="text"  th:value="${user.position}">
                     </div>
                 </div>
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="phone">联系方式:
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <input id="phone" class="form-control" name="phone" placeholder="联系方式" required="required" type="text" readonly="readonly" th:value="${user.phone}">
+                        <input id="phone" class="form-control" name="phone" placeholder="联系方式" required="required" type="text"  th:value="${user.phone}">
                     </div>
                 </div>
                 <div class="item form-group">
@@ -177,8 +177,8 @@
         }
     });
     // 触发模态框
-    function tc(number) {
-
+    function tc() {
+        var number = $("#number").val();
         if (number != ("undefined")) $("#number1").val(number);
         else
             $("#number1").val("");

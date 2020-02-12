@@ -129,10 +129,13 @@ public class UserController{
         subject.logout();
         return "login";
     }
+    //重置密码
     @GetMapping("/repwd/{number}/{tz}")
     public String repwd(@PathVariable("number") String number, @PathVariable("tz") Integer tz){
         User user = userService.findByNumber(number);
-        user.setPassword("123456");
+        MD5 md5 = new MD5();
+        String recode = md5.md5("123456");
+        user.setPassword(recode);
         userRepository.save(user);
         if(tz==1){return "redirect:/user/tofindall";}
         else{return "redirect:/user/tofindall";}
@@ -159,6 +162,37 @@ public class UserController{
 
 
         return "/users/personalInfo";
+    }
+    //修改个人信息
+    @PostMapping("/savePersonal")
+    public String savePersonal(String realname,String number,String position,String phone,String workspace){
+        User user = new User(realname,number,position,phone,workspace);
+        userService.updatePersonal(user);
+        return "redirect:/user/personalInfo";
+    }
+    //修改个人密码
+    @ResponseBody
+    @PostMapping("/repwd")
+    public String repwd(String number,String password){
+        System.out.println(number);
+        User user = userRepository.findByNumber(number);
+        MD5 md5 = new MD5();
+        String recode = md5.md5(password);
+        user.setPassword(recode);
+        userRepository.save(user);
+        return "200";
+    }
+    //组合查询
+    @GetMapping("/check")
+    @ResponseBody
+    public String check(String number){
+        List<User>  userList = userService.selectCheck(number);
+        Gson gson = new Gson();
+        String result = "";
+        if (userList!=null&&userList.size()!=0){
+            result = gson.toJson(userList);
+        }
+        return result;
     }
 
 }

@@ -13,8 +13,11 @@ import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
-    com.xinke.epidemic_prevention.dao.user.userRepository userRepository;
+    UserService userService;
+    @Autowired
+    userRepository userRepository;
     //使用number查询单条数据
     public User findByNumber(String number){
         User user = userRepository.findByNumber(number);
@@ -27,7 +30,7 @@ public class UserService {
         return allByPowerEquals;
     }
     //组合查询
-    public List<User> selectCheck(String number,String position){
+    public List<User> selectCheck(String number){
         List<User> userList=new ArrayList<User>();
         //jpa多条件多表查询，灵活 创建查询语句
         Specification<User> specification=new Specification<User>() {
@@ -40,11 +43,7 @@ public class UserService {
                     predicates.add(criteriaBuilder.like(exp1, "%" + number + "%"));
 
                 }
-                if (position != null && position != "") {
-                    Path exp1 = root.get("position");
-                    predicates.add(criteriaBuilder.like(exp1, "%" + position + "%"));
 
-                }
 
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
@@ -65,22 +64,19 @@ public class UserService {
         }
         return re;
     }
-    /*//更新个人信息
+    //更新个人信息
     public void updatePersonal(User user){
-        User people1 = UserService.findByNumber(user.getNumber());
-        people1.setName(people.getName());
-        people1.setNumber(people.getNumber());
-        people1.setFaren(people.getFaren());
-        people1.setType(people.getType());
-        people1.setCode(people.getCode());
-        people1.setPeople(people.getPeople());
-        people1.setPhone(people.getPhone());
-        people1.setEmailcode(people.getEmailcode());
-        people1.setAddre(people.getAddre());
-        people1.setEmail(people.getEmail());
-        // people1.setScore(people.getScore());
-        //people1.setWaterNum(people.getWaterNum());
-        peopleRepository.save(people1);
+        System.out.println(user.getNumber());
+        User user1 = userService.findByNumber(user.getNumber());
+        System.out.println(user1);
+        user1.setRealname(user.getRealname());
+        user1.setNumber(user.getNumber());
+        user1.setPosition(user.getPosition());
+        user1.setPhone(user.getPhone());
+        user1.setWorkspace(user.getWorkspace());
+        userRepository.save(user1);
 
-    }*/
+    }
+
+
 }
