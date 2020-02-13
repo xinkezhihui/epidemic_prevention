@@ -220,28 +220,13 @@
 							<li class="divider"></li>
 							<li>
 								<div class="text-center link-block">
-									<a class="J_menuItem noticeA1" th:if="${count1!=0}" >
-										<strong class="notice1">查看确权<span th:text="${count1}"></span>未读 </strong>
+									<a class="J_menuItem noticeA1" th:if="${allCount!=0}" >
+										<strong class="notice1">查看公告<span th:text="${allCount}"></span>未读 </strong>
 										<i class="fa fa-angle-right"></i>
 									</a>
 								</div>
 							</li>
-							<li>
-								<div class="text-center link-block">
-									<a class="J_menuItem noticeA2" th:if="${count2!=0}" >
-										<strong class="notice2">查看交易<span th:text="${count2}"></span>未读 </strong>
-										<i class="fa fa-angle-right"></i>
-									</a>
-								</div>
-							</li>
-							<li>
-								<div class="text-center link-block">
-									<a class="J_menuItem noticeA3" th:if="${count3!=0}" >
-										<strong class="notice3">查看政策<span th:text="${count3}"></span>未读 </strong>
-										<i class="fa fa-angle-right"></i>
-									</a>
-								</div>
-							</li>
+
 						</ul>
 					</li>
 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>公告展示crud</title>
+
+    <link href="favicon.ico" rel="shortcut icon"> <link href="/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="/static/css/animate.min.css" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="/static/css/bootstrap-table.css" rel="stylesheet" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap-table.js"></script>
+    <!--汉化文件，放在 bootstrap-table.js 后面-->
+    <script src="/static/js/bootstrap-table-zh-CN.js"></script>
+    <script src="/static/js/plugins/layer/laydate/laydate.js"></script>
+
+    <!--lwq添加-->
+    <link href="/static/css/notice/crud.css" rel="stylesheet" type="text/css">
+
+</head>
+<body class="gray-bg">
+<!--提示信息-->
+<input id="notice_msg" type="hidden" th:value="${n_msg}" >
+<script>
+    $(function () {
+        if($("#notice_msg").val()=='1'){
+            $("#notice_msg").click(
+                alert("成功！")
+            );
+        }
+    })
+</script>
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- page content -->
+            <div class="ibox">
+                <div class="ibox-title">
+                    <!--<h5 th:if="${notice_type}==1">确权模块</h5>
+                    <h5 th:if="${notice_type}==2">交易模块</h5>
+                    <h5 th:if="${notice_type}==3">政策法规</h5>-->
+                    <h5>政策法规</h5>
+                    <h5 style="padding-left: 10%" ></h5>
+                    <span id="unread_span" class="label label-primary"></span>条未读消息条数！<font style="color: red">(标红为未读消息)</font>
+                    <!--记录未读数目-->
+                    <input id="unread_count" type="hidden" th:value="${count}">
+                    <script>
+                        $("#unread_span").html($("#unread_count").val());
+                    </script>
+                    <!--添加按钮-->
+                    <div class="ibox-tools" shiro:hasPermission="super"><!--如果是管理员的话-->
+                        <a href="/notice/toAdd">
+                            <button type="button" class="btn btn-sm btn-primary">添加</button>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-b-sm m-t-sm">
+                        <div class="col-sm-1" style="margin-top: -15px;margin-bottom:10px;">
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a th:href="@{/notice/show(notice_type=${notice_type},n_msg=${n_msg})}"> 刷新</a></button>
+                        </div>
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+                <!-- Start to do list -->
+                        <div class="col-md-12 col-sm-12 " style="margin-bottom:10px;">
+                            <div class="x_panel">
+                                <!--内容-->
+                                <div class="x_content" style="height: 400px;overflow: scroll;overflow-y:visible;overflow-x:visible;">
+                                    <p class="">
+                                    <ul style="padding:0;">
+                                        <!--头部-->
+                                        <li class="notice_top_li" >
+                                            <div class="notice_top_div">
+                                                <div class="notice_topTest notice_topWidth1">
+                                                    <h4 th:text="  题目"></h4>
+                                                </div>
+                                                <div class="notice_topLine"></div>
+                                                <div class="notice_topTest notice_topWidth2">
+                                                    <h4 th:text="发布日期"></h4>
+                                                </div>
+                                                <div class="notice_topLine"></div>
+                                            </div>
+                                            <div></div>
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    <!--查询结果——未读------------------------------------------------------------------------------------------------------->
+                                    <li th:each="lists1:${unreadNoticeLists}" >
+                                        <div class="notice_content" style='background:#ffdeed;' >
+                                            <div class="notice_top_div">
+                                                <a  th:href="@{/notice/browse(notice_id=${lists1.getId()})} "><!--传当前id-->
+                                                    <div class="notice_topTest notice_topWidth1" >
+                                                        <h4 th:text="${lists1.getNotice_Title()}"></h4>
+                                                    </div>
+                                                    <div class="notice_topLine" ></div><!--分隔-->
+                                                    <div class="notice_topTest notice_topWidth2" >
+                                                        <h4 th:text="${lists1.getNotice_Time()}"></h4>
+                                                    </div>
+                                                    <div class="notice_topLine" ></div><!--分隔-->
+                                                </a>
+                                                <!--修改删除按钮-->
+                                                <div style="float:right;" shiro:hasPermission="super"><!--如果是管理员的话-->
+                                                    <a th:href="@{/notice/toEdit(notice_id=${lists1.getId()})}">
+                                                        <button type="button" class="btn btn-sm btn-success">修改</button>
+                                                    </a>
+                                                    <a th:href="@{/notice/delete(notice_id=${lists1.getId()})}" onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                                                        <button type="button" class="btn btn-sm btn-danger" >删除</button>
+                                                    </a>
+                                                </div>
+                                                <div style="float:right;" shiro:hasPermission="admin"><!--如果是管理员的话-->
+                                                    <a th:href="@{/notice/toEdit(notice_id=${lists1.getId()})}">
+                                                        <button type="button" class="btn btn-sm btn-success">修改</button>
+                                                    </a>
+                                                    <a th:href="@{/notice/delete(notice_id=${lists1.getId()})}" onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                                                        <button type="button" class="btn btn-sm btn-danger" >删除</button>
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!--查询结果——已读------------------------------------------------------------------------------------------------------->
+                                    <li th:each="lists2:${readNoticeLists}" >
+                                        <div class="notice_content" style='background:#f3f3f3;' >
+                                            <div class="notice_top_div">
+                                                <a  th:href="@{/notice/browse(notice_id=${lists2.getId()})} "><!--传当前id-->
+                                                    <div class="notice_topTest notice_topWidth1" >
+                                                        <h4 th:text="${lists2.getNotice_Title()}"></h4>
+                                                    </div>
+                                                    <div class="notice_topLine" ></div><!--分隔-->
+                                                    <div class="notice_topTest notice_topWidth2" >
+                                                        <h4 th:text="${lists2.getNotice_Time()}"></h4>
+                                                    </div>
+                                                    <div class="notice_topLine" ></div><!--分隔-->
+                                                </a>
+                                                <!--修改删除按钮-->
+                                                <di style="float:right;" shiro:hasPermission="super"><!--如果是管理员的话-->
+                                                    <a th:href="@{/notice/toEdit(notice_id=${lists2.getId()})}">
+                                                        <button type="button" class="btn btn-sm btn-success">修改</button>
+                                                    </a>
+                                                    <a th:href="@{/notice/delete(notice_id=${lists2.getId()})} " onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                                                        <button type="button" class="btn btn-sm btn-danger" >删除</button>
+                                                    </a>
+                                                </di>
+                                                <div style="float:right;" shiro:hasPermission="admin"><!--如果是管理员的话-->
+                                                    <a th:href="@{/notice/toEdit(notice_id=${lists2.getId()})}">
+                                                        <button type="button" class="btn btn-sm btn-success">修改</button>
+                                                    </a>
+                                                    <a th:href="@{/notice/delete(notice_id=${lists2.getId()})} " onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                                                        <button type="button" class="btn btn-sm btn-danger" >删除</button>
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- End to do list -->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+    </div>
+</div>
+
+</body>
+</html>

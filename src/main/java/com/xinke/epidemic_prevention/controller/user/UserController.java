@@ -1,8 +1,10 @@
 package com.xinke.epidemic_prevention.controller.user;
 
 import com.google.gson.Gson;
+import com.xinke.epidemic_prevention.bean.notice.IfRead;
 import com.xinke.epidemic_prevention.bean.user.User;
 import com.xinke.epidemic_prevention.dao.user.userRepository;
+import com.xinke.epidemic_prevention.service.notice.IfReadService;
 import com.xinke.epidemic_prevention.service.user.UserService;
 import com.xinke.epidemic_prevention.service.util.MD5;
 import org.apache.shiro.SecurityUtils;
@@ -31,6 +33,8 @@ public class UserController{
     userRepository userRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    IfReadService ifReadService;
 
 
     @GetMapping("tz")
@@ -53,15 +57,11 @@ public class UserController{
         //2.封装用户数据
         UsernamePasswordToken token = new UsernamePasswordToken(number,recode);
 
-       /* *//*获取全部未读消息*//*System.out.println(number);
+        /* *//*获取全部未读消息*/System.out.println(number);
         if(number!=""&&userService.findByNumber(number)!=null){
             IfRead ifRead = ifReadService.queryById(number);
-            model.addAttribute("count1",ifReadService.getCount(ifRead,1));
-            model.addAttribute("count2",ifReadService.getCount(ifRead,2));
-            model.addAttribute("count3",ifReadService.getCount(ifRead,3));
             model.addAttribute("allCount",ifReadService.getAllCount(ifRead));
         }
-*/
         //3.执行登录方法
         try {
             subject.login(token);
@@ -107,12 +107,12 @@ public class UserController{
             user.setPassword(recode);
             userRepository.save(user);
             model.addAttribute("msg","添加成功");
-           /* *//*lwq:添加未读消息表记录************************************//*
+            /*lwq:添加未读消息表记录************************************/
             IfRead ifRead = new IfRead();
             ifRead.setUserNumber(user.getNumber());//user的number
             String str = ifReadService.setString();
             ifRead.setNoticeInfo(str);
-            ifReadService.registerInfo(ifRead);*/
+            ifReadService.registerInfo(ifRead);
         }else {
             model.addAttribute("msg","该账号已存在");
         }
@@ -145,8 +145,9 @@ public class UserController{
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id){
 
+        /*lwq:删除未读消息表记录（先写才有记录！）**********************/
         User user = userRepository.findById(id).get();
-
+        ifReadService.deleteById(user.getNumber());
 
         userRepository.deleteById(id);
         return "redirect:/user/tofindall";

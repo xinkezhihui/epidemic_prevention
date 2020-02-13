@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>内容浏览content</title>
+
+    <link href="favicon.ico" rel="shortcut icon"> <link href="/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="/static/css/animate.min.css" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="/static/css/bootstrap-table.css" rel="stylesheet" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap-table.js"></script>
+    <!--汉化文件，放在 bootstrap-table.js 后面-->
+    <script src="/static/js/bootstrap-table-zh-CN.js"></script>
+    <script src="/static/js/plugins/layer/laydate/laydate.js"></script>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+        <!-- page content -->
+            <div class="ibox">
+                <div class="ibox-title" >
+                    <div style="float: left;">
+                        <a style="float: left;" th:href="@{/notice/show(n_msg=0)}">
+                            <button type="button" class="btn btn-sm btn-secondary">返回</button> </a>
+                    </div>
+                    <div style="float: left;">
+                        <h5>&nbsp;内容浏览&nbsp;&nbsp;</h5>
+                        <!--<h5><small>类型:
+                            <span th:if="${noticeListById.getType()}==1">确权模块</span>
+                            <span th:if="${noticeListById.getType()}==2">交易模块</span>
+                            <span th:if="${noticeListById.getType()}==3">政策法规</span>
+                        </small></h5>-->
+                    </div>
+                    <h5 style="padding-left: 50px" ></h5>
+
+                    <!--修改删除按钮（管理员）start-->
+                    <div class="ibox-tools" shiro:hasPermission="super"><!--如果是管理员的话-->
+                        <a th:href="@{/notice/toEdit(notice_id=${noticeListById.getId()})} ">
+                            <button type="button" class="btn btn-sm btn-success">修改</button>
+                        </a>
+                        <a th:href="@{/notice/delete(notice_id=${noticeListById.getId()})} " onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                            <button type="button" class="btn btn-sm btn-danger">删除</button>
+                        </a>
+                    </div>
+                    <div class="ibox-tools" shiro:hasPermission="admin"><!--如果是管理员的话-->
+                        <a th:href="@{/notice/toEdit(notice_id=${noticeListById.getId()})} ">
+                            <button type="button" class="btn btn-sm btn-success">修改</button>
+                        </a>
+                        <a th:href="@{/notice/delete(notice_id=${noticeListById.getId()})} " onclick="return confirm('确实要删除吗？');"><!--传当前id-->
+                            <button type="button" class="btn btn-sm btn-danger">删除</button>
+                        </a>
+                    </div>
+                    <!--修改删除按钮end-->
+                    <div class="clearfix"></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row m-b-sm m-t-sm">
+                        <div class="col-sm-1" style="margin-top: -15px;margin-bottom:10px;">
+                            <button class="btn btn-white btn-sm" id="loading-example-btn" type="button"><i class="fa fa-refresh"></i> <a th:href="@{/notice/browse(notice_id=${noticeListById.getId()})}"> 刷新</a></button>
+                        </div>
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+                <!-- Start to do content -->
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <!--内容-->
+                                <div class="x_content">
+                                    <p class="">
+                                        <div>
+                                            <!--文章标题-->
+                                            <h1 style="text-align: center" th:text="${noticeListById.getNotice_Title()}" ></h1>
+                                            <ul style="padding:0;">
+                                                <li style="background:#f3f3f3;border-radius:3px;padding:7px;margin-bottom:5px;list-style:none;">
+                                                    <div style="width: auto;height: auto;">
+                                                        <h4 style="text-align: center">
+                                                            <!--发布人:<span th:if="${noticeListById.getPerson()}" th:text="${noticeListById.getPerson()}"></span>
+                                                            &nbsp;&nbsp;&nbsp;-->
+                                                            发布时间:<span th:if="${noticeListById.getNotice_Time()}" th:text="${noticeListById.getNotice_Time()}"></span>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            游览次数:<span th:if="${noticeListById.getClick()}" th:text="${noticeListById.getClick()}"></span>
+                                                        </h4>
+                                                    </div>
+                                                </li>
+                                    <!--文章内容(bug:文章还不会从文件解析)-->
+                                        <li>
+                                            <p><span th:if="${noticeListById.getNotice_Content()}" th:utext="${noticeListById.getNotice_Content()}"></span></p>
+                                        </li>
+                                    <!--（bug:附件还不会超链接到下载模块）-->
+                                        <li>
+                                            <p>附件:<a th:if="${noticeListById.getQiTa()}" th:text="${noticeListById.getQiTa()}"></a></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+            <!-- End to do content -->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+<!--*******************************************************************************************************-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+    </div>
+</div>
+</body>
+</html>
