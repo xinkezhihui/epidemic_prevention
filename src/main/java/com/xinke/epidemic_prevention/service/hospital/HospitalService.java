@@ -67,8 +67,8 @@ public class HospitalService {
                 }
                 Path exp2 = root.get("ystj");
                 predicates.add(criteriaBuilder.equal(exp2, 1));
-                Path exp3 = root.get("yq_sfys");
-                predicates.add(criteriaBuilder.equal(exp3, 0));
+                Path exp3 = root.get("yq_sfpc");
+                predicates.add(criteriaBuilder.equal(exp3, 1));
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
         };
@@ -246,6 +246,7 @@ public class HospitalService {
         Person person = hospitalRepository.findBySfzmhm(sfzmhm);
         if(person!=null){
             person.setYq_sfys(0);
+            person.setYq_sfpc(1);
             hospitalRepository.flush();
             return true;
         }else

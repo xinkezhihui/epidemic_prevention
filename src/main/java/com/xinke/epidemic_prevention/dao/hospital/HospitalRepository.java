@@ -35,6 +35,6 @@ public interface HospitalRepository extends JpaRepository<Person,Integer>, JpaSp
     //根据sfzmhm返回一条数据
     public Person findBySfzmhm(String sfzmhm);
     //查询所有疑似排除人员
-    @Query(value = "select * from yq_bldjb where ystj= 1 and yq_sfys = 0",nativeQuery=true)
+    @Query(value = "select * from yq_bldjb where ystj= 1 and yq_sfpc = 1",nativeQuery=true)
     public List<Person> findAllYsYPCInfo();
 }
