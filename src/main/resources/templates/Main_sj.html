@@ -11,6 +11,10 @@
 	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 
 	<style type="text/css">
+		.container-fluid {
+			padding-right: 0px!important;
+			padding-left: 0px!important;
+		}
 		#TABLE1 {
 			/*background: pink;*/
 
@@ -225,19 +229,19 @@
 </head>
 <body>
 <div class="container-fluid">
-	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-12">
 		<div><strong><span class="span-01"></span>当日新增确诊:<span th:text="${qzxzNum}"></span></strong>                    </div>
 
 	</div>
-	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-12">
 		<p style="text-align: left"  ><strong><span class="span-02"></span>当日新增疑似:<span th:text="${ysxzNum}"></span></strong>                    </div>
 
 	</div>
-	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-12">
 		<div style="text-align: left" ><strong><span class="span-03"></span>当日新增密切接触:<span th:text="${mjxzNum}"></span></strong>                </div>
 
 	</div>
-	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-6">
+	<div class="col-lg-6 list-item col-md-6 col-sm-6  col-xs-12">
 		<div style="text-align: left" ><strong><span class="span-04"></span>累计确诊:<span th:text="${ljqzNum}"></span></strong>                    </div>
 	</div>
 	<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
@@ -245,14 +249,14 @@
 
 			<strong><span class="span-05"></span>累计疑似：<span th:text="${ljysNum}"></span></strong>
 		</div>
-		<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12">
+		<div class="col-lg-12 list-item col-md-12 col-sm-12  col-xs-12" style="padding-left: 0px">
 			<div ><strong><span class="span-06"></span>累计密切接触：<span th:text="${ljmjNum}"></span></strong>
 			</div>
 		</div>
 
 
 
-		<div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" >当前近七日确诊统计：
+		<div class="title-01 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 0px">当前近七日确诊统计：
 
 		</div>
 		<div class="row list-con">

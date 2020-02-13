@@ -17,6 +17,26 @@
 	<link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
 	<link href="/css/animate.min.css" rel="stylesheet">
 	<link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<style>
+		#content-main {
+			height: calc(100% - 140px);
+		}
+		.footer {
+			font-size: 15px;
+			font-weight: 600;
+		}
+
+		@media (max-width: 768px) {
+			#content-main {
+				height: calc(100% - 98px);
+			}
+			.footer{
+				padding: 10px 10px!important;
+				font-size: 8px;
+			}
+
+		}
+	</style>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
@@ -28,7 +48,7 @@
 			<ul class="nav" id="side-menu">
 				<li class="nav-header">
 					<div class="dropdown profile-element">
-						<span><img alt="图片走丢了..." class="img-circle" th:src="@{'../../static/common/img/contentlogo.jpg'}" style="width: 64px;height: 64px"/></span>
+						<span><a href="/user/tz2"><img alt="图片走丢了..." class="img-circle" th:src="@{'../../static/common/img/yzrx.png'}" style="width: 64px;height: 64px"/></a></span>
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold" th:text="${name}">META</strong></span>
@@ -259,13 +279,13 @@
 			</div>
 			<a href="/user/loginout" onclick="" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
 		</div>
-		<div class="row J_mainContent" id="content-main" style="height: calc(100% - 140px)">
+		<div class="row J_mainContent" id="content-main">
 			<iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/fp/tofp" frameborder="0"
 					data-id="index_v1.html"
 					seamless></iframe>
 		</div>
-		<div class="footer text-center" style="font-size: 15px; font-weight: 600;">
-			<div>Copyright &copy; &nbsp;2019&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<img src="../static/img/152.jpg" style="width: 20px;">&nbsp;山东芯科智慧科技有限公司 &nbsp; &nbsp;Inc. All Rights Reserved</div>
+		<div class="footer text-center">
+			<div>Copyright &copy; &nbsp;2020&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<img src="../static/img/152.jpg" style="width: 20px;">&nbsp;山东芯科智慧科技有限公司 &nbsp; &nbsp;Inc. All Rights Reserved</div>
 		</div>
 	</div>
 	<!--右侧部分结束-->
