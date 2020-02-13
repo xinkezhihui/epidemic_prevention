@@ -147,6 +147,18 @@ public class Person {
     private Integer ystj;
     //死亡时间
     private String swsj;
+    //性别
+    private String sex;
+
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
 
     @Override
     public String toString() {

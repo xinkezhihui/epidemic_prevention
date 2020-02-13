@@ -198,9 +198,7 @@
                         </div>
                         <div class="col-sm-12">
                             <!--<span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" type="button" ><a href="/touploadUser" style="color: white" target="_self"> 信息录入</a></button></span>-->
-<!--
                             <span class="col-sm-1" style="float: right"><button class="btn btn-sm btn-primary" id="js-export"   type="button"> 下载</button> </span>
--->
 
                         </div>
                     </div>
@@ -222,7 +220,7 @@
         var type = $('#type2').val();
         var code = $('#code2').val();
         var emailcode = $('#emailcode2').val();
-        window.location.href="/download?name="+name+"&number="+number+"&type="+type+"&code="+code+"&emailcode="+emailcode;
+        window.location.href="/download/downloadform2?name="+name+"&number="+number+"&type="+type+"&code="+code+"&emailcode="+emailcode;
     });
     //模态框
     $('#mytab').bootstrapTable({
