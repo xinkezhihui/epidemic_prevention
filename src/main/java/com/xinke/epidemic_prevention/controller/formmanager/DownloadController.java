@@ -227,7 +227,7 @@ public class DownloadController {
     //下载0-24时新冠病毒确诊日报表
     @GetMapping("/downloadform3")
     @ResponseBody
-    public void export3(HttpServletRequest request, HttpServletResponse response, @RequestParam("yq_sfqz")String yq_sfqz1, @RequestParam("yq_qzsj")String yq_qzsj, @RequestParam("type")String type, @RequestParam("code")String code, @RequestParam("emailcode")String emailcode) throws Exception {
+    public void export3(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Person> list = new ArrayList<Person>();
         //jpa多条件多表查询，灵活 创建查询语句
         Specification<Person> specification = new Specification<Person>() {
@@ -236,37 +236,21 @@ public class DownloadController {
                 List<Predicate> predicates = new ArrayList<>();
                 DateUtil dateUtil = new DateUtil();
 
-               // String yq_qzsj = dateUtil.getDate();
-               /*   Integer yq_sfqz = Integer.valueOf(yq_sfqz1);
+               String yq_qzsj = dateUtil.getDate();
+                String yq_sfqz = String.valueOf(1);
                 if (yq_sfqz != null ) {
                     Path exp0 = root.get("yq_sfqz");
-                    predicates.add(criteriaBuilder.like(exp0, "1"));
+                    predicates.add(criteriaBuilder.equal(exp0, yq_sfqz));
                 }
                 if (yq_qzsj != null && yq_qzsj != "") {
                     Path exp1 = root.get("yq_qzsj");
-                    predicates.add(criteriaBuilder.like(exp1, "%" + dateUtil.getDate() + "%"));
+                    predicates.add(criteriaBuilder.between(exp1, yq_qzsj+"00:00:00",yq_qzsj+"24:00:00"));
                 }
-              if (number != null && number != "") {
-                    Path exp2 = root.get("number");
-                    predicates.add(criteriaBuilder.like(exp2, "%" + number + "%"));
-                }
-                if (type != null && type != "") {
-                    Path exp3 = root.get("type");
-                    predicates.add(criteriaBuilder.like(exp3, "%" + type + "%"));
-                }
-                if (code != null && code != "") {
-                    Path exp4 = root.get("code");
-                    predicates.add(criteriaBuilder.like(exp4, "%" + code + "%"));
-                }
-                if (emailcode != null && emailcode != "") {
-                    Path exp5 = root.get("emailcode");
-                    predicates.add(criteriaBuilder.like(exp5, "%" + emailcode + "%"));
-                }*/
                 return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
             }
         };
         list = form3Reposity.findAll(specification);
-        System.out.println(list);
+
         //excel标题
         String[] title = {"姓名","性别","证件号码","病案号","联系电话","现住详细地址","人群分类","发病日期","诊断时间","出院/死亡时间","报告单位","报告日期","做出诊断的医疗机构所在区县","是否为密切接触者发病"};
         DateUtil dateUtil = new DateUtil();
