@@ -33,7 +33,7 @@ public class ZhcxService {
                     predicates.add(criteriaBuilder.like(exp1, "%" + sfzmhm + "%"));
 
                 }
-                if (yq_sfqz != null ) {
+                if (yq_sfqz != null &&yq_sfqz !="") {
 
                     Path exp1 = root.get("yq_sfqz");
 
@@ -52,22 +52,22 @@ public class ZhcxService {
                     predicates.add(criteriaBuilder.like(exp1, "%" + szqy + "%"));
 
                 }
-                if (sfqwhb != null ) {
+                if (sfqwhb != null && sfqwhb !="") {
                     Path exp1 = root.get("yq_sfcwwh");
                     predicates.add(criteriaBuilder.equal(exp1,  sfqwhb ));
 
                 }
-                if (sfcy != null ) {
+                if (sfcy != null && sfcy!="") {
                     Path exp1 = root.get("yq_sfcy");
                     predicates.add(criteriaBuilder.equal(exp1,  sfcy));
 
                 }
-                if (sfsw != null ) {
+                if (sfsw != null &&sfsw!="") {
                     Path exp1 = root.get("yq_sfsw");
                     predicates.add(criteriaBuilder.equal(exp1, sfsw ));
 
                 }
-                if (sfmj != null ) {
+                if (sfmj != null && sfmj!="") {
                     Path exp1 = root.get("sfmjry");
                     predicates.add(criteriaBuilder.equal(exp1,  sfmj ));
 
