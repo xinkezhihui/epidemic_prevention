@@ -4,9 +4,13 @@ import com.google.gson.Gson;
 import com.xinke.epidemic_prevention.bean.Person;
 import com.xinke.epidemic_prevention.bean.form.FormOne;
 import com.xinke.epidemic_prevention.bean.form.FormTwo;
+import com.xinke.epidemic_prevention.bean.user.User;
+import com.xinke.epidemic_prevention.dao.common.QzNumRepository;
+import com.xinke.epidemic_prevention.dao.common.QzRepository;
 import com.xinke.epidemic_prevention.dao.formmanage.Form1Repository;
 import com.xinke.epidemic_prevention.dao.formmanage.Form2Repository;
 import com.xinke.epidemic_prevention.dao.formmanage.Form3Reposity;
+import com.xinke.epidemic_prevention.service.form.ZhcxService;
 import com.xinke.epidemic_prevention.service.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,8 @@ public class FormManager {
     Form2Repository form2Repository;
     @Autowired
     Form3Reposity form3Reposity;
+    @Autowired
+    QzRepository qzRepository;
 
     @GetMapping("tz1")
     public String tz1(){return "formmanage/form1";}
@@ -32,6 +38,8 @@ public class FormManager {
     public String tz2(){return "formmanage/form2";}
     @GetMapping("tz3")
     public String tz3(){return "formmanage/form3";}
+    @GetMapping("tz4")
+    public String tz4(){return "formmanage/zhcx";}
 
     @GetMapping("form1")
     @ResponseBody
@@ -175,6 +183,34 @@ public class FormManager {
         DateUtil dateUtil = new DateUtil();
         String date = dateUtil.getDate();
         List<Person> personList = form3Reposity.qzxz(date);
+        Gson gson = new Gson();
+        String result = "";
+        if (personList!=null&&personList.size()!=0){
+            result = gson.toJson(personList);
+        }
+        return result;
+    }
+    @Autowired
+    private ZhcxService zhcxService;
+
+    //组合查询
+    @GetMapping("/check")
+    @ResponseBody
+    public String check(String xingming,String sfzmhm,String yq_sfqz,String ksqz,String jsqz,String szqy,String sfqwhb,String sfcy,String sfsw,String sfmj){
+
+        List<Person>  personList = zhcxService.selectCheck(xingming,sfzmhm,yq_sfqz,ksqz,jsqz,szqy,sfqwhb,sfcy,sfsw,sfmj);
+        Gson gson = new Gson();
+        String result = "";
+        if (personList!=null&&personList.size()!=0){
+            result = gson.toJson(personList);
+        }
+        return result;
+    }
+    //查询全部
+    @GetMapping("/findallbl")
+    @ResponseBody
+    public String findall(){
+        List<Person> personList = qzRepository.findAll();
         Gson gson = new Gson();
         String result = "";
         if (personList!=null&&personList.size()!=0){
