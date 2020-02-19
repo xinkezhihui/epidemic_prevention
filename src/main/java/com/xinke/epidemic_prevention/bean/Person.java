@@ -1,6 +1,8 @@
 package com.xinke.epidemic_prevention.bean;
 
 import org.apache.logging.log4j.message.StringFormattedMessage;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.Date;
  */
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "yq_bldjb")
 public class Person {
     @Id
