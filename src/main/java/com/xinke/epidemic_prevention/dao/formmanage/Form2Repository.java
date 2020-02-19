@@ -82,4 +82,8 @@ public interface Form2Repository extends JpaRepository<FormTwo,Integer>, JpaSpec
 
     public List<FormTwo> findByNowdate(String date);
 
+    //时间倒叙
+    @Query(value = "SELECT  *  from All_Formtwo order by nowdate desc",nativeQuery=true)
+    public List<FormTwo> find();
+
 }

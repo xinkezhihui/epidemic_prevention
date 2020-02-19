@@ -44,9 +44,21 @@ public class FormManager {
     @GetMapping("form1")
     @ResponseBody
     public String form1(){
+
+        List<FormOne> formOneList = form1Repository.find();
+
+        Gson gson = new Gson();
+        String result = "";
+        if (formOneList!=null&&formOneList.size()!=0){
+            result = gson.toJson(formOneList);
+        }
+        return result;
+    }
+    @GetMapping("update1")
+    public String update1(){
         DateUtil dateUtil = new DateUtil();
         String date = dateUtil.getDate();
-       // String date1 = String.valueOf(Integer.valueOf(date)-1);
+        // String date1 = String.valueOf(Integer.valueOf(date)-1);
         //新增疑似
         int ysxz = form1Repository.ysxz(date);
         //疑似现有
@@ -100,18 +112,23 @@ public class FormManager {
         if (formOne!=null){
             form1Repository.save(formOne);
         }
-        List<FormOne> formOneList = form1Repository.findAll();
-
-        Gson gson = new Gson();
-        String result = "";
-        if (formOneList!=null&&formOneList.size()!=0){
-            result = gson.toJson(formOneList);
-        }
-        return result;
+        return "redirect:/form/tz1";
     }
     @GetMapping("form2")
     @ResponseBody
     public String form2(){
+
+        List<FormTwo> formTwoList = form2Repository.find();
+
+        Gson gson = new Gson();
+        String result = "";
+        if (formTwoList!=null&&formTwoList.size()!=0){
+            result = gson.toJson(formTwoList);
+        }
+        return result;
+    }
+    @GetMapping("update2")
+    public String update2(){
         DateUtil dateUtil = new DateUtil();
         String date = dateUtil.getDate();
         // String date1 = String.valueOf(Integer.valueOf(date)-1);
@@ -168,14 +185,7 @@ public class FormManager {
         if (formTwo!=null){
             form2Repository.save(formTwo);
         }
-        List<FormTwo> formTwoList = form2Repository.findAll();
-
-        Gson gson = new Gson();
-        String result = "";
-        if (formTwoList!=null&&formTwoList.size()!=0){
-            result = gson.toJson(formTwoList);
-        }
-        return result;
+        return "redirect:/form/tz2";
     }
     @GetMapping("form3")
     @ResponseBody

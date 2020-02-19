@@ -77,6 +77,9 @@ public interface Form1Repository extends JpaRepository<FormOne,Integer>, JpaSpec
 
    /* //存入数据库
     public void save(FormOne formOne);*/
+   //时间倒叙
+   @Query(value = "SELECT  *  from All_Form order by nowdate desc",nativeQuery=true)
+   public List<FormOne> find();
 
 
 }
